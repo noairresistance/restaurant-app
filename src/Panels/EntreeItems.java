@@ -5,13 +5,21 @@
  */
 package Panels;
 
+import Listeners.Navigator;
+
 public class EntreeItems extends javax.swing.JPanel {
 
+    Navigator navigator;
+    
+    
+    
     /**
      * Creates new form EntreeItems
      */
-    public EntreeItems() {
+   
+    public EntreeItems(Navigator navigator) {
         initComponents();
+        this.navigator = navigator;
     }
 
     /**
@@ -90,7 +98,7 @@ public class EntreeItems extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 659, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

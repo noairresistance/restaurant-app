@@ -7,18 +7,15 @@ package Panels;
 
 import Listeners.Navigator;
 
-/**
- *
- * @author Buckwheat
- */
-public class Icons extends javax.swing.JPanel {
-    
-    Navigator navigator;
 
+public class Drinks extends javax.swing.JPanel {
+
+    Navigator navigator;
+    
     /**
-     * Creates new form Icons
+     * Creates new form Drinks
      */
-    public Icons(Navigator navigator) {
+    public Drinks(Navigator navigator) {
         initComponents();
         this.navigator = navigator;
     }
@@ -34,37 +31,27 @@ public class Icons extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setOpaque(false);
+        setBackground(new java.awt.Color(255, 255, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/home-icon-48x48.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
+        jLabel1.setText("This will have drinks");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(106, 106, 106)
                 .addComponent(jLabel1)
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        navigator.goToHomeScreen();
-    }//GEN-LAST:event_jLabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

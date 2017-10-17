@@ -4,27 +4,42 @@
  * 
  */
 package Panels;
+import Listeners.Navigator;
 import javafx.scene.control.MenuButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author Buckwheat
- */
+/*
+CREATING A NEW PANEL
+1> Navigator.Java class
+        + Create new gotTo() method
+            - This will create a problem in the App.Java class
+2> App.Java class
+        + Impliment all abstract methods
+        + Add these methods:
+            - setContentPane(new PanelObject(this)) 
+            - repaint();
+            -revalidate();
+3> Create new Panel
+        + Add Navigator field
+        + Add Navigator object to the Panel's constructor argument
+        + Set this.navigator = passed constructor argument
+4> Add Listener to button in new Panel
+        + In ButtonMouseClicked method:
+            - Call navigator.goTo method for destination
+
+
+
+*/
+
 public class HomeScreen extends javax.swing.JPanel {
+    
+    private Navigator navigator;
 
-    public HomeScreen() {
+    public HomeScreen(Navigator navigator) {
         initComponents();
+        this.navigator = navigator;
     }
     
-    public JLabel getMenuButton(){
-        return menuButton;
-    }
-    
-    public JLabel getGamesButton(){
-        return gamesButton;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +58,11 @@ public class HomeScreen extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1024, 768));
 
         menuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/menu.png"))); // NOI18N
+        menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuButtonMouseClicked(evt);
+            }
+        });
 
         gamesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/games.png"))); // NOI18N
 
@@ -53,7 +73,7 @@ public class HomeScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(menuButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -69,6 +89,11 @@ public class HomeScreen extends javax.swing.JPanel {
                 .addContainerGap(378, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToMenu();
+    }//GEN-LAST:event_menuButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
