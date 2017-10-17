@@ -13,7 +13,7 @@ import Handler.*;
 public class Main {
     public static void main(String args[]) {
        
-                // Hardcoded values to test classes and output.
+        // Hardcoded values to test classes and output.
         Food test = new Food("cheeseburger",3.99,true,false);
         test.SetDescription("It's cheesy af.");
         test.SetIngredients("Ingredient 1");
@@ -27,7 +27,11 @@ public class Main {
         test2.SetIngredients("Ingredient 3");
         test2.SetIngredients("Ingredient 4");
         
+        Merchandise merch = new Merchandise("No Resistance Mug", 12.99, true, "M", "Green");
+        merch.SetDescription("Assume no air resistance!");
+        
         //output
+        System.out.println("Food Output: \n");
         System.out.println("name: "+test.GetName());
         System.out.println("desc: "+test.GetDescription());
         System.out.println("price: $"+test.GetPrice());
@@ -46,6 +50,13 @@ public class Main {
         System.out.println(test2.GetIngredients(3));
         System.out.println("Available?: "+test2.GetIsAvailable());
         System.out.println("Special?: "+test2.GetIsSpecial());
+        System.out.println("\nMerchandise Output: \n");
+        System.out.println("name: "+merch.GetName());
+        System.out.println("desc: "+merch.GetDescription());
+        System.out.println("price: $"+merch.GetPrice());
+        System.out.println("Available?: "+test.GetIsAvailable());
+        System.out.println("Size: "+merch.GetSize());
+        System.out.println("Color: "+merch.GetColor());
         
         
         //Create a separate thread 
