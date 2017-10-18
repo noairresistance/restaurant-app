@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 
 public class App extends javax.swing.JFrame {
 
+    public int whatver;
     
     Navigator navigator = new Navigator() {
         @Override
