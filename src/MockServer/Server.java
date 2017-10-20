@@ -3,7 +3,7 @@
  * 
  * 
  */
-package Server;
+package MockServer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,7 +3,7 @@
  * 
  * 
  */
-package Server;
+package MockServer;
 
 
 public class MenuItem {

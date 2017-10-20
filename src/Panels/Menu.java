@@ -90,11 +90,15 @@ public class Menu extends javax.swing.JPanel {
     private void entreesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entreesButtonMouseClicked
         // TODO add your handling code here:
         navigator.goToEntrees();
+        //send request to server
+        
+        //information = serverReqest()
     }//GEN-LAST:event_entreesButtonMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         navigator.goToDrinks();
+        //send request to server
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
