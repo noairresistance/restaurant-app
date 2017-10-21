@@ -50,7 +50,7 @@ public class HomeScreen extends javax.swing.JPanel {
     private void initComponents()
     {
 
-        menuButton = new javax.swing.JLabel();
+        menuButton1 = new javax.swing.JLabel();
         gamesButton = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
@@ -58,16 +58,26 @@ public class HomeScreen extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
 
-        menuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/menu.png"))); // NOI18N
-        menuButton.addMouseListener(new java.awt.event.MouseAdapter()
+        menuButton1.setBackground(new java.awt.Color(204, 0, 0));
+        menuButton1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        menuButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuButton1.setText("MENU");
+        menuButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        menuButton1.setOpaque(true);
+        menuButton1.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                menuButtonMouseClicked(evt);
+                menuButton1MouseClicked(evt);
             }
         });
 
-        gamesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/games.png"))); // NOI18N
+        gamesButton.setBackground(new java.awt.Color(204, 0, 0));
+        gamesButton.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        gamesButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gamesButton.setText("GAMES");
+        gamesButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        gamesButton.setOpaque(true);
         gamesButton.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -80,31 +90,29 @@ public class HomeScreen extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(menuButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menuButton)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(gamesButton)))
-                .addContainerGap(378, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(431, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuButtonMouseClicked
+    private void menuButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuButton1MouseClicked
+    {//GEN-HEADEREND:event_menuButton1MouseClicked
         // TODO add your handling code here:
         navigator.goToMenu();
-        
-    }//GEN-LAST:event_menuButtonMouseClicked
+    }//GEN-LAST:event_menuButton1MouseClicked
 
     private void gamesButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_gamesButtonMouseClicked
     {//GEN-HEADEREND:event_gamesButtonMouseClicked
@@ -115,6 +123,6 @@ public class HomeScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gamesButton;
-    private javax.swing.JLabel menuButton;
+    private javax.swing.JLabel menuButton1;
     // End of variables declaration//GEN-END:variables
 }
