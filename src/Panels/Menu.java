@@ -42,27 +42,18 @@ public class Menu extends javax.swing.JPanel {
     private void initComponents()
     {
 
-        entreesButton = new javax.swing.JLabel();
         drinksButton = new javax.swing.JLabel();
+        entreesButton = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
 
-        entreesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/entrees.png"))); // NOI18N
-        entreesButton.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                entreesButtonMouseClicked(evt);
-            }
-        });
-
         drinksButton.setBackground(new java.awt.Color(204, 51, 0));
-        drinksButton.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        drinksButton.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         drinksButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        drinksButton.setText("Drinks");
+        drinksButton.setText("DRINKS");
         drinksButton.setOpaque(true);
         drinksButton.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -72,40 +63,51 @@ public class Menu extends javax.swing.JPanel {
             }
         });
 
+        entreesButton.setBackground(new java.awt.Color(204, 0, 0));
+        entreesButton.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        entreesButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        entreesButton.setText("ENTREES");
+        entreesButton.setOpaque(true);
+        entreesButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                entreesButtonMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
                 .addContainerGap(516, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(entreesButton)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(drinksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void entreesButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entreesButtonMouseClicked
-        // TODO add your handling code here:
-        navigator.goToEntrees();
-        //send request to server
-        
-        //information = serverReqest()
-    }//GEN-LAST:event_entreesButtonMouseClicked
 
     private void drinksButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinksButtonMouseClicked
         // TODO add your handling code here:
         navigator.goToDrinks();
         //send request to server
     }//GEN-LAST:event_drinksButtonMouseClicked
+
+    private void entreesButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_entreesButtonMouseClicked
+    {//GEN-HEADEREND:event_entreesButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToEntrees();
+    }//GEN-LAST:event_entreesButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
