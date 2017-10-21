@@ -47,7 +47,8 @@ public class HomeScreen extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         menuButton = new javax.swing.JLabel();
         gamesButton = new javax.swing.JLabel();
@@ -58,13 +59,22 @@ public class HomeScreen extends javax.swing.JPanel {
         setSize(new java.awt.Dimension(1024, 768));
 
         menuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/menu.png"))); // NOI18N
-        menuButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        menuButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 menuButtonMouseClicked(evt);
             }
         });
 
         gamesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/homeScreenButtons/games.png"))); // NOI18N
+        gamesButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                gamesButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,6 +105,12 @@ public class HomeScreen extends javax.swing.JPanel {
         navigator.goToMenu();
         
     }//GEN-LAST:event_menuButtonMouseClicked
+
+    private void gamesButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_gamesButtonMouseClicked
+    {//GEN-HEADEREND:event_gamesButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToGames();
+    }//GEN-LAST:event_gamesButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

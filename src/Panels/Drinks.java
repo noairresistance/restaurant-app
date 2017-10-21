@@ -27,11 +27,13 @@ public class Drinks extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
+        setSize(new java.awt.Dimension(1024, 768));
 
         jLabel1.setText("This will have drinks");
 

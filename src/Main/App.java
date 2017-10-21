@@ -6,54 +6,82 @@
 package Main;
 
 import Listeners.Navigator;
-import Panels.Drinks;
-import Panels.EntreeItems;
-import Panels.Entrees;
-import Panels.HomeScreen;
-import Panels.Icons;
-import Panels.Menu;
+import Panels.*;
 import java.awt.BorderLayout;
+import java.util.Stack;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 public class App extends javax.swing.JFrame {
 
+    Stack<JPanel> history;//stores all panels visited from the homescreen
     
-    
-    Navigator navigator = new Navigator() {
-        @Override
-        public void goToHomeScreen() {
-            setContentPane(new HomeScreen(this));
+    Navigator navigator = new Navigator() 
+    {
+        JPanel current;//stores the current panel
+        
+        void swapPanel(JPanel newPanel)
+        {
+            
+            //check if there is a panel to remove
+            if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = newPanel;//set current to the new panel
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
             repaint();
             validate();
+            
+            
+        }
+        
+        @Override
+        public void goToHomeScreen() 
+        {    
+            history.clear();//when going to the home screen, clear the stack
+            swapPanel(new HomeScreen(this));
         }
 
         @Override
-        public void goToMenu() {
-            System.out.println("Yup");
-            setContentPane(new Menu(this));           
-            repaint();
-            validate();
+        public void goToMenu() 
+        {
+            swapPanel(new Menu(this));
             
         }
 
         @Override
-        public void goToEntrees() {
-            setContentPane(new Entrees(this));
-            repaint();
-            validate();
+        public void goToEntrees() 
+        {
+            swapPanel(new Entrees(this));
         }
 
         @Override
-        public void goToEntreeItems() {
-            setContentPane(new EntreeItems(this));
-            repaint();
-            validate();
+        public void goToDrinks() 
+        {
+            swapPanel(new Drinks(this));
         }
 
         @Override
-        public void goToDrinks() {
-            setContentPane(new Drinks(this));
-            repaint();
-            validate();
+        public void goToGames()
+        {
+            swapPanel(new Games());
+        }
+
+        @Override
+        public void goBack()
+        {
+            
+            if(history.size() >= 2)
+            {
+                history.pop();
+                swapPanel(history.pop());
+            }
+                
+            
+            
         }
         
     };
@@ -63,7 +91,8 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
-        setSize(1024, 768); 
+        setSize(1024, 768);
+        history = new Stack<>();
         navigator.goToHomeScreen();
         
     }
@@ -75,12 +104,80 @@ public class App extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
+
+        layeredPane = new javax.swing.JLayeredPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(1024, 768));
+
+        layeredPane.setPreferredSize(new java.awt.Dimension(1024, 768));
+
+        jPanel1.setOpaque(false);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/home-icon-48x48.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/back-icon-48x48.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(278, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        layeredPane.setLayer(jPanel1, javax.swing.JLayeredPane.PALETTE_LAYER);
+        layeredPane.add(jPanel1);
+        jPanel1.setBounds(620, 0, 400, 90);
+
+        getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel1MouseClicked
+    {//GEN-HEADEREND:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        navigator.goToHomeScreen();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel2MouseClicked
+    {//GEN-HEADEREND:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        navigator.goBack();    
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -118,5 +215,9 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane layeredPane;
     // End of variables declaration//GEN-END:variables
 }

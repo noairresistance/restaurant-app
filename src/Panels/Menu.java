@@ -39,30 +39,36 @@ public class Menu extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         entreesButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        drinksButton = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
+        setSize(new java.awt.Dimension(1024, 768));
 
         entreesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/entrees.png"))); // NOI18N
-        entreesButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        entreesButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 entreesButtonMouseClicked(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(204, 51, 0));
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Drinks");
-        jLabel1.setOpaque(true);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+        drinksButton.setBackground(new java.awt.Color(204, 51, 0));
+        drinksButton.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        drinksButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        drinksButton.setText("Drinks");
+        drinksButton.setOpaque(true);
+        drinksButton.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                drinksButtonMouseClicked(evt);
             }
         });
 
@@ -74,13 +80,13 @@ public class Menu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(516, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
                 .addComponent(entreesButton)
                 .addContainerGap())
@@ -95,15 +101,15 @@ public class Menu extends javax.swing.JPanel {
         //information = serverReqest()
     }//GEN-LAST:event_entreesButtonMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void drinksButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinksButtonMouseClicked
         // TODO add your handling code here:
         navigator.goToDrinks();
         //send request to server
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_drinksButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel drinksButton;
     private javax.swing.JLabel entreesButton;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

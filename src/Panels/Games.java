@@ -11,6 +11,7 @@ package Panels;
  */
 public class Games extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form Games
      */
