@@ -24,6 +24,7 @@ public class Client {
     {
         try
         {
+            System.out.println("CLIENT: Creating socket");
             Socket cliSocket = new Socket("127.0.0.1", 5555);
             System.out.println("CLIENT: Trying to connect to server");
  

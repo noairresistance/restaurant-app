@@ -96,11 +96,15 @@ public class App extends javax.swing.JFrame {
         history = new Stack<>();
         navigator.goToHomeScreen();
         
+        //Create thread for server
+        Runnable serverThread = new Server();
+        Thread thread = new Thread(serverThread);
+        thread.start();
         
-        //Client client = new Client();
-        //client.go();
-        //Server server = new Server();
-        //server.go();
+        //Create client
+        Client client = new Client();
+        client.go();
+        
         
         
         

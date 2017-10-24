@@ -12,8 +12,15 @@ import java.net.Socket;
 
 
 
-public class Server
-{
+public class Server implements Runnable
+{   
+    
+   @Override
+   public void run()
+   {
+       go(); 
+   }
+   
    public void go()
    {
        try 
@@ -32,4 +39,7 @@ public class Server
            ex.printStackTrace();
        }
    }
+
+    
 }
+
