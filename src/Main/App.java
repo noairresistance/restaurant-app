@@ -6,6 +6,7 @@
 package Main;
 
 import Listeners.Navigator;
+import MockServer.*;
 import Panels.*;
 import java.awt.BorderLayout;
 import java.util.Stack;
@@ -94,6 +95,18 @@ public class App extends javax.swing.JFrame {
         setSize(1024, 768);
         history = new Stack<>();
         navigator.goToHomeScreen();
+        
+        
+        //Client client = new Client();
+        //client.go();
+        //Server server = new Server();
+        //server.go();
+        
+        
+        
+        
+        
+        
         
     }
 

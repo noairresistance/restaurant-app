@@ -7,7 +7,7 @@ package Food;
 
 import java.util.ArrayList;
 
-class Food extends RestaurantItem
+public class Food extends RestaurantItem
 {
     private Boolean IsSpecial;
     private ArrayList<String> Ingredients;
