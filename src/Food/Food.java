@@ -28,6 +28,11 @@ public class Food extends RestaurantItem
         return Ingredients.get(i);
     }
     
+    public int getIngrediantArraySize()
+    {
+        return Ingredients.size();
+    }
+    
     public void SetIsSpecial(Boolean Status)
     {
         this.IsSpecial = Status;
