@@ -5,54 +5,64 @@
  */
 package MockServer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import Food.ServerSentMasterList;
+import Food.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class Server {
+
+
+
+public class Server implements Runnable
+{   
+   Food foodItem;
     
-    String itemType;
-    ArrayList<String> listOfItems;
-    HashMap<String, Double> priceMap; 
-    HashMap<String, String> descriptionMap;
-    HashMap<String, String> toppingsMap;
-    HashMap<String, String> imageMap;
-    
-    public Server()
-    {
-        itemType = "Burgers";
-        
-        //List of items on menu
-        listOfItems = new ArrayList<String>();
-            listOfItems.add("Royale w/ Cheese");
-            listOfItems.add("Big Kahuna");
-        
-        //Price of items
-        priceMap = new HashMap<>();
-            priceMap.put("Royale w/ Cheese", 7.99);
-            priceMap.put("Big Kahuna", 9.99);
+   @Override
+   public void run()
+   {
+       go(); 
+   }
+   
+   public void go()
+   {
+       try 
+       {
+           ServerSocket listenerSocket = new ServerSocket(5555);
+           
+          
+            //System.out.println("SERVER: Listening");
+            Socket socket = listenerSocket.accept();
+            //System.out.println("SERVER: Client recieved");
             
-        //Description of items     
-        descriptionMap = new HashMap<>();
-            descriptionMap.put("Royale w/ Cheese", "A classic 113 gram burger with all of the fixings. "
-                                + "Cheddar cheese, juicy tomatoes, red onion, and fresh lettuce all stuffed "
-                                + "between our big sweet buns.");
-            descriptionMap.put("Big Kahuna", "A 1/2 lb all-beef patty topped with scrumptious Applewood smoked bacon, "
-                                + "shoestring onions, and a slice of grilled pineapple. This is a tasty burger!");
+            //Create Drinks
+            DrinksList drinkList = new DrinksList();
+            //Create Appitizers
+            AppitizersList appitizerList = new AppitizersList();
+            //Create Entrees
+            EntreeList entreeList = new EntreeList();
+            //Create Desserts
+            DessertsList dessertsList = new DessertsList();
             
-        //Toppings that come with items
-        toppingsMap = new HashMap<>();
-            toppingsMap.put("Royale w/ Cheese", "Mayonaise, Cheddar Cheese, Tomatoes, Red Onion, Lettuce");
-            toppingsMap.put("Big Kahuna", "Sweet Mustard, Shoestring Onions, Applewood Bacon, Grilled Pinapple, Sweet Bun");
+            //Create MasterList
+            ServerSentMasterList masterList = new ServerSentMasterList(drinkList.drinks, appitizerList.appitizers, entreeList.entrees, dessertsList.desserts);
             
-        //File path to images
-        imageMap = new HashMap<>();
-            imageMap.put("Royale w/ Cheese", "/images/menuItems/burgers/royaleCheese.jpg");
-            imageMap.put("Big Kahuna", "/images/menuItems/burgers/bigKahuna.jpg");
-                  
-       
-    }
-    
-    
-    
+            
+            
+            //Serialize and write the object out to the socket
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(masterList);
+            
+               
+           
+           
+           
+       } catch (IOException ex) {
+           ex.printStackTrace();
+       }
+   }
+
     
 }
+

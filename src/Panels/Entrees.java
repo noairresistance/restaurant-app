@@ -5,23 +5,36 @@
  */
 package Panels;
 
+import Food.Food;
 import Listeners.Navigator;
+import java.util.ArrayList;
+import javax.swing.JList;
 
 public class Entrees extends javax.swing.JPanel {
 
     Navigator navigator;
+    ArrayList<Food> entrees;
     
+    String [] items;
+    
+   
     
     
     /**
      * Creates new form EntreeItems
      */
    
-    public Entrees(Navigator navigator) {
+    public Entrees(Navigator navigator, ArrayList<Food> entrees) {
         initComponents();
         this.navigator = navigator;
-        //ServerObject = returned ServerObjects
-        //populate fields
+        this.entrees = entrees;
+        items = new String[entrees.size()];
+        
+        for (int i = 0; i < entrees.size(); i++)
+        {
+            items[i] = entrees.get(i).GetName();
+        }
+        
     }
 
     /**
@@ -38,7 +51,7 @@ public class Entrees extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        foodList = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 0));
@@ -64,11 +77,13 @@ public class Entrees extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BURGERS");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
 
-        jList1.setBackground(new java.awt.Color(204, 0, 0));
-        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
-        jScrollPane1.setViewportView(jList1);
+        foodList.setBackground(new java.awt.Color(204, 0, 0));
+        foodList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        foodList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(foodList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,8 +146,8 @@ public class Entrees extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> foodList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
