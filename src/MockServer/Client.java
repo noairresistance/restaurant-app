@@ -5,36 +5,74 @@
  */
 package MockServer;
 
+import Food.ServerSentMasterList;
 import Food.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 
 public class Client {
     
-    Food foodItem;
+    ServerSentMasterList masterList;
+    MasterFoodItemList masterFoodItemList;
     
     public Client()
     {
         
     }
     
+    public MasterFoodItemList getMasterFoodItemList()
+    {
+        return masterFoodItemList;
+    }
+    
     public void go() throws ClassNotFoundException
     {
         try
         {
-            System.out.println("CLIENT: Creating socket");
+            //Create Client Side Socket
             Socket cliSocket = new Socket("127.0.0.1", 5555);
-            System.out.println("CLIENT: Trying to connect to server");
             
+            //Create Object Input Stream to receive serialized object from server
             ObjectInputStream in = new ObjectInputStream(cliSocket.getInputStream());
-            foodItem = (Food)in.readObject();
+           
+            //Read in object
+            masterList = (ServerSentMasterList) in.readObject();
             
-            for (int i = 0; i < foodItem.getIngrediantArraySize(); i++)
+            //Create Master Food Items List
+            //Get ArrayLists from server sent object
+            masterFoodItemList = new MasterFoodItemList(masterList.totalList);
+            
+            
+            
+            
+            //Print out all food item names
+            for (int i = 0; i < masterFoodItemList.drinks.size(); i++)
             {
-                System.out.println(foodItem.GetIngredients(i));
+                System.out.println(masterFoodItemList.drinks.get(i).GetName());
             }
+            System.out.println();
+            
+            for (int i = 0; i < masterFoodItemList.appitizers.size(); i++)
+            {
+                System.out.println(masterFoodItemList.appitizers.get(i).GetName());
+            }
+            System.out.println();
+            
+            for (int i = 0; i < masterFoodItemList.entries.size(); i++)
+            {
+                System.out.println(masterFoodItemList.entries.get(i).GetName());
+            }
+            System.out.println();
+            
+            for (int i = 0; i < masterFoodItemList.desserts.size(); i++)
+            {
+                System.out.println(masterFoodItemList.desserts.get(i).GetName());
+            }
+            System.out.println();
+            
  
         }
         catch(IOException e)

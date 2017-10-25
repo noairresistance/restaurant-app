@@ -5,6 +5,7 @@
  */
 package Main;
 
+import Food.MasterFoodItemList;
 import Listeners.Navigator;
 import MockServer.*;
 import Panels.*;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 public class App extends javax.swing.JFrame {
 
     Stack<JPanel> history;//stores all panels visited from the homescreen
+    MasterFoodItemList masterFoodItemList;
     
     Navigator navigator = new Navigator() 
     {
@@ -58,7 +60,21 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToEntrees() 
         {
-            swapPanel(new Entrees(this));
+            //swapPanel(new Entrees(this));
+            //check if there is a panel to remove
+            
+            if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = new Entrees(this, masterFoodItemList.entries);//set current to the new panel
+            
+            
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
+            repaint();
+            validate();
         }
 
         @Override
@@ -93,9 +109,15 @@ public class App extends javax.swing.JFrame {
      * Creates new form App
      */
     public App() {
+        
+        //Make the frame
         initComponents();
         setSize(1024, 768);
+        
+        //Set back button location
         history = new Stack<>();
+        
+        //Open the homescreen
         navigator.goToHomeScreen();
         
         //Create thread for server
@@ -107,7 +129,9 @@ public class App extends javax.swing.JFrame {
         Client client = new Client();
         try
         {
+            //Connect to server
             client.go();
+            masterFoodItemList = client.getMasterFoodItemList();
         } catch (ClassNotFoundException ex)
         {
             ex.getStackTrace();
