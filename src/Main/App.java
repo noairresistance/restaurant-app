@@ -10,6 +10,8 @@ import MockServer.*;
 import Panels.*;
 import java.awt.BorderLayout;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -103,7 +105,13 @@ public class App extends javax.swing.JFrame {
         
         //Create client
         Client client = new Client();
-        client.go();
+        try
+        {
+            client.go();
+        } catch (ClassNotFoundException ex)
+        {
+            ex.getStackTrace();
+        }
         
         
         

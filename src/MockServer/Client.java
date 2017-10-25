@@ -13,20 +13,28 @@ import java.io.ObjectInputStream;
 
 public class Client {
     
-    Food food;
+    Food foodItem;
     
     public Client()
     {
         
     }
     
-    public void go()
+    public void go() throws ClassNotFoundException
     {
         try
         {
             System.out.println("CLIENT: Creating socket");
             Socket cliSocket = new Socket("127.0.0.1", 5555);
             System.out.println("CLIENT: Trying to connect to server");
+            
+            ObjectInputStream in = new ObjectInputStream(cliSocket.getInputStream());
+            foodItem = (Food)in.readObject();
+            
+            for (int i = 0; i < foodItem.getIngrediantArraySize(); i++)
+            {
+                System.out.println(foodItem.GetIngredients(i));
+            }
  
         }
         catch(IOException e)
