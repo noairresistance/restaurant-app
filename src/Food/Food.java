@@ -28,6 +28,11 @@ public class Food extends RestaurantItem
         return Ingredients.get(i);
     }
     
+    public ArrayList<String> getIngredientList()
+    {
+        return Ingredients;
+    }
+    
     public int getIngrediantArraySize()
     {
         return Ingredients.size();

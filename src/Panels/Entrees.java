@@ -10,35 +10,39 @@ import Listeners.Navigator;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 
 public class Entrees extends javax.swing.JPanel {
 
     Navigator navigator;
     ArrayList<Food> entrees;   
-    DefaultListModel dlm;//This lets you add items to a list after the list has been created 
-    String selection;
+    DefaultListModel dlmEntreeItems, dlmIngredients;//This lets you add items to a list after the list has been created 
+    String selection;//Holds the value of the item selected from the list
     
     /**
      * Creates new form EntreeItems
      */
-   
     public Entrees(Navigator navigator, ArrayList<Food> entrees) {
         initComponents();
         this.navigator = navigator;
         this.entrees = entrees;
         
         
-        dlm = new DefaultListModel();//Create new Default List Model
+        
+        dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
         
         //Add item names from the entrees array to the dlm
         for (int i = 0; i < entrees.size(); i++)
         {
-            dlm.addElement(entrees.get(i).GetName());
+            dlmEntreeItems.addElement(entrees.get(i).GetName());
         }
         
         //Add the dlm to the list
-        foodList.setModel(dlm);
+        foodList.setModel(dlmEntreeItems);
+        
+        
         
               
     }
@@ -62,10 +66,10 @@ public class Entrees extends javax.swing.JPanel {
         foodList = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         itemName = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        itemIngrediants = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         itemDescription = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        itemIngredients = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -134,9 +138,6 @@ public class Entrees extends javax.swing.JPanel {
         itemName.setForeground(new java.awt.Color(255, 255, 0));
         itemName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        itemIngrediants.setBackground(new java.awt.Color(204, 0, 0));
-        jScrollPane2.setViewportView(itemIngrediants);
-
         itemDescription.setBackground(new java.awt.Color(204, 0, 0));
         itemDescription.setColumns(20);
         itemDescription.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -144,6 +145,9 @@ public class Entrees extends javax.swing.JPanel {
         itemDescription.setLineWrap(true);
         itemDescription.setRows(5);
         jScrollPane3.setViewportView(itemDescription);
+
+        itemIngredients.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane4.setViewportView(itemIngredients);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -153,8 +157,8 @@ public class Entrees extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(itemName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(itemName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -164,8 +168,8 @@ public class Entrees extends javax.swing.JPanel {
                 .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -197,17 +201,32 @@ public class Entrees extends javax.swing.JPanel {
     private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
     {//GEN-HEADEREND:event_foodListValueChanged
         // TODO add your handling code here:
-        int iterator = 0;
+        int iterator = 0;//Holds the index of the selected item in the entrees array
+        dlmIngredients = new DefaultListModel();//Default List Model for the ingredient list
         
-        selection = foodList.getSelectedValue();
-        itemName.setText(selection);
+        selection = foodList.getSelectedValue();//Get the selected item
+        itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
         
+        //Finds the index of the selected item from the entrees array
+        //Iterator will be with index number 
         while(entrees.get(iterator).GetName() != selection)
         {
             iterator++;
         }
         
-        itemDescription.setText(entrees.get(iterator).GetDescription());
+        itemDescription.setText(entrees.get(iterator).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+        
+        
+        //Add ingredients to dlmIngrdients
+        for (int i = 0; i < entrees.get(iterator).getIngrediantArraySize(); i++)
+        {
+            dlmIngredients.addElement(entrees.get(iterator).GetIngredients(i));
+           
+        }
+        
+        itemIngredients.setModel(dlmIngredients);
+        
+        
         
     }//GEN-LAST:event_foodListValueChanged
 
@@ -215,14 +234,14 @@ public class Entrees extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> foodList;
     private javax.swing.JTextArea itemDescription;
-    private javax.swing.JList<String> itemIngrediants;
+    private javax.swing.JList<String> itemIngredients;
     private javax.swing.JLabel itemName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }
