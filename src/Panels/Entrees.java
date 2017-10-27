@@ -6,6 +6,8 @@
 package Panels;
 
 import Food.Food;
+import Listeners.IngredientsCellRenderer;
+import Listeners.IngredientsListener;
 import Listeners.Navigator;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -13,7 +15,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 
-public class Entrees extends javax.swing.JPanel {
+public class Entrees extends javax.swing.JPanel implements IngredientsListener{
 
     Navigator navigator;
     ArrayList<Food> entrees;   
@@ -27,9 +29,7 @@ public class Entrees extends javax.swing.JPanel {
         initComponents();
         this.navigator = navigator;
         this.entrees = entrees;
-        
-        
-        
+
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
         
@@ -42,6 +42,9 @@ public class Entrees extends javax.swing.JPanel {
         //Add the dlm to the list
         foodList.setModel(dlmEntreeItems);
         
+        //Creates Ingredient Cell Renderer
+        //Setting this render to the list
+        itemIngredients.setCellRenderer(new IngredientsCellRenderer(this));
         
         
               
@@ -60,6 +63,7 @@ public class Entrees extends javax.swing.JPanel {
     {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,15 +82,27 @@ public class Entrees extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ORDER DETAILS");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 0));
@@ -146,7 +162,16 @@ public class Entrees extends javax.swing.JPanel {
         itemDescription.setRows(5);
         jScrollPane3.setViewportView(itemDescription);
 
-        itemIngredients.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        itemIngredients.setBackground(new java.awt.Color(204, 0, 0));
+        itemIngredients.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        itemIngredients.setForeground(new java.awt.Color(255, 255, 0));
+        itemIngredients.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
+                itemIngredientsValueChanged(evt);
+            }
+        });
         jScrollPane4.setViewportView(itemIngredients);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -183,7 +208,7 @@ public class Entrees extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -230,6 +255,12 @@ public class Entrees extends javax.swing.JPanel {
         
     }//GEN-LAST:event_foodListValueChanged
 
+    private void itemIngredientsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_itemIngredientsValueChanged
+    {//GEN-HEADEREND:event_itemIngredientsValueChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_itemIngredientsValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> foodList;
@@ -237,6 +268,7 @@ public class Entrees extends javax.swing.JPanel {
     private javax.swing.JList<String> itemIngredients;
     private javax.swing.JLabel itemName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -244,4 +276,25 @@ public class Entrees extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    //Where ingredients will be added or removed from the 3rd list
+    @Override
+    public void addIngredient(String ingredient)
+    {
+        
+    }
+
+    @Override
+    public void removeIngredient(String ingredient)
+    {
+        
+    }
+
+    @Override
+    public boolean hasIngredient(String ingredient)
+    {
+        return false;
+    }
 }

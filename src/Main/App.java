@@ -6,6 +6,7 @@
 package Main;
 
 import Food.MasterFoodItemList;
+import Food.Order;
 import Listeners.Navigator;
 import MockServer.*;
 import Panels.*;
@@ -20,6 +21,7 @@ public class App extends javax.swing.JFrame {
 
     Stack<JPanel> history;//stores all panels visited from the homescreen
     MasterFoodItemList masterFoodItemList;
+    Order order;
     
     Navigator navigator = new Navigator() 
     {
@@ -53,6 +55,10 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToMenu() 
         {
+            //if the menu button is selected a new order object is created
+            //it is set to null for cheking of items have been addded to the order
+            order = new Order();
+            order = null;
             swapPanel(new Menu(this));
             
         }
