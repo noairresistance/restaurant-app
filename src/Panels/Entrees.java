@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 
-public class Entrees extends javax.swing.JPanel implements IngredientsListener{
+public class Entrees extends javax.swing.JPanel{
 
     Navigator navigator;
     ArrayList<Food> entrees;   
@@ -48,9 +48,8 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         //Add the dlm to the list
         foodList.setModel(dlmEntreeItems);
         
-        //Creates Ingredient Cell Renderer
-        //Setting this render to the list
-        itemIngredients.setCellRenderer(new IngredientsCellRenderer(this));
+        
+        
         
         
               
@@ -166,6 +165,7 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         itemName.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         itemName.setForeground(new java.awt.Color(255, 255, 0));
         itemName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        itemName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
 
         itemDescription.setBackground(new java.awt.Color(204, 0, 0));
         itemDescription.setColumns(20);
@@ -173,6 +173,7 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         itemDescription.setForeground(new java.awt.Color(255, 255, 0));
         itemDescription.setLineWrap(true);
         itemDescription.setRows(5);
+        itemDescription.setEnabled(false);
         jScrollPane3.setViewportView(itemDescription);
 
         itemIngredients.setBackground(new java.awt.Color(204, 0, 0));
@@ -251,15 +252,6 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void itemIngredientsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_itemIngredientsValueChanged
-    {//GEN-HEADEREND:event_itemIngredientsValueChanged
-        // TODO add your handling code here:
-        
-        
-        
-        
-    }//GEN-LAST:event_itemIngredientsValueChanged
-
     private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
     {//GEN-HEADEREND:event_foodListValueChanged
         // TODO add your handling code here:
@@ -285,7 +277,7 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
 
         }
 
-        itemIngredients.setModel(dlmIngredients);
+        
 
     }//GEN-LAST:event_foodListValueChanged
 
@@ -294,6 +286,12 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void itemIngredientsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_itemIngredientsValueChanged
+    {//GEN-HEADEREND:event_itemIngredientsValueChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_itemIngredientsValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,22 +313,5 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
 
     
     
-    //Where ingredients will be added or removed from the 3rd list
-    @Override
-    public void addIngredient(String ingredient)
-    {
-        
-    }
 
-    @Override
-    public void removeIngredient(String ingredient)
-    {
-        
-    }
-
-    @Override
-    public boolean hasIngredient(String ingredient)
-    {
-        return false;
-    }
 }
