@@ -56,7 +56,7 @@ public class App extends javax.swing.JFrame {
         public void goToMenu() 
         {
             //if the menu button is selected a new order object is created
-            //it is set to null for cheking of items have been addded to the order
+            //order object is set to null for cheking if items have been addded to the order
             order = new Order();
             order = null;
             swapPanel(new Menu(this));
@@ -74,7 +74,7 @@ public class App extends javax.swing.JFrame {
                 layeredPane.remove(current);//remove the current screen    
             }
             
-            current = new Entrees(this, masterFoodItemList.entries);//set current to the new panel
+            current = new Entrees(this, masterFoodItemList.entries, order);//set current to the new panel
             
             
             history.push(current);//push the new panel onto the stack

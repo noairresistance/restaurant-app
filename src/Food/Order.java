@@ -5,13 +5,15 @@
  */
 package Food;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Order
+public class Order implements Serializable
 {
     private int tableNumber;
     private int orderNumber;
     private ArrayList<Food> foodItem;
+    private ArrayList<Food> drink;
     private double totalPrice;
 
 
@@ -59,6 +61,18 @@ public class Order
     public void setOrderNumber(int orderNumber)
     {
         this.orderNumber = orderNumber;
+    }
+
+
+    public ArrayList<Food> getDrink()
+    {
+        return drink;
+    }
+
+
+    public void setDrink(ArrayList<Food> drink)
+    {
+        this.drink = drink;
     }
     
     

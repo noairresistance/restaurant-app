@@ -6,6 +6,7 @@
 package Panels;
 
 import Food.Food;
+import Food.Order;
 import Listeners.IngredientsCellRenderer;
 import Listeners.IngredientsListener;
 import Listeners.Navigator;
@@ -21,14 +22,17 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
     ArrayList<Food> entrees;   
     DefaultListModel dlmEntreeItems, dlmIngredients;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
+    int iterator;//used for finding values in the entrees array
+    Order order;//Holds the customers entire order
     
     /**
      * Creates new form EntreeItems
      */
-    public Entrees(Navigator navigator, ArrayList<Food> entrees) {
+    public Entrees(Navigator navigator, ArrayList<Food> entrees, Order order) {
         initComponents();
         this.navigator = navigator;
         this.entrees = entrees;
+        this.order = order;
 
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
@@ -66,7 +70,6 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         foodList = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         itemName = new javax.swing.JLabel();
@@ -92,7 +95,7 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addContainerGap())
@@ -125,17 +128,16 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
                 foodListValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(foodList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                    .addComponent(foodList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -144,8 +146,8 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(foodList, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 0));
@@ -223,43 +225,42 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
-    {//GEN-HEADEREND:event_foodListValueChanged
-        // TODO add your handling code here:
-        int iterator = 0;//Holds the index of the selected item in the entrees array
-        dlmIngredients = new DefaultListModel();//Default List Model for the ingredient list
-        
-        selection = foodList.getSelectedValue();//Get the selected item
-        itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
-        
-        //Finds the index of the selected item from the entrees array
-        //Iterator will be with index number 
-        while(entrees.get(iterator).GetName() != selection)
-        {
-            iterator++;
-        }
-        
-        itemDescription.setText(entrees.get(iterator).GetDescription());//Set the itemDescription JLabel to display the selected item's description
-        
-        
-        //Add ingredients to dlmIngrdients
-        for (int i = 0; i < entrees.get(iterator).getIngrediantArraySize(); i++)
-        {
-            dlmIngredients.addElement(entrees.get(iterator).GetIngredients(i));
-           
-        }
-        
-        itemIngredients.setModel(dlmIngredients);
-        
-        
-        
-    }//GEN-LAST:event_foodListValueChanged
-
     private void itemIngredientsValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_itemIngredientsValueChanged
     {//GEN-HEADEREND:event_itemIngredientsValueChanged
         // TODO add your handling code here:
         
+        
+        
     }//GEN-LAST:event_itemIngredientsValueChanged
+
+    private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
+    {//GEN-HEADEREND:event_foodListValueChanged
+        // TODO add your handling code here:
+        iterator = 0;//Holds the index of the selected item in the entrees array
+        dlmIngredients = new DefaultListModel();//Default List Model for the ingredient list
+
+        selection = foodList.getSelectedValue();//Get the selected item
+        itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
+
+        //Finds the index of the selected item from the entrees array
+        //Iterator will be with index number
+        while(entrees.get(iterator).GetName() != selection)
+        {
+            iterator++;
+        }
+
+        itemDescription.setText(entrees.get(iterator).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+
+        //Add ingredients to dlmIngrdients
+        for (int i = 0; i < entrees.get(iterator).getIngrediantArraySize(); i++)
+        {
+            dlmIngredients.addElement(entrees.get(iterator).GetIngredients(i));
+
+        }
+
+        itemIngredients.setModel(dlmIngredients);
+
+    }//GEN-LAST:event_foodListValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -272,7 +273,6 @@ public class Entrees extends javax.swing.JPanel implements IngredientsListener{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
