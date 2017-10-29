@@ -13,6 +13,7 @@ public interface Navigator {
     void goToEntrees();
     void goToDrinks();
     void goToGames();
+    void goToPay();
     void goBack();
 
     

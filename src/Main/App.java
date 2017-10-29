@@ -53,6 +53,12 @@ public class App extends javax.swing.JFrame {
         }
 
         @Override
+        public void goToPay()
+        {
+            swapPanel(new Pay(this, order));
+        }
+        
+        @Override
         public void goToMenu() 
         {
             //if the menu button is selected a new order object is created
@@ -259,6 +265,7 @@ public class App extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel1MouseClicked
     {//GEN-HEADEREND:event_jLabel1MouseClicked
         // TODO add your handling code here:
+        
         navigator.goToHomeScreen();
     }//GEN-LAST:event_jLabel1MouseClicked
 
