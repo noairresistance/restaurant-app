@@ -37,6 +37,7 @@ public class HomeScreen extends javax.swing.JPanel {
 
     public HomeScreen(Navigator navigator) {
         initComponents();
+        setSize(1024, 768);
         this.navigator = navigator;
     }
     
