@@ -1,4 +1,4 @@
-package Main;
+package Food;
 
 
 /*
@@ -100,7 +100,7 @@ class RestaurantItem implements Serializable
 }
 
 //extending original class
-class Food extends RestaurantItem
+public class Food extends RestaurantItem
 {
     private Boolean IsSpecial;
     private ArrayList<String> Ingredients;
@@ -132,3 +132,30 @@ class Food extends RestaurantItem
     }
     
 }
+
+/*
+class EntreeList
+{
+    int x;
+    private ArrayList<Food> Entree[];
+    public EntreeList()
+    {
+        Entree[x] = new ArrayList<>();
+    }
+    public void addList(ArrayList<Food> List)
+    {
+        Entree[x].add(List);
+    }
+}
+
+
+class MasterFoodList
+{
+    public ArrayList<Food> entrees;
+    
+    public MasterFoodList(ArrayList<ArrayList<Food>> SentList)
+    {
+        entrees = SentList.get(0);
+    }
+}
+*/

@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Main;
+package Food;
+
+import Food.*;
+
 /**
  *
  * @author Chema Salazar
  */
-class Merchandise extends RestaurantItem
+public class Merchandise extends RestaurantItem
 {
     private String Sizes;
     private String Colors;
