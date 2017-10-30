@@ -24,6 +24,7 @@ public class Pay extends javax.swing.JPanel {
     
     public Pay(Navigator navigator, Order order) {
         initComponents();
+        setSize(1024, 768);
         this.navigator = navigator;
         this.order = order;
     }
@@ -37,32 +38,115 @@ public class Pay extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        cardButton = new javax.swing.JLabel();
+        splitcheckButton = new javax.swing.JLabel();
+        togoboxButton = new javax.swing.JLabel();
+        cashButton = new javax.swing.JLabel();
+        tipButton = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 0));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        jLabel1.setText("henlo");
+        cardButton.setBackground(new java.awt.Color(255, 51, 0));
+        cardButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        cardButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cardButton.setText("Card");
+        cardButton.setOpaque(true);
+        cardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cardButtonMouseClicked(evt);
+            }
+        });
+
+        splitcheckButton.setBackground(new java.awt.Color(255, 51, 0));
+        splitcheckButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        splitcheckButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        splitcheckButton.setText("Split Check");
+        splitcheckButton.setOpaque(true);
+        splitcheckButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                splitcheckButtonMouseClicked(evt);
+            }
+        });
+
+        togoboxButton.setBackground(new java.awt.Color(255, 51, 0));
+        togoboxButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        togoboxButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        togoboxButton.setText("Request To Go Box");
+        togoboxButton.setOpaque(true);
+
+        cashButton.setBackground(new java.awt.Color(255, 51, 0));
+        cashButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        cashButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cashButton.setText("Cash");
+        cashButton.setOpaque(true);
+
+        tipButton.setBackground(new java.awt.Color(255, 51, 0));
+        tipButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        tipButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tipButton.setText("Tip");
+        tipButton.setOpaque(true);
+        tipButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tipButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(478, 478, 478)
-                .addComponent(jLabel1)
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cashButton, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                    .addComponent(cardButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(togoboxButton, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                    .addComponent(splitcheckButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tipButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 268, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(jLabel1)
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(splitcheckButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(togoboxButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cashButton, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(tipButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToCard();
+    }//GEN-LAST:event_cardButtonMouseClicked
+
+    private void tipButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToTip();
+    }//GEN-LAST:event_tipButtonMouseClicked
+
+    private void splitcheckButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_splitcheckButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToSplit();
+    }//GEN-LAST:event_splitcheckButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel cardButton;
+    private javax.swing.JLabel cashButton;
+    private javax.swing.JLabel splitcheckButton;
+    private javax.swing.JLabel tipButton;
+    private javax.swing.JLabel togoboxButton;
     // End of variables declaration//GEN-END:variables
 }

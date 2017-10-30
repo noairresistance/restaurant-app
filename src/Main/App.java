@@ -59,6 +59,24 @@ public class App extends javax.swing.JFrame {
         }
         
         @Override
+        public void goToCard()
+        {
+            swapPanel(new Card(this, order));
+        }
+        
+        @Override
+        public void goToTip()
+        {
+            swapPanel(new Tip(this, order));
+        }
+        
+        @Override
+        public void goToSplit()
+        {
+            swapPanel(new Split(this, order));
+        }
+        
+        @Override
         public void goToMenu() 
         {
             //if the menu button is selected a new order object is created

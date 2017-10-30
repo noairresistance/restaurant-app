@@ -14,6 +14,9 @@ public interface Navigator {
     void goToDrinks();
     void goToGames();
     void goToPay();
+    void goToCard();
+    void goToTip();
+    void goToSplit();
     void goBack();
 
     
