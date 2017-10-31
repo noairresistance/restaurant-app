@@ -82,7 +82,6 @@ public class App extends javax.swing.JFrame {
             //if the menu button is selected a new order object is created
             //order object is set to null for cheking if items have been addded to the order
             order = new Order();
-            order = null;
             swapPanel(new Menu(this));
             
         }

@@ -15,7 +15,34 @@ public class Order implements Serializable
     private ArrayList<Food> foodItem;
     private ArrayList<Food> drink;
     private double totalPrice;
+    private boolean hasAddedToOrder;
 
+    public Order()
+    {
+        hasAddedToOrder = false;
+        totalPrice = 0;
+        foodItem = new ArrayList<Food>();
+        drink = new ArrayList<Food>();
+    }
+    
+    
+    public void createTableNumber(){}
+    public void createOrdernumber(){}
+    
+    public void calculateTotal()
+    {
+        int temp = 0;
+        for(Food food : foodItem)
+        {
+            temp += food.GetPrice();
+        }
+        for(Food food : drink)
+        {
+            temp += food.GetPrice();
+        }
+        
+        totalPrice += temp;
+    }
 
     public ArrayList<Food> getFoodItem()
     {
@@ -73,6 +100,22 @@ public class Order implements Serializable
     public void setDrink(ArrayList<Food> drink)
     {
         this.drink = drink;
+    }
+
+    /**
+     * @return the hasAddedToOrder
+     */
+    public boolean isHasAddedToOrder()
+    {
+        return hasAddedToOrder;
+    }
+
+    /**
+     * @param hasAddedToOrder the hasAddedToOrder to set
+     */
+    public void setHasAddedToOrder(boolean hasAddedToOrder)
+    {
+        this.hasAddedToOrder = hasAddedToOrder;
     }
     
     
