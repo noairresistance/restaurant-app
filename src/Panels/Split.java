@@ -1,22 +1,31 @@
 /*
- * CSCE 4444
- * 
- * 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Panels;
 
+import Listeners.Navigator;
+import Food.Order;
+
 /**
  *
- * @author Buckwheat
+ * @author Birdman
  */
-public class Games extends javax.swing.JPanel {
+public class Split extends javax.swing.JPanel {
 
+    private
+    Navigator navigator;
+    Order order;
     
     /**
-     * Creates new form Games
+     * Creates new form Split
      */
-    public Games() {
+    public Split(Navigator navigator, Order order) {
         initComponents();
+        setSize(1024, 768);
+        this.navigator = navigator;
+        this.order = order;
     }
 
     /**
@@ -30,22 +39,29 @@ public class Games extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gamesButtons/temporaryGames.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        setBackground(new java.awt.Color(255, 255, 0));
+
+        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Split here");
+        jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(154, 154, 154)
+                .addComponent(jLabel1)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

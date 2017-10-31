@@ -1,23 +1,34 @@
 /*
- * CSCE 4444
- * 
- * 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Panels;
 
 import Listeners.Navigator;
+import Food.Order;
 
+/**
+ *
+ * @author Birdman
+ */
 
-public class Drinks extends javax.swing.JPanel {
+public class Card extends javax.swing.JPanel {
 
+    
+    private
     Navigator navigator;
+    Order order;
     
     /**
-     * Creates new form Drinks
+     * 
+     * Creates new form Card
      */
-    public Drinks(Navigator navigator) {
+    public Card(Navigator navigator, Order order) {
         initComponents();
+        setSize(1024, 768);
         this.navigator = navigator;
+        this.order = order;
     }
 
     /**
@@ -33,23 +44,27 @@ public class Drinks extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 0));
 
-        jLabel1.setText("This will have drinks");
+        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Pay with card here!");
+        jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
