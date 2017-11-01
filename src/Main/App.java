@@ -106,10 +106,23 @@ public class App extends javax.swing.JFrame {
             validate();
         }
 
+               
         @Override
-        public void goToDrinks() 
+        public void goToDrinks()
         {
-            swapPanel(new Drinks(this));
+             if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = new Drinks(this, masterFoodItemList.drinks, order);//set current to the new panel
+            
+
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
+            repaint();
+            validate();
+           
         }
 
         @Override
@@ -129,8 +142,54 @@ public class App extends javax.swing.JFrame {
             }
                 
             
-            
         }
+        
+        @Override
+        public void goToAppetizers()
+        {
+             if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = new Appetizers(this, masterFoodItemList.appetizers, order);//set current to the new panel
+            
+
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
+            repaint();
+            validate();
+           
+        }
+        
+        @Override
+        public void goToDesserts()
+        {
+
+             if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = new Desserts(this, masterFoodItemList.desserts, order);//set current to the new panel
+            
+
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
+            repaint();
+            validate();
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     };
     
