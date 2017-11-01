@@ -22,11 +22,11 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 
-public class Drinks extends javax.swing.JPanel{
+public class Appetizers extends javax.swing.JPanel{
 
     Navigator navigator;
-    ArrayList<Food> drinks;   
-    DefaultListModel dlmDrinkItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
+    ArrayList<Food> appetizers;   
+    DefaultListModel dlmAppetizerItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
     int index;//used for finding values in the entrees array
     Order order;//Holds the customers entire order
@@ -39,32 +39,33 @@ public class Drinks extends javax.swing.JPanel{
         public void modifyItem(Food item)
         {
             
-        } 
+        }
+    
     };
     
     
     /**
      * Creates new form EntreeItems
      */
-    public Drinks(Navigator navigator, ArrayList<Food> drinks, Order order) {
+    public Appetizers(Navigator navigator, ArrayList<Food> appetizers, Order order) {
         initComponents();
         setSize(1024,768);
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         this.navigator = navigator;
-        this.drinks = drinks;
+        this.appetizers = appetizers;
         this.order = order;
 
-        dlmDrinkItems = new DefaultListModel();//Create new Default List Model for list of entree items
+        dlmAppetizerItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
         
         //Add item names from the entrees array to the dlm
-        for (int i = 0; i < drinks.size(); i++)
+        for (int i = 0; i < appetizers.size(); i++)
         {
-            dlmDrinkItems.addElement(drinks.get(i).GetName());
+            dlmAppetizerItems.addElement(appetizers.get(i).GetName());
         }
         
         //Add the dlm to the list
-        foodList.setModel(dlmDrinkItems);
+        foodList.setModel(dlmAppetizerItems);
               
     }
     
@@ -72,7 +73,7 @@ public class Drinks extends javax.swing.JPanel{
     public int findindex(String name)
     {
         int index = 0;
-        while(drinks.get(index).GetName() != selection)
+        while(appetizers.get(index).GetName() != selection)
         {
             index++;
         }
@@ -153,7 +154,7 @@ public class Drinks extends javax.swing.JPanel{
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DRINKS");
+        jLabel1.setText("Appetziers");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
 
         foodList.setBackground(new java.awt.Color(204, 0, 0));
@@ -308,18 +309,18 @@ public class Drinks extends javax.swing.JPanel{
         selection = foodList.getSelectedValue();//Get the selected item
         index = findindex(selection);//Finds the index of the selected item from the entrees array
         itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
-        itemDescription.setText(drinks.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+        itemDescription.setText(appetizers.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
        
         checkBoxes = new ArrayList<>();//create array of checkbox comoponents
         
         //create and add checkboxes to the checkbox array
-        for (int i = 0; i < drinks.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
         {
-            checkBoxes.add(new JCheckBox(drinks.get(index).GetIngredients(i)));          
+            checkBoxes.add(new JCheckBox(appetizers.get(index).GetIngredients(i)));          
         }
         
         //Creates checkboxes with selected food item's ingredients
-        for (int i = 0; i < drinks.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
         {
             itemIngredients.add(checkBoxes.get(i));
         }
@@ -345,7 +346,7 @@ public class Drinks extends javax.swing.JPanel{
         repaint();
         
         //Create new Food object with name and price of selected item
-        Food foodItem = new Food(selection, drinks.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+        Food foodItem = new Food(selection, appetizers.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
          
         
         //Add all selected checkboxes as ingredients to the Food object
