@@ -15,12 +15,14 @@ public class Order implements Serializable
     private ArrayList<Food> foodItem;
     private ArrayList<Food> drink;
     private double totalPrice;
+    private double subTotal;
     private boolean hasAddedToOrder;
 
     public Order()
     {
         hasAddedToOrder = false;
         totalPrice = 0;
+        subTotal = 0;
         foodItem = new ArrayList<Food>();
         drink = new ArrayList<Food>();
     }
@@ -29,9 +31,10 @@ public class Order implements Serializable
     public void createTableNumber(){}
     public void createOrdernumber(){}
     
-    public void calculateTotal()
+    public void calculateSubTotal()
     {
-        int temp = 0;
+        subTotal = 0;
+        double temp = 0;
         for(Food food : foodItem)
         {
             temp += food.GetPrice();
@@ -41,7 +44,7 @@ public class Order implements Serializable
             temp += food.GetPrice();
         }
         
-        totalPrice += temp;
+        subTotal += temp;
     }
 
     public ArrayList<Food> getFoodItem()
@@ -116,6 +119,22 @@ public class Order implements Serializable
     public void setHasAddedToOrder(boolean hasAddedToOrder)
     {
         this.hasAddedToOrder = hasAddedToOrder;
+    }
+
+    /**
+     * @return the subTotal
+     */
+    public double getSubTotal()
+    {
+        return subTotal;
+    }
+
+    /**
+     * @param subTotal the subTotal to set
+     */
+    public void setSubTotal(double subTotal)
+    {
+        this.subTotal = subTotal;
     }
     
     

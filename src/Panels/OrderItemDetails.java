@@ -6,19 +6,25 @@
 package Panels;
 
 import Food.Food;
+import Listeners.OrderItemDetailsListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class OrderItemDetails extends javax.swing.JPanel
 {
+    
+    OrderItemDetailsListener listener;
+    Food item; 
 
     /**
      * Creates new form OrderItemDetails
      */
-    public OrderItemDetails(Food item)
+    public OrderItemDetails(Food item, OrderItemDetailsListener listener)
     {
         initComponents();
         setSize(270, 270);
+        this.listener = listener;
+        this.item = item;
         itemName.setText(item.GetName());//Display the name
         itemPrice.setText((Double.toString(item.GetPrice())));//Display the price
        
@@ -27,6 +33,13 @@ public class OrderItemDetails extends javax.swing.JPanel
         {
             itemIngredients.add(new JLabel(item.GetIngredients(i)));
         }
+    }
+    
+    
+    //UPDATE ORDER ITEM DETAILS PANEL
+    public void updateOrderItem(Food item)
+    {
+        
     }
     
     
@@ -69,7 +82,7 @@ public class OrderItemDetails extends javax.swing.JPanel
     private void formMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMouseClicked
     {//GEN-HEADEREND:event_formMouseClicked
         // TODO add your handling code here:
-        
+        listener.modifyItem(item);
     }//GEN-LAST:event_formMouseClicked
 
 
