@@ -23,7 +23,7 @@ public class Menu extends javax.swing.JPanel {
     
     public Menu(Navigator navigator) {
         initComponents();
-        
+        setSize(1024,768);
         this.navigator = navigator;
         
     }
@@ -39,26 +39,29 @@ public class Menu extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         drinksButton = new javax.swing.JLabel();
         entreesButton = new javax.swing.JLabel();
+        DESSERTS = new javax.swing.JLabel();
+        APPETIZERS = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(1024, 768));
-        setSize(new java.awt.Dimension(1024, 768));
 
-        drinksButton.setBackground(new java.awt.Color(204, 51, 0));
+        drinksButton.setBackground(new java.awt.Color(204, 0, 0));
         drinksButton.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         drinksButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        drinksButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/drinks.png"))); // NOI18N
+        drinksButton.setLabelFor(drinksButton);
         drinksButton.setText("DRINKS");
+        drinksButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        drinksButton.setMaximumSize(new java.awt.Dimension(228, 62));
+        drinksButton.setMinimumSize(new java.awt.Dimension(228, 62));
         drinksButton.setOpaque(true);
-        drinksButton.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        drinksButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 drinksButtonMouseClicked(evt);
             }
         });
@@ -66,13 +69,47 @@ public class Menu extends javax.swing.JPanel {
         entreesButton.setBackground(new java.awt.Color(204, 0, 0));
         entreesButton.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         entreesButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        entreesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/burger.png"))); // NOI18N
         entreesButton.setText("ENTREES");
+        entreesButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         entreesButton.setOpaque(true);
-        entreesButton.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        entreesButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 entreesButtonMouseClicked(evt);
+            }
+        });
+
+        DESSERTS.setBackground(new java.awt.Color(204, 0, 0));
+        DESSERTS.setFont(new java.awt.Font("Lucida Fax", 1, 48)); // NOI18N
+        DESSERTS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DESSERTS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/desserts.png"))); // NOI18N
+        DESSERTS.setLabelFor(DESSERTS);
+        DESSERTS.setText("DESSERTS");
+        DESSERTS.setToolTipText("");
+        DESSERTS.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DESSERTS.setMaximumSize(new java.awt.Dimension(228, 62));
+        DESSERTS.setMinimumSize(new java.awt.Dimension(228, 62));
+        DESSERTS.setOpaque(true);
+        DESSERTS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DESSERTSMouseClicked(evt);
+            }
+        });
+
+        APPETIZERS.setBackground(new java.awt.Color(204, 0, 0));
+        APPETIZERS.setFont(new java.awt.Font("Lucida Fax", 1, 48)); // NOI18N
+        APPETIZERS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        APPETIZERS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/appetizer.png"))); // NOI18N
+        APPETIZERS.setLabelFor(APPETIZERS);
+        APPETIZERS.setText("APPETIZERS");
+        APPETIZERS.setToolTipText("");
+        APPETIZERS.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        APPETIZERS.setMaximumSize(new java.awt.Dimension(228, 62));
+        APPETIZERS.setMinimumSize(new java.awt.Dimension(228, 62));
+        APPETIZERS.setOpaque(true);
+        APPETIZERS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                APPETIZERSMouseClicked(evt);
             }
         });
 
@@ -82,17 +119,30 @@ public class Menu extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
-                .addContainerGap(516, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DESSERTS, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(APPETIZERS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(drinksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addComponent(APPETIZERS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DESSERTS, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -109,8 +159,20 @@ public class Menu extends javax.swing.JPanel {
         navigator.goToEntrees();
     }//GEN-LAST:event_entreesButtonMouseClicked
 
+    private void DESSERTSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DESSERTSMouseClicked
+        // TODO add your handling code here:
+        navigator.goToDesserts();  
+    }//GEN-LAST:event_DESSERTSMouseClicked
+
+    private void APPETIZERSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_APPETIZERSMouseClicked
+        // TODO add your handling code here:
+        navigator.goToAppetizers();
+    }//GEN-LAST:event_APPETIZERSMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel APPETIZERS;
+    private javax.swing.JLabel DESSERTS;
     private javax.swing.JLabel drinksButton;
     private javax.swing.JLabel entreesButton;
     // End of variables declaration//GEN-END:variables

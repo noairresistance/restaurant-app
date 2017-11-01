@@ -18,7 +18,8 @@ public interface Navigator {
     void goToTip();
     void goToSplit();
     void goBack();
-
+    void goToAppetizers();
+    void goToDesserts();
     
     
     

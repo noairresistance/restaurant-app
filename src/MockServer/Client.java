@@ -55,9 +55,9 @@ public class Client {
             }
             System.out.println();
             
-            for (int i = 0; i < masterFoodItemList.appitizers.size(); i++)
+            for (int i = 0; i < masterFoodItemList.appetizers.size(); i++)
             {
-                System.out.println(masterFoodItemList.appitizers.get(i).GetName());
+                System.out.println(masterFoodItemList.appetizers.get(i).GetName());
             }
             System.out.println();
             
