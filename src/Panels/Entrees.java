@@ -10,6 +10,7 @@ import Food.Order;
 import Listeners.IngredientsCellRenderer;
 import Listeners.IngredientsListener;
 import Listeners.Navigator;
+import Listeners.OrderItemDetailsListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -31,13 +32,16 @@ public class Entrees extends javax.swing.JPanel{
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
     
+
     
-    /**
+    
+    /**CLASS CONSTRUCTOR
      * Creates new form EntreeItems
      */
     public Entrees(Navigator navigator, ArrayList<Food> entrees, Order order) {
         initComponents();
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        removeFromOrder.setEnabled(false);
         this.navigator = navigator;
         this.entrees = entrees;
         this.order = order;
@@ -56,19 +60,6 @@ public class Entrees extends javax.swing.JPanel{
               
     }
     
-    //This method finds where in the entrees array a Food item is stored
-    public int findindex(String name)
-    {
-        int index = 0;
-        while(entrees.get(index).GetName() != selection)
-        {
-            index++;
-        }
-        return index;
-    }
-    
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,9 +82,10 @@ public class Entrees extends javax.swing.JPanel{
         itemName = new javax.swing.JLabel();
         itemDescription = new javax.swing.JTextArea();
         itemIngredients = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        addToOrder = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         specialRequestTextField = new javax.swing.JTextField();
+        removeFromOrder = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -124,7 +116,7 @@ public class Entrees extends javax.swing.JPanel{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                     .addComponent(scrollPane))
                 .addContainerGap())
         );
@@ -177,7 +169,7 @@ public class Entrees extends javax.swing.JPanel{
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(foodList, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 0, 0));
@@ -200,18 +192,20 @@ public class Entrees extends javax.swing.JPanel{
         itemIngredients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         itemIngredients.setLayout(new javax.swing.BoxLayout(itemIngredients, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setText("ADD TO ORDER");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        addToOrder.setText("ADD TO ORDER");
+        addToOrder.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                addToOrderActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 0));
         jLabel3.setText("Special Request");
+
+        removeFromOrder.setText("REMOVE FROM ORDER");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -220,23 +214,28 @@ public class Entrees extends javax.swing.JPanel{
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton1))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(addToOrder)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(removeFromOrder)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(itemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(itemIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(specialRequestTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(itemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(itemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(itemIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(specialRequestTextField))))
                 .addContainerGap())
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addToOrder, removeFromOrder});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -249,10 +248,12 @@ public class Entrees extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(specialRequestTextField)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(24, 24, 24))
+                .addComponent(specialRequestTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeFromOrder)
+                    .addComponent(addToOrder))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -271,7 +272,7 @@ public class Entrees extends javax.swing.JPanel{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -280,7 +281,45 @@ public class Entrees extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    /*
+    //MODIFY AND ORDER
+    //Listens for when an OrderItemDetail's panel is clicked
+    OrderItemDetailsListener listener = new OrderItemDetailsListener()
+    {
+        
+        @Override
+        public void modifyItem(Food item)
+        {
+            
+            int z = 0;//Index holder
+            
+            addToOrder.setText("Modify Order");
+            removeFromOrder.setEnabled(true);//Enable removeFromOrder button
+            
+            //Select the item in the foodList
+            while(item.GetName() != foodList.getModel().getElementAt(z))
+            {
+                z++;
+            }
+            foodList.setSelectedIndex(z);
+            
+            
+            //Select the checkboxes of all of the previously added ingredients
+            for (int i = 0; i < item.getIngrediantArraySize(); i++)
+            {
+                z = 0;
+                while(item.GetIngredients(i) != checkBoxes.get(z).getText())
+                {
+                    z++;
+                }
+                checkBoxes.get(z).setSelected(true);
+            }
+           
+        }
+    
+    };
+    
+    
+    /*DISPLAY INGREDIENTS
     //This method displays a food item's, name, description, and ingredient list
     //depending on what item is selected in the itemList
     */
@@ -322,13 +361,13 @@ public class Entrees extends javax.swing.JPanel{
 
     }//GEN-LAST:event_foodListValueChanged
 
-    /*
+    /*POPULATE ORDER DETAILS
     //This method adds a food item's name and selected ingredients to a Food object
     //gives that Food object to an Order object,
     //and populates the Order Details section with information from the Order object
     */
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void addToOrderActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addToOrderActionPerformed
+    {//GEN-HEADEREND:event_addToOrderActionPerformed
         
         
         // TODO add your handling code here:
@@ -363,7 +402,7 @@ public class Entrees extends javax.swing.JPanel{
         //Create OrderItemDetailPanels for each Food object that has been given to the Order object
         for(Food item : order.getFoodItem())
         {
-            orderDetails.add(new OrderItemDetails(item));
+            orderDetails.add(new OrderItemDetails(item, listener));
         }
         
         //Update the order details panel
@@ -372,18 +411,48 @@ public class Entrees extends javax.swing.JPanel{
        
         //Set the has added to order field to true
         order.setHasAddedToOrder(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+        /*
+        //The following "resets" the menu state
+        */        
+        foodList.clearSelection();//Deselect foodList item
+        itemName.setText("");//Remove selected item name
+        itemDescription.setText("");//Remove selected item description
+        itemIngredients.removeAll();//Remove selected item ingredient list
+        itemIngredients.revalidate();
+        itemIngredients.repaint();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_addToOrderActionPerformed
     
-
+    //HELPER METHOD
+    //This method finds where in the entrees array a Food item is stored
+    public int findindex(String name)
+    {
+        int index = 0;
+        while(entrees.get(index).GetName() != selection && index < entrees.size())
+        {
+            index++;
+        }
+        return index;
+    }
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToOrder;
     private javax.swing.JList<String> foodList;
     private javax.swing.JTextArea itemDescription;
     private javax.swing.JPanel itemIngredients;
     private javax.swing.JLabel itemName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -391,9 +460,12 @@ public class Entrees extends javax.swing.JPanel{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel orderDetails;
+    private javax.swing.JButton removeFromOrder;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTextField specialRequestTextField;
     // End of variables declaration//GEN-END:variables
+
+
 
     
     

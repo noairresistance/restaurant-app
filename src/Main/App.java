@@ -179,18 +179,7 @@ public class App extends javax.swing.JFrame {
             repaint();
             validate();
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  
     };
     
     /**

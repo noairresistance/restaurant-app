@@ -10,6 +10,7 @@ import Food.Order;
 import Listeners.IngredientsCellRenderer;
 import Listeners.IngredientsListener;
 import Listeners.Navigator;
+import Listeners.OrderItemDetailsListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -30,6 +31,17 @@ public class Appetizers extends javax.swing.JPanel{
     int index;//used for finding values in the entrees array
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
+    
+    //Listens for when an OrderItemDetail's panel is clicked
+    OrderItemDetailsListener listener = new OrderItemDetailsListener()
+    {
+        @Override
+        public void modifyItem(Food item)
+        {
+            
+        }
+    
+    };
     
     
     /**
@@ -358,7 +370,7 @@ public class Appetizers extends javax.swing.JPanel{
         //Create OrderItemDetailPanels for each Food object that has been given to the Order object
         for(Food item : order.getFoodItem())
         {
-            orderDetails.add(new OrderItemDetails(item));
+            orderDetails.add(new OrderItemDetails(item, listener));
         }
         
         //Update the order details panel
