@@ -28,6 +28,7 @@ public class Desserts extends javax.swing.JPanel{
     ArrayList<Food> desserts;   
     DefaultListModel dlmDessertItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
+    String typeOf;//used to determine type of item (food, drink, or merch)
     int index;//used for finding values in the entrees array
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
@@ -345,7 +346,7 @@ public class Desserts extends javax.swing.JPanel{
         repaint();
         
         //Create new Food object with name and price of selected item
-        Food foodItem = new Food(selection, desserts.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+        Food foodItem = new Food(selection, typeOf, desserts.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
          
         
         //Add all selected checkboxes as ingredients to the Food object

@@ -20,9 +20,9 @@ public class DessertsList
     {
         desserts = new ArrayList<>();
         
-        dessert1 = new Food("Cake", 7.99, Boolean.TRUE, Boolean.FALSE);
-        dessert2 = new Food("Ice Cream", 8.99, Boolean.TRUE, Boolean.FALSE);
-        dessert3 = new Food("Cake and Ice Cream", 9.99, Boolean.TRUE, Boolean.FALSE);
+        dessert1 = new Food("Cake", "Food",7.99, Boolean.TRUE, Boolean.FALSE);
+        dessert2 = new Food("Ice Cream", "Food",8.99, Boolean.TRUE, Boolean.FALSE);
+        dessert3 = new Food("Cake and Ice Cream", "Food",9.99, Boolean.TRUE, Boolean.FALSE);
         
         desserts.add(dessert1);
         desserts.add(dessert2);

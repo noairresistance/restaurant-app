@@ -20,9 +20,9 @@ public class DrinksList
     {
         drinks = new ArrayList<>();
         
-        drink1 = new Food("Coke", 1.99, Boolean.TRUE, Boolean.FALSE);
-        drink2 = new Food("Sprite", 2.99, Boolean.TRUE, Boolean.FALSE);
-        drink3 = new Food("Pepsi", 3.99, Boolean.TRUE, Boolean.FALSE);
+        drink1 = new Food("Coke", "Drink",1.99, Boolean.TRUE, Boolean.FALSE);
+        drink2 = new Food("Sprite", "Drink",2.99, Boolean.TRUE, Boolean.FALSE);
+        drink3 = new Food("Pepsi", "Drink",3.99, Boolean.TRUE, Boolean.FALSE);
         
         drinks.add(drink1);
         drinks.add(drink2);

@@ -21,15 +21,15 @@ public class AppitizersList
     {        
         appitizers = new ArrayList<>();
         
-        appitizer1 = new Food("Buffalo Wings", 5.99, Boolean.TRUE, Boolean.FALSE);
+        appitizer1 = new Food("Buffalo Wings", "Food",5.99, Boolean.TRUE, Boolean.FALSE);
         appitizer1.SetDescription("Some pretty good buffalo wings\n");
         
         
-        appitizer2 = new Food("Fried Pickles", 6.99, Boolean.TRUE, Boolean.FALSE);
+        appitizer2 = new Food("Fried Pickles", "Food",6.99, Boolean.TRUE, Boolean.FALSE);
         appitizer2.SetDescription("I mean, cmon.\n");
         
         
-        appitizer3 = new Food("French fries", 7.99, Boolean.TRUE, Boolean.FALSE);
+        appitizer3 = new Food("French fries", "Food",7.99, Boolean.TRUE, Boolean.FALSE);
         appitizer3.SetDescription("I have no clue\n");
         
         

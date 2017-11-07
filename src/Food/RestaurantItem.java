@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 public class RestaurantItem implements Serializable{
     
+
     private String Name;
+    private String TypeOfItem;
     private String Description;
     private Double Price;
     //private Image Picture; // imported java.awt.Image;
@@ -17,13 +19,14 @@ public class RestaurantItem implements Serializable{
     
     
     //extending original class.
-    public RestaurantItem(String Name, Double Price, Boolean IsAvailable)
+    public RestaurantItem(String Name, String Type, Double Price, Boolean IsAvailable)
     {
         /*  TODO:
         *   Needs the following variables:
         *   Image Picture
         */
         this.Name = Name;
+        this.TypeOfItem = Type; 
         this.Description = null;
         this.Price = Price;
         //this.Picture = Picture;
@@ -39,9 +42,16 @@ public class RestaurantItem implements Serializable{
     /*=====Getters=====
     *
     */
+    
+    
     public String GetName()
     {
         return this.Name;
+    }
+    
+    public String getTypeOfItem() 
+    {
+        return TypeOfItem;
     }
     
     public String GetDescription()
@@ -73,6 +83,11 @@ public class RestaurantItem implements Serializable{
         this.Name = Name;
     }
     
+    public void setTypeOfItem(String TypeOfItem) 
+    {
+        this.TypeOfItem = TypeOfItem;
+    }
+    
     public void SetDescription(String Desc)
     {
         this.Description = Desc;
@@ -96,5 +111,5 @@ public class RestaurantItem implements Serializable{
     }
 
 
-    
+
 }

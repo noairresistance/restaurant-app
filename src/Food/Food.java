@@ -12,9 +12,9 @@ public class Food extends RestaurantItem
     private Boolean IsSpecial;
     private ArrayList<String> Ingredients;
      
-    public Food (String Name, Double Price,Boolean IsAvailable, Boolean Status)
+    public Food (String Name, String Type, Double Price,Boolean IsAvailable, Boolean Status)
     {
-        super (Name, Price, IsAvailable );
+        super (Name, Type, Price, IsAvailable );
         IsSpecial = Status;
         Ingredients = new ArrayList<String>();
     }
