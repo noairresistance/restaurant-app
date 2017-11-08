@@ -513,7 +513,7 @@ public class Appetizers extends javax.swing.JPanel{
     public int findindex(String name)
     {
         int index = 0;
-        while(entrees.get(index).GetName() != selection)
+        while(entrees.get(index).GetName() != name)
         {
             index++;
         }
