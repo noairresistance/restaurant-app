@@ -197,6 +197,7 @@ public class App extends javax.swing.JFrame {
         //Open the homescreen
         navigator.goToHomeScreen();
         
+        
         //Create thread for server
         Runnable serverThread = new Server();
         Thread thread = new Thread(serverThread);
