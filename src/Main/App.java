@@ -189,7 +189,7 @@ public class App extends javax.swing.JFrame {
         
         //Make the frame
         initComponents();
-        setSize(1024, 768);
+        setSize(1024, 790);
         
         //Set back button location
         history = new Stack<>();
