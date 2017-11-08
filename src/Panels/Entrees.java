@@ -42,6 +42,8 @@ public class Entrees extends javax.swing.JPanel{
      */
     public Entrees(Navigator navigator, ArrayList<Food> entrees, Order order) {
         initComponents();
+        setSize(1024, 768);
+        System.out.println(getSize());
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         removeFromOrder.setEnabled(false);
         this.navigator = navigator;
