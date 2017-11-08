@@ -4,7 +4,6 @@
  * 
  */
 package Food;
-import Food.Food;
 import java.io.Serializable;
 import java.util.ArrayList;
 

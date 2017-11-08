@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class Order implements Serializable
 {
+    private static int ID = 1;
+    
     private int tableNumber;
     private int orderNumber;
     private ArrayList<Food> foodItem;
@@ -20,6 +22,8 @@ public class Order implements Serializable
 
     public Order()
     {
+        tableNumber = ID;
+        ID++;
         hasAddedToOrder = false;
         totalPrice = 0;
         subTotal = 0;
@@ -47,6 +51,21 @@ public class Order implements Serializable
         subTotal += temp;
     }
 
+    public int GetOrderSize()
+    {
+        return this.foodItem.size();
+    }
+    
+    public RestaurantItem GetItem(int i)
+    {
+        return foodItem.get(i);
+    }
+    
+    public void AddToOrder(Food newItem)
+    {
+        foodItem.add(newItem);
+    }
+    
     public ArrayList<Food> getFoodItem()
     {
         return foodItem;
@@ -70,7 +89,7 @@ public class Order implements Serializable
     }
 
 
-    public int getTableNumber()
+    public int GetTableNum()
     {
         return tableNumber;
     }

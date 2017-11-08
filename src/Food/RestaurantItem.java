@@ -1,7 +1,7 @@
 /*
- * CSCE 4444
- * 
- * 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Food;
 
@@ -9,14 +9,14 @@ import java.io.Serializable;
 
 public class RestaurantItem implements Serializable{
     
-
     private String Name;
+    
+    /*Note that TypeOfItem will be strings that are either: Food, Drink, or Merch*/
     private String TypeOfItem;
     private String Description;
     private Double Price;
     //private Image Picture; // imported java.awt.Image;
     private Boolean IsAvailable;
-    
     
     //extending original class.
     public RestaurantItem(String Name, String Type, Double Price, Boolean IsAvailable)
@@ -42,8 +42,6 @@ public class RestaurantItem implements Serializable{
     /*=====Getters=====
     *
     */
-    
-    
     public String GetName()
     {
         return this.Name;
@@ -53,6 +51,7 @@ public class RestaurantItem implements Serializable{
     {
         return TypeOfItem;
     }
+    
     
     public String GetDescription()
     {
@@ -108,8 +107,5 @@ public class RestaurantItem implements Serializable{
     public void SetIsAvailable(Boolean IsAvailable)
     {
         this.IsAvailable = IsAvailable;
-    }
-
-
-
+    }   
 }
