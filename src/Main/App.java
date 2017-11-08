@@ -16,12 +16,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import table.Table;
 
 public class App extends javax.swing.JFrame {
 
     Stack<JPanel> history;//stores all panels visited from the homescreen
     MasterFoodItemList masterFoodItemList;
     Order order;
+    Table table;
     
     Navigator navigator = new Navigator() 
     {
@@ -196,6 +198,11 @@ public class App extends javax.swing.JFrame {
         
         //Open the homescreen
         navigator.goToHomeScreen();
+        
+        //table = new Table();
+        
+        //table.connectToServer(table);
+        
         
         
         //Create thread for server

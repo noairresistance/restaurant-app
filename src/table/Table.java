@@ -76,32 +76,34 @@ public class Table
             try
             {
                 System.out.println("Getting Menu");
+                
                 SentMenu = (ServerSentMasterList)ObjIn.readObject();
+                
                 Menu = new MasterFoodItemList(SentMenu.totalList);
                 
                 for (int i = 0; i < Menu.drinks.size(); i++)
-            {
-                System.out.println(Menu.drinks.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.appetizers.size(); i++)
-            {
-                System.out.println(Menu.appetizers.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.entries.size(); i++)
-            {
-                System.out.println(Menu.entries.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.desserts.size(); i++)
-            {
-                System.out.println(Menu.desserts.get(i).GetName());
-            }
-            System.out.println();
+                {
+                    System.out.println(Menu.drinks.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < Menu.appetizers.size(); i++)
+                {
+                    System.out.println(Menu.appetizers.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < Menu.entries.size(); i++)
+                {
+                    System.out.println(Menu.entries.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < Menu.desserts.size(); i++)
+                {
+                    System.out.println(Menu.desserts.get(i).GetName());
+                }
+                System.out.println();
                 
                 while((Message = ObjIn.readUTF()) != null)
                 {
@@ -218,6 +220,7 @@ public class Table
     {
         this.Order.SetTableNum(i);
     }*/
+/*    
     public static void main(String argv[])
     {
         // test cases
@@ -239,13 +242,15 @@ public class Table
         table1.AddToOrder(temp1);
         table1.AddToOrder(temp3);
         //table1.SetTableNum(1);
-        
+*/
+    public void connectToServer(Table table1)
+    {
         System.out.println("Attempting to connect");
         
         table1.Handshake();
-        table1.SendOrder();
-        table1.RequestHelp();
-        table1.OrderPaid();
+        //table1.SendOrder();
+        //table1.RequestHelp();
+        //table1.OrderPaid();
 
         // test loop
         while(table1.Connected)
