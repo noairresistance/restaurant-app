@@ -25,49 +25,42 @@ import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 public class Appetizers extends javax.swing.JPanel{
 
     Navigator navigator;
-    ArrayList<Food> appetizers;   
-    DefaultListModel dlmAppetizerItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
+    ArrayList<Food> entrees;   
+    DefaultListModel dlmEntreeItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
     String typeOf;//used to determine type of item (food, drink, or merch)
     int index;//used for finding values in the entrees array
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
     Food modifiedFoodItem;//Used when modifying orders
+    
 
-    /**
+    
+    
+    /**CLASS CONSTRUCTOR
      * Creates new form EntreeItems
      */
-    public Appetizers(Navigator navigator, ArrayList<Food> appetizers, Order order) {
+    public Appetizers(Navigator navigator, ArrayList<Food> entrees, Order order) {
         initComponents();
-        setSize(1024,768);
+        setSize(1024, 768);
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        removeFromOrder.setEnabled(false);
         this.navigator = navigator;
-        this.appetizers = appetizers;
+        this.entrees = entrees;
         this.order = order;
 
-        dlmAppetizerItems = new DefaultListModel();//Create new Default List Model for list of entree items
+        dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
         
         //Add item names from the entrees array to the dlm
-        for (int i = 0; i < appetizers.size(); i++)
+        for (int i = 0; i < entrees.size(); i++)
         {
-            dlmAppetizerItems.addElement(appetizers.get(i).GetName());
+            dlmEntreeItems.addElement(entrees.get(i).GetName());
         }
         
         //Add the dlm to the list
-        foodList.setModel(dlmAppetizerItems);
+        foodList.setModel(dlmEntreeItems);
               
-    }
-    
-    //This method finds where in the entrees array a Food item is stored
-    public int findindex(String name)
-    {
-        int index = 0;
-        while(appetizers.get(index).GetName() != selection)
-        {
-            index++;
-        }
-        return index;
     }
     
     
@@ -80,12 +73,15 @@ public class Appetizers extends javax.swing.JPanel{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
         orderDetails = new javax.swing.JPanel();
+        subTotal = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         foodList = new javax.swing.JList<>();
@@ -119,6 +115,8 @@ public class Appetizers extends javax.swing.JPanel{
         orderDetails.setLayout(new javax.swing.BoxLayout(orderDetails, javax.swing.BoxLayout.Y_AXIS));
         scrollPane.setViewportView(orderDetails);
 
+        jLabel4.setText("SubTotal:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,7 +125,12 @@ public class Appetizers extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                    .addComponent(scrollPane))
+                    .addComponent(scrollPane)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,6 +140,10 @@ public class Appetizers extends javax.swing.JPanel{
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(subTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,8 +160,10 @@ public class Appetizers extends javax.swing.JPanel{
         foodList.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         foodList.setForeground(new java.awt.Color(255, 255, 0));
         foodList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 foodListValueChanged(evt);
             }
         });
@@ -201,8 +210,10 @@ public class Appetizers extends javax.swing.JPanel{
         itemIngredients.setLayout(new javax.swing.BoxLayout(itemIngredients, javax.swing.BoxLayout.Y_AXIS));
 
         addToOrder.setText("ADD TO ORDER");
-        addToOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addToOrder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addToOrderActionPerformed(evt);
             }
         });
@@ -212,8 +223,10 @@ public class Appetizers extends javax.swing.JPanel{
         jLabel3.setText("Special Request");
 
         removeFromOrder.setText("REMOVE FROM ORDER");
-        removeFromOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        removeFromOrder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 removeFromOrderActionPerformed(evt);
             }
         });
@@ -231,7 +244,7 @@ public class Appetizers extends javax.swing.JPanel{
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(itemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(itemDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(itemDescription)
                             .addComponent(itemIngredients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -287,8 +300,7 @@ public class Appetizers extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    
-                //MODIFY AND ORDER
+    //MODIFY AND ORDER
     //Listens for when an OrderItemDetail's panel is clicked
     OrderItemDetailsListener listener = new OrderItemDetailsListener()
     {
@@ -327,14 +339,18 @@ public class Appetizers extends javax.swing.JPanel{
     
     };
     
-    /*
-    //This method displays a food item's, name, description, and ingredient list
-    //depending on what item is selected in the itemList
-    */
+    
+    
     private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
     {//GEN-HEADEREND:event_foodListValueChanged
         // TODO add your handling code here:
         
+        //If nothing is selected, do nothing. 
+        //This prevents crashes when "resetting" the menu state after adding an order
+        if(foodList.isSelectionEmpty())
+        {
+            return;
+        }
         //Prevents a known bug in Java
         if(!evt.getValueIsAdjusting()){}
 
@@ -349,18 +365,18 @@ public class Appetizers extends javax.swing.JPanel{
         selection = foodList.getSelectedValue();//Get the selected item
         index = findindex(selection);//Finds the index of the selected item from the entrees array
         itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
-        itemDescription.setText(appetizers.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+        itemDescription.setText(entrees.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
        
         checkBoxes = new ArrayList<>();//create array of checkbox comoponents
         
         //create and add checkboxes to the checkbox array
-        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
         {
-            checkBoxes.add(new JCheckBox(appetizers.get(index).GetIngredients(i)));          
+            checkBoxes.add(new JCheckBox(entrees.get(index).GetIngredients(i)));          
         }
         
         //Creates checkboxes with selected food item's ingredients
-        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
         {
             itemIngredients.add(checkBoxes.get(i));
         }
@@ -369,61 +385,102 @@ public class Appetizers extends javax.swing.JPanel{
 
     }//GEN-LAST:event_foodListValueChanged
 
-    /*
+    /*ADD TO ORDER
     //This method adds a food item's name and selected ingredients to a Food object
     //gives that Food object to an Order object,
     //and populates the Order Details section with information from the Order object
     */
     private void addToOrderActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addToOrderActionPerformed
     {//GEN-HEADEREND:event_addToOrderActionPerformed
-        
-        
-        // TODO add your handling code here:
-        
-        //Remove all orders from Order Details
+      //Remove all orders from Order Details
         orderDetails.removeAll();
         revalidate();
         repaint();
-        
-        //Create new Food object with name and price of selected item
-        Food foodItem = new Food(selection, typeOf, appetizers.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
-         
-        
-        //Add all selected checkboxes as ingredients to the Food object
-        for(JCheckBox checkBox : checkBoxes)
+
+        if(addToOrder.getText() == "ADD TO ORDER")
         {
-            if(checkBox.isSelected())
+            //Create new Food object with name and price of selected item
+            Food foodItem = new Food(selection, typeOf, entrees.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+            
+            //Add all selected checkboxes as ingredients to the Food object
+            for(JCheckBox checkBox : checkBoxes)
             {
-                foodItem.SetIngredients(checkBox.getText());
-            }   
+                if(checkBox.isSelected())
+                {
+                    foodItem.SetIngredients(checkBox.getText());
+                }   
+            }
+
+            //Check if there is a special request, if so, add it as an ingredient
+            if(!specialRequestTextField.getText().isEmpty())
+            {
+                foodItem.SetIngredients(specialRequestTextField.getText());
+            }
+
+            //Give the Food object to the Order object
+            order.setFoodItem(foodItem);//add food item to order
+
+            //Create OrderItemDetailPanels for each Food object that has been given to the Order object
+            for(Food item : order.getFoodItem())
+            {
+                orderDetails.add(new OrderItemDetails(item, listener));
+            }
+
+            //Update the order details panel
+            orderDetails.revalidate();
+            orderDetails.repaint();
+
+            
+            order.setHasAddedToOrder(true);//Set the has added to order field to true
+            
+            subTotal.setText(setSubTotal());//Display the subtotal
+            
+            resetMenu();//Resets the menu state        
         }
-        
-        //Check if there is a special request, if so, add it as an ingredient
-        if(!specialRequestTextField.getText().isEmpty())
+        else//addToOrder button = MODIFY ORDER
         {
-            foodItem.SetIngredients(specialRequestTextField.getText());
+
+            //Add all selected checkboxes as ingredients to the Food object
+            for(JCheckBox checkBox : checkBoxes)
+            {
+                if(checkBox.isSelected())
+                {
+                    modifiedFoodItem.SetIngredients(checkBox.getText());
+                }   
+            }
+            //Check if there is a special request, if so, add it as an ingredient
+            if(!specialRequestTextField.getText().isEmpty())
+            {
+                modifiedFoodItem.SetIngredients(specialRequestTextField.getText());
+            }
+            
+            //Replace the Food object to the Order object
+            int z = 0;
+            while(order.getFoodItem().get(z).GetName() != modifiedFoodItem.GetName())
+            {
+                z++;
+            }
+            order.getFoodItem().set(z, modifiedFoodItem);//Swap Food objects 
+            
+            //This section removes and replaced all items in the Order Details area
+            
+            for(Food item : order.getFoodItem())
+            {
+                orderDetails.add(new OrderItemDetails(item, listener));
+            }
+           
+            subTotal.setText(setSubTotal());//Display the subtotal
+            
+            //Update the order details panel
+            orderDetails.revalidate();
+            orderDetails.repaint();
+            
+            resetMenu();//Resets the menu state
         }
-        
-        //Give the Food object to the Order object
-        order.setFoodItem(foodItem);//add food item to order
-        
-        //Create OrderItemDetailPanels for each Food object that has been given to the Order object
-        for(Food item : order.getFoodItem())
-        {
-            orderDetails.add(new OrderItemDetails(item, listener));
-        }
-        
-        //Update the order details panel
-        orderDetails.revalidate();
-        orderDetails.repaint();
-       
-        //Set the has added to order field to true
-        order.setHasAddedToOrder(true);
     }//GEN-LAST:event_addToOrderActionPerformed
 
+    //REMOVE A FOOD ITEM FROM THE ORDER
     private void removeFromOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromOrderActionPerformed
-        // TODO add your handling code here:
-                // TODO add your handling code here:
         orderDetails.removeAll();
         revalidate();
         repaint();
@@ -441,7 +498,7 @@ public class Appetizers extends javax.swing.JPanel{
             orderDetails.add(new OrderItemDetails(item, listener));
         }
         
-        //subTotal.setText(setSubTotal());//Display the subtotal
+        subTotal.setText(setSubTotal());//Display the subtotal
 
         //Update the order details panel
         orderDetails.revalidate();
@@ -449,11 +506,18 @@ public class Appetizers extends javax.swing.JPanel{
 
         resetMenu();//Resets the menu state
     }//GEN-LAST:event_removeFromOrderActionPerformed
-        //Calculates subtotal an returns it as a string
-    public String setSubTotal()
+         
+    //******************* HELPER METHODS ********************************//
+    
+    //This method finds where in the entrees array a Food item is stored
+    public int findindex(String name)
     {
-        order.calculateSubTotal();//Calculate the total price of the order
-        return Double.toString(order.getSubTotal());
+        int index = 0;
+        while(entrees.get(index).GetName() != selection)
+        {
+            index++;
+        }
+        return index;
     }
     
     //"Resets" the menu state
@@ -471,7 +535,18 @@ public class Appetizers extends javax.swing.JPanel{
             itemIngredients.removeAll();//Remove selected item ingredient list
             itemIngredients.revalidate();
             itemIngredients.repaint(); 
-    }    
+    }
+    
+    //Calculates subtotal an returns it as a string
+    public String setSubTotal()
+    {
+        order.calculateSubTotal();//Calculate the total price of the order
+        return Double.toString(order.getSubTotal());
+    }
+
+    
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToOrder;
@@ -482,6 +557,7 @@ public class Appetizers extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -489,6 +565,7 @@ public class Appetizers extends javax.swing.JPanel{
     private javax.swing.JButton removeFromOrder;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTextField specialRequestTextField;
+    private javax.swing.JLabel subTotal;
     // End of variables declaration//GEN-END:variables
 
     
