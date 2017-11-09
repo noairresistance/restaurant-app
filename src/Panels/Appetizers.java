@@ -48,9 +48,7 @@ public class Appetizers extends javax.swing.JPanel{
         this.navigator = navigator;
         this.entrees = entrees;
         this.order = order;
-
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
-        
         
         //Add item names from the entrees array to the dlm
         for (int i = 0; i < entrees.size(); i++)
@@ -63,8 +61,6 @@ public class Appetizers extends javax.swing.JPanel{
               
     }
     
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,8 +69,7 @@ public class Appetizers extends javax.swing.JPanel{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -115,6 +110,11 @@ public class Appetizers extends javax.swing.JPanel{
         orderDetails.setLayout(new javax.swing.BoxLayout(orderDetails, javax.swing.BoxLayout.Y_AXIS));
         scrollPane.setViewportView(orderDetails);
 
+        subTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        subTotal.setForeground(new java.awt.Color(255, 255, 0));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
         jLabel4.setText("SubTotal:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -160,10 +160,8 @@ public class Appetizers extends javax.swing.JPanel{
         foodList.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         foodList.setForeground(new java.awt.Color(255, 255, 0));
         foodList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-        {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-            {
+        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 foodListValueChanged(evt);
             }
         });
@@ -210,10 +208,8 @@ public class Appetizers extends javax.swing.JPanel{
         itemIngredients.setLayout(new javax.swing.BoxLayout(itemIngredients, javax.swing.BoxLayout.Y_AXIS));
 
         addToOrder.setText("ADD TO ORDER");
-        addToOrder.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addToOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToOrderActionPerformed(evt);
             }
         });
@@ -223,10 +219,8 @@ public class Appetizers extends javax.swing.JPanel{
         jLabel3.setText("Special Request");
 
         removeFromOrder.setText("REMOVE FROM ORDER");
-        removeFromOrder.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        removeFromOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeFromOrderActionPerformed(evt);
             }
         });
@@ -300,6 +294,7 @@ public class Appetizers extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    
     //MODIFY AND ORDER
     //Listens for when an OrderItemDetail's panel is clicked
     OrderItemDetailsListener listener = new OrderItemDetailsListener()
@@ -338,7 +333,6 @@ public class Appetizers extends javax.swing.JPanel{
         }
     
     };
-    
     
     
     private void foodListValueChanged(javax.swing.event.ListSelectionEvent evt)//GEN-FIRST:event_foodListValueChanged
@@ -380,9 +374,6 @@ public class Appetizers extends javax.swing.JPanel{
         {
             itemIngredients.add(checkBoxes.get(i));
         }
-
-        
-
     }//GEN-LAST:event_foodListValueChanged
 
     /*ADD TO ORDER
