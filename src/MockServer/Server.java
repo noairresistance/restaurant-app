@@ -5,8 +5,12 @@
  */
 package MockServer;
 
-import Food.ServerSentMasterList;
-import Food.*;
+import allclasses.EntreeList;
+import allclasses.DrinksList;
+import allclasses.Food;
+import allclasses.AppitizersList;
+import allclasses.DessertsList;
+import allclasses.ServerSentMasterList;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;

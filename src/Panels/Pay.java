@@ -6,7 +6,7 @@
 package Panels;
 
 import Listeners.Navigator;
-import Food.Order;
+import allclasses.Order;
 
 /**
  *
