@@ -16,14 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import table.Table;
+import Table.*;
+
 
 public class App extends javax.swing.JFrame {
 
     Stack<JPanel> history;//stores all panels visited from the homescreen
     MasterFoodItemList masterFoodItemList;
     Order order;
-    Table table;
+    Table table1;
     
     Navigator navigator = new Navigator() 
     {
@@ -196,39 +197,13 @@ public class App extends javax.swing.JFrame {
         //Set back button location
         history = new Stack<>();
         
+        table1 = new Table();
+        table1.Handshake();
+        masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
+        
         //Open the homescreen
         navigator.goToHomeScreen();
-        
-        //table = new Table();
-        
-        //table.connectToServer(table);
-        
-        
-        
-        //Create thread for server
-        Runnable serverThread = new Server();
-        Thread thread = new Thread(serverThread);
-        thread.start();
-        
-        //Create client
-        Client client = new Client();
-        try
-        {
-            //Connect to server
-            client.go();
-            masterFoodItemList = client.getMasterFoodItemList();
-        } catch (ClassNotFoundException ex)
-        {
-            ex.getStackTrace();
-        }
-        
-        
-        
-        
-        
-        
-        
-        
+              
     }
 
     /**
