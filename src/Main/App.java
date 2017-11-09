@@ -203,36 +203,7 @@ public class App extends javax.swing.JFrame {
         
         //Open the homescreen
         navigator.goToHomeScreen();
-        
-        
-        
-        
-        
-/*        
-        //Create thread for server
-        Runnable serverThread = new Server();
-        Thread thread = new Thread(serverThread);
-        thread.start();
-        
-        //Create client
-        Client client = new Client();
-        try
-        {
-            //Connect to server
-            client.go();
-            masterFoodItemList = client.getMasterFoodItemList();
-        } catch (ClassNotFoundException ex)
-        {
-            ex.getStackTrace();
-        }
-        
-*/        
-        
-        
-        
-        
-        
-        
+              
     }
 
     /**
