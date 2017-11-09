@@ -3,7 +3,7 @@
  * 
  * 
  */
-package allclasses;
+package Food;
 
 import java.io.Serializable;
 

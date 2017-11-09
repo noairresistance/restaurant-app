@@ -5,8 +5,8 @@
  */
 package Panels;
 
-import allclasses.Food;
-import allclasses.Order;
+import Food.Food;
+import Food.Order;
 import Listeners.IngredientsCellRenderer;
 import Listeners.IngredientsListener;
 import Listeners.Navigator;

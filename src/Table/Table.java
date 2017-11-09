@@ -5,10 +5,10 @@
  */
 package Table;
 
-import allclasses.MasterFoodItemList;
-import allclasses.Order;
-import allclasses.ServerSentMasterList;
-import allclasses.Food;
+import Food.MasterFoodItemList;
+import Food.Order;
+import Food.ServerSentMasterList;
+import Food.Food;
 import java.net.SocketException;
 import java.net.Socket;
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class Table
     public Table()
     {
            Order = new Order();
+           
     }
     
     public void Handshake()
@@ -84,31 +85,32 @@ public class Table
                 System.out.println("Getting Menu");
                 SentMenu = (ServerSentMasterList)ObjIn.readObject();
                 Menu = new MasterFoodItemList(SentMenu.totalList);
-                
-                for (int i = 0; i < Menu.drinks.size(); i++)
-            {
-                System.out.println(Menu.drinks.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.appetizers.size(); i++)
-            {
-                System.out.println(Menu.appetizers.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.entries.size(); i++)
-            {
-                System.out.println(Menu.entries.get(i).GetName());
-            }
-            System.out.println();
-            
-            for (int i = 0; i < Menu.desserts.size(); i++)
-            {
-                System.out.println(Menu.desserts.get(i).GetName());
-            }
-            System.out.println();
-                
+                System.out.println("Menu Received");
+                /*
+                for (int i = 0; i < masterFoodItemList.drinks.size(); i++)
+                {
+                    System.out.println(masterFoodItemList.drinks.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < masterFoodItemList.appetizers.size(); i++)
+                {
+                    System.out.println(masterFoodItemList.appetizers.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < masterFoodItemList.entries.size(); i++)
+                {
+                    System.out.println(masterFoodItemList.entries.get(i).GetName());
+                }
+                System.out.println();
+
+                for (int i = 0; i < masterFoodItemList.desserts.size(); i++)
+                {
+                    System.out.println(masterFoodItemList.desserts.get(i).GetName());
+                }
+                System.out.println();
+                */
                 while((Message = ObjIn.readUTF()) != null)
                 {
                     System.out.println(Message); // test
@@ -218,6 +220,11 @@ public class Table
             System.out.println("Error closing Streams and sockets");
         }
         
+    }
+    
+    public MasterFoodItemList getMasterFoodItemList()
+    {
+        return Menu;
     }
 
 }

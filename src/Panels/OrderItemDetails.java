@@ -5,7 +5,7 @@
  */
 package Panels;
 
-import allclasses.Food;
+import Food.Food;
 import Listeners.OrderItemDetailsListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

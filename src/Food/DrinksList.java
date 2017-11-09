@@ -3,7 +3,7 @@
  * 
  * 
  */
-package allclasses;
+package Food;
 
 import java.util.ArrayList;
 

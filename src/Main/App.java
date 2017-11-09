@@ -5,8 +5,8 @@
  */
 package Main;
 
-import allclasses.MasterFoodItemList;
-import allclasses.Order;
+import Food.MasterFoodItemList;
+import Food.Order;
 import Listeners.Navigator;
 import MockServer.*;
 import Panels.*;
@@ -199,9 +199,11 @@ public class App extends javax.swing.JFrame {
         
         table1 = new Table();
         table1.Handshake();
+        masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
         
         //Open the homescreen
         navigator.goToHomeScreen();
+        
         
         
         

@@ -5,7 +5,7 @@
  */
 package Listeners;
 
-import allclasses.Food;
+import Food.Food;
 
 public interface OrderItemDetailsListener
 {
