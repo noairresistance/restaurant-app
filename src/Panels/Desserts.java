@@ -7,8 +7,6 @@ package Panels;
 
 import Food.Food;
 import Food.Order;
-import Listeners.IngredientsCellRenderer;
-import Listeners.IngredientsListener;
 import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
 import java.util.ArrayList;
@@ -327,6 +325,9 @@ public class Desserts extends javax.swing.JPanel{
             modifiedFoodItem = item;//Used when "Modify Order" button is clicked
             
         }
+
+        @Override
+        public void recallItem(){}
     
     };
     

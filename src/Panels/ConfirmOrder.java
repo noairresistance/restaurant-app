@@ -5,16 +5,114 @@
  */
 package Panels;
 
+import Food.*;
+import Listeners.OrderItemDetailsListener;
+
 
 public class ConfirmOrder extends javax.swing.JPanel
 {
+    Order order;
+    
+    OrderItemDetailsListener listener = new OrderItemDetailsListener() 
+    {
+        @Override
+        public void modifyItem(Food item)
+        {
+            
+        }
 
-    public ConfirmOrder()
+        @Override
+        public void recallItem()
+        {
+            
+        }
+        
+        
+    };
+
+    public ConfirmOrder(Order order)
     {
         initComponents();
         setSize(1024, 768);
         drinkScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        
+        this.order = order;
+        
+        clearAllPanels();//Clear panels of all information
+        
+        populateAllPanels();//Populate all panels
     }
+    
+    
+    
+    //******************* HELPER METHODS ********************************//
+    
+    //Clear panels of all information
+    public void clearAllPanels()
+    {
+        drinks.removeAll();
+        revalidate();
+        repaint();
+        
+        appetizers.removeAll();
+        revalidate();
+        repaint();
+        
+        entrees.removeAll();
+        revalidate();
+        repaint();
+        
+        desserts.removeAll();
+        revalidate();
+        repaint();
+    }
+    
+    //Populates each panel with a category of a menu item
+    public void populateAllPanels()
+    {
+        
+        clearAllPanels();//Clear panels of all information
+        
+        //Populate Drinks
+        for(Food drink : order.getDrink())
+        {
+            drinks.add(new OrderItemDetails(drink, listener));
+        }
+        
+        //Populate Appetizers, Entrees, and Desserts
+        for(Food item : order.getFoodItem())
+        {
+            if(item.getItemCatagory() == "appetizer")
+            {
+                appetizers.add(new OrderItemDetails(item, listener));
+            }
+            if(item.getItemCatagory() == "entree")
+            {
+                entrees.add(new OrderItemDetails(item, listener));
+            }
+            if(item.getItemCatagory() == "dessert")
+            {
+                desserts.add(new OrderItemDetails(item, listener));
+            }
+        }
+        
+        drinks.revalidate();
+        drinks.repaint();
+        
+        appetizers.revalidate();
+        appetizers.repaint();
+        
+        entrees.revalidate();
+        entrees.repaint();
+        
+        desserts.revalidate();
+        desserts.repaint();
+        
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

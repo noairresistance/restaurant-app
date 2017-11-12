@@ -7,8 +7,6 @@ package Panels;
 
 import Food.Food;
 import Food.Order;
-import Listeners.IngredientsCellRenderer;
-import Listeners.IngredientsListener;
 import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
 import java.util.ArrayList;
@@ -331,6 +329,12 @@ public class Drinks extends javax.swing.JPanel{
             
             item.getIngredientList().clear();//Clear the ingredient list of selected order item
             modifiedFoodItem = item;//Used when "Modify Order" button is clicked
+            
+        }
+
+        @Override
+        public void recallItem()
+        {
             
         }
     
