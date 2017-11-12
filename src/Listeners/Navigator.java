@@ -20,6 +20,7 @@ public interface Navigator {
     void goBack();
     void goToAppetizers();
     void goToDesserts();
+    void goToConfirmOrder();
     
     
     

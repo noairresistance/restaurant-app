@@ -67,7 +67,8 @@ public class Appetizers extends javax.swing.JPanel{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -75,6 +76,7 @@ public class Appetizers extends javax.swing.JPanel{
         orderDetails = new javax.swing.JPanel();
         subTotal = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        confirmOrder = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         foodList = new javax.swing.JList<>();
@@ -115,20 +117,38 @@ public class Appetizers extends javax.swing.JPanel{
         jLabel4.setForeground(new java.awt.Color(255, 255, 0));
         jLabel4.setText("SubTotal:");
 
+        confirmOrder.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        confirmOrder.setForeground(new java.awt.Color(255, 255, 0));
+        confirmOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        confirmOrder.setText("CONFIRM ORDER");
+        confirmOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        confirmOrder.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                confirmOrderMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                    .addComponent(scrollPane)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                            .addComponent(scrollPane)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(confirmOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,6 +162,8 @@ public class Appetizers extends javax.swing.JPanel{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(subTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -158,8 +180,10 @@ public class Appetizers extends javax.swing.JPanel{
         foodList.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         foodList.setForeground(new java.awt.Color(255, 255, 0));
         foodList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
+        {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
+            {
                 foodListValueChanged(evt);
             }
         });
@@ -206,8 +230,10 @@ public class Appetizers extends javax.swing.JPanel{
         itemIngredients.setLayout(new javax.swing.BoxLayout(itemIngredients, javax.swing.BoxLayout.Y_AXIS));
 
         addToOrder.setText("ADD TO ORDER");
-        addToOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addToOrder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addToOrderActionPerformed(evt);
             }
         });
@@ -217,8 +243,10 @@ public class Appetizers extends javax.swing.JPanel{
         jLabel3.setText("Special Request");
 
         removeFromOrder.setText("REMOVE FROM ORDER");
-        removeFromOrder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        removeFromOrder.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 removeFromOrderActionPerformed(evt);
             }
         });
@@ -259,7 +287,7 @@ public class Appetizers extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(specialRequestTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(specialRequestTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToOrder)
@@ -501,6 +529,13 @@ public class Appetizers extends javax.swing.JPanel{
 
         resetMenu();//Resets the menu state
     }//GEN-LAST:event_removeFromOrderActionPerformed
+
+    
+    //Takes the customer to teh Confirm Order panel
+    private void confirmOrderMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_confirmOrderMouseClicked
+    {//GEN-HEADEREND:event_confirmOrderMouseClicked
+        navigator.goToConfirmOrder();
+    }//GEN-LAST:event_confirmOrderMouseClicked
          
     //******************* HELPER METHODS ********************************//
     
@@ -545,6 +580,7 @@ public class Appetizers extends javax.swing.JPanel{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToOrder;
+    private javax.swing.JLabel confirmOrder;
     private javax.swing.JList<String> foodList;
     private javax.swing.JTextArea itemDescription;
     private javax.swing.JPanel itemIngredients;

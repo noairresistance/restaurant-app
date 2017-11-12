@@ -6,12 +6,14 @@
 package Panels;
 
 import Food.*;
+import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
 
 
 public class ConfirmOrder extends javax.swing.JPanel
 {
     Order order;
+    Navigator navigator;
     
     OrderItemDetailsListener listener = new OrderItemDetailsListener() 
     {
@@ -30,17 +32,28 @@ public class ConfirmOrder extends javax.swing.JPanel
         
     };
 
-    public ConfirmOrder(Order order)
+    public ConfirmOrder(Navigator navigator, Order order)
     {
         initComponents();
         setSize(1024, 768);
         drinkScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        appetizerScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        entreeScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
+        dessertScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         
+        this.navigator = navigator;
         this.order = order;
-        
+       
         clearAllPanels();//Clear panels of all information
         
         populateAllPanels();//Populate all panels
+        
+        subTotal.setText(setSubTotal());
+        tax.setText(setTax());
+        grandTotal.setText(setGrandTotal());
+        
+        
+       
     }
     
     
@@ -50,67 +63,83 @@ public class ConfirmOrder extends javax.swing.JPanel
     //Clear panels of all information
     public void clearAllPanels()
     {
-        drinks.removeAll();
-        revalidate();
-        repaint();
+        drinkDetails.removeAll();
+        drinkDetails.revalidate();
+        drinkDetails.repaint();
         
-        appetizers.removeAll();
-        revalidate();
-        repaint();
+        appetizerDetails.removeAll();
+        appetizerDetails.revalidate();
+        appetizerDetails.repaint();
         
-        entrees.removeAll();
-        revalidate();
-        repaint();
+        entreeDetails.removeAll();
+        entreeDetails.revalidate();
+        entreeDetails.repaint();
         
-        desserts.removeAll();
-        revalidate();
-        repaint();
+        dessertDetails.removeAll();
+        dessertDetails.revalidate();
+        dessertDetails.repaint();
     }
     
     //Populates each panel with a category of a menu item
     public void populateAllPanels()
-    {
-        
+    {   
         clearAllPanels();//Clear panels of all information
         
         //Populate Drinks
         for(Food drink : order.getDrink())
         {
-            drinks.add(new OrderItemDetails(drink, listener));
+            drinkDetails.add(new OrderItemDetails(drink, listener));
         }
         
         //Populate Appetizers, Entrees, and Desserts
         for(Food item : order.getFoodItem())
         {
-            if(item.getItemCatagory() == "appetizer")
+            if(item.getItemCatagory().equals("appetizer"))
             {
-                appetizers.add(new OrderItemDetails(item, listener));
+                appetizerDetails.add(new OrderItemDetails(item, listener));
             }
-            if(item.getItemCatagory() == "entree")
+            if(item.getItemCatagory().equals("entree"))
             {
-                entrees.add(new OrderItemDetails(item, listener));
+                entreeDetails.add(new OrderItemDetails(item, listener));
             }
-            if(item.getItemCatagory() == "dessert")
+            if(item.getItemCatagory().equals( "dessert"))
             {
-                desserts.add(new OrderItemDetails(item, listener));
+                dessertDetails.add(new OrderItemDetails(item, listener));
             }
         }
         
-        drinks.revalidate();
-        drinks.repaint();
+        drinkDetails.revalidate();
+        drinkDetails.repaint();
         
-        appetizers.revalidate();
-        appetizers.repaint();
+        appetizerDetails.revalidate();
+        appetizerDetails.repaint();
         
-        entrees.revalidate();
-        entrees.repaint();
+        entreeDetails.revalidate();
+        entreeDetails.repaint();
         
-        desserts.revalidate();
-        desserts.repaint();
+        dessertDetails.revalidate();
+        dessertDetails.repaint();
         
     }
     
+    //Calculates subtotal an returns it as a string
+    public String setSubTotal()
+    {
+        order.calculateSubTotal();//Calculate the total price of the order
+        return String.format("%.02f", order.getSubTotal());
+    }
     
+    public String setTax()
+    {
+        order.calculateTax();
+        return String.format("%.02f", order.getTax());
+    }
+    
+    public String setGrandTotal()
+    {
+        order.calculateTotalPrice();
+        return String.format("%.02f", order.getTotalPrice());
+    }
     
     
 

@@ -119,16 +119,16 @@ public class Table
                     if(Message.equals("Modify")) // if the order was modified by the waiter
                     {
                         Order ModifiedOrder = (Order)ObjIn.readObject();
-                        Order = ModifiedOrder;
+                        setOrder(ModifiedOrder);
                         
                         
                         System.out.println("Checking contents of modified Order.");
-                        for(int i = 0; i < Order.GetOrderSize(); i++)
+                        for(int i = 0; i < getOrder().GetOrderSize(); i++)
                         {
-                            System.out.println(Order.GetItem(i).GetName());
-                            for(int j = 0; j < (((Food)Order.GetItem(i)).getIngrediantArraySize()); j++)
+                            System.out.println(getOrder().GetItem(i).GetName());
+                            for(int j = 0; j < (((Food)getOrder().GetItem(i)).getIngrediantArraySize()); j++)
                             {
-                                System.out.println(((Food)Order.GetItem(i)).GetIngredients(j));
+                                System.out.println(((Food)getOrder().GetItem(i)).GetIngredients(j));
                             }
                         }
                         
@@ -156,7 +156,7 @@ public class Table
     // this function is used to add an item to table's order
     public void AddToOrder(Food newItem)
     {
-        Order.AddToOrder(newItem); // call the add to order in the list class
+        getOrder().AddToOrder(newItem); // call the add to order in the list class
     }
     
     // this function is used to send a table's order to the server
@@ -169,7 +169,7 @@ public class Table
             
             Thread.sleep(100);
             
-            ObjOut.writeObject(Order); // send the object to the server
+            ObjOut.writeObject(getOrder()); // send the object to the server
             ObjOut.flush();
                       
             Thread.sleep(100);
@@ -233,6 +233,22 @@ public class Table
             System.out.println("Table menu so null");
         }
         return Menu;
+    }
+
+    /**
+     * @return the Order
+     */
+    public Order getOrder()
+    {
+        return Order;
+    }
+
+    /**
+     * @param Order the Order to set
+     */
+    public void setOrder(Order Order)
+    {
+        this.Order = Order;
     }
 
 }
