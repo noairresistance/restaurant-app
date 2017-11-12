@@ -87,32 +87,34 @@ public class Table
                 Menu = new MasterFoodItemList(SentMenu.totalList);
                 System.out.println("Menu Received");
                 /*
-                for (int i = 0; i < masterFoodItemList.drinks.size(); i++)
+                for (int i = 0; i < Menu.drinks.size(); i++)
                 {
-                    System.out.println(masterFoodItemList.drinks.get(i).GetName());
+                    System.out.println(Menu.drinks.get(i).GetName());
                 }
                 System.out.println();
 
-                for (int i = 0; i < masterFoodItemList.appetizers.size(); i++)
+                for (int i = 0; i < Menu.appetizers.size(); i++)
                 {
-                    System.out.println(masterFoodItemList.appetizers.get(i).GetName());
+                    System.out.println(Menu.appetizers.get(i).GetName());
                 }
                 System.out.println();
 
-                for (int i = 0; i < masterFoodItemList.entries.size(); i++)
+                for (int i = 0; i < Menu.entries.size(); i++)
                 {
-                    System.out.println(masterFoodItemList.entries.get(i).GetName());
+                    System.out.println(Menu.entries.get(i).GetName());
                 }
                 System.out.println();
 
-                for (int i = 0; i < masterFoodItemList.desserts.size(); i++)
+                for (int i = 0; i < Menu.desserts.size(); i++)
                 {
-                    System.out.println(masterFoodItemList.desserts.get(i).GetName());
+                    System.out.println(Menu.desserts.get(i).GetName());
                 }
                 System.out.println();
                 */
                 while((Message = ObjIn.readUTF()) != null)
                 {
+                   
+                    
                     System.out.println(Message); // test
                     if(Message.equals("Modify")) // if the order was modified by the waiter
                     {
@@ -224,6 +226,10 @@ public class Table
     
     public MasterFoodItemList getMasterFoodItemList()
     {
+        if(Menu == null)
+        {
+            System.out.println("Table menu so null");
+        }
         return Menu;
     }
 

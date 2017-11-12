@@ -94,6 +94,11 @@ public class App extends javax.swing.JFrame {
             //swapPanel(new Entrees(this));
             //check if there is a panel to remove
             
+            if(masterFoodItemList == null)
+            {
+                System.out.println("so null");
+            }
+            
             if(current != null)
             {
                 layeredPane.remove(current);//remove the current screen    
@@ -198,10 +203,22 @@ public class App extends javax.swing.JFrame {
         
         table1 = new Table();
         table1.Handshake();
-        masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
         
+        //Weak fix to Table/Server thread issue
+        try
+        {
+            Thread.sleep(1000);
+            
+        } catch (InterruptedException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
+       
         //Open the homescreen
         navigator.goToHomeScreen();
+
               
     }
 
