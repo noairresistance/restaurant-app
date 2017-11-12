@@ -6,3 +6,18 @@ IF YOU FIND A BUG, ADD IT TO THIS LIST
 IF YOU FIX A BUG REMOVE IT FROM THIS LIST
 ___________________________________________
 
+****************************************************************************************
+POS is throwing a NullPointerException when clicking on Menu screen buttons (Drinks, Appetizers, Entrees, Desserts). You can click on 
+buttons but nothing happends. 
+
+Occures when running the server and POS the first time. If you leave the server running and then kill and restart the POS program, 
+no issues occur. 
+
+I suspect some sort of threading timing issue between the table and the server. 
+The POS is trying to access the menu before the Table thread has received it.
+
+As a weak fix that seems to be working, I put the POS to sleep for 1 second to let the Table thread catch up. I will push this quick fix
+to the master branch. 
+
+We may need to look into injecting some dependencies to make sure everything is in sync?
+****************************************************************************************
