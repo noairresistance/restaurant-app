@@ -25,11 +25,11 @@ import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 public class Drinks extends javax.swing.JPanel{
 
     Navigator navigator;
-    ArrayList<Food> entrees;   
+    ArrayList<Food> drinks;   
     DefaultListModel dlmEntreeItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
     String typeOf;//used to determine type of item (food, drink, or merch)
-    int index;//used for finding values in the entrees array
+    int index;//used for finding values in the drinks array
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
     Food modifiedFoodItem;//Used when modifying orders
@@ -38,20 +38,20 @@ public class Drinks extends javax.swing.JPanel{
     /**CLASS CONSTRUCTOR
      * Creates new form EntreeItems
      */
-    public Drinks(Navigator navigator, ArrayList<Food> entrees, Order order) {
+    public Drinks(Navigator navigator, ArrayList<Food> drinks, Order order) {
         initComponents();
         setSize(1024, 768);
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         removeFromOrder.setEnabled(false);
         this.navigator = navigator;
-        this.entrees = entrees;
+        this.drinks = drinks;
         this.order = order;
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
-        //Add item names from the entrees array to the dlm
-        for (int i = 0; i < entrees.size(); i++)
+        //Add item names from the drinks array to the dlm
+        for (int i = 0; i < drinks.size(); i++)
         {
-            dlmEntreeItems.addElement(entrees.get(i).GetName());
+            dlmEntreeItems.addElement(drinks.get(i).GetName());
         }
         
         //Add the dlm to the list
@@ -362,20 +362,20 @@ public class Drinks extends javax.swing.JPanel{
         dlmIngredients = new DefaultListModel();//Default List Model for the ingredient list
 
         selection = foodList.getSelectedValue();//Get the selected item
-        index = findindex(selection);//Finds the index of the selected item from the entrees array
+        index = findindex(selection);//Finds the index of the selected item from the drinks array
         itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
-        itemDescription.setText(entrees.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+        itemDescription.setText(drinks.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
        
         checkBoxes = new ArrayList<>();//create array of checkbox comoponents
         
         //create and add checkboxes to the checkbox array
-        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < drinks.get(index).getIngrediantArraySize(); i++)
         {
-            checkBoxes.add(new JCheckBox(entrees.get(index).GetIngredients(i)));          
+            checkBoxes.add(new JCheckBox(drinks.get(index).GetIngredients(i)));          
         }
         
         //Creates checkboxes with selected food item's ingredients
-        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < drinks.get(index).getIngrediantArraySize(); i++)
         {
             itemIngredients.add(checkBoxes.get(i));
         }
@@ -396,7 +396,7 @@ public class Drinks extends javax.swing.JPanel{
         if(addToOrder.getText() == "ADD TO ORDER")
         {
             //Create new Food object with name and price of selected item
-            Food foodItem = new Food(selection, typeOf, entrees.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+            Food foodItem = new Food(selection, typeOf, drinks.get(index).getItemCatagory(), drinks.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
             
             //Add all selected checkboxes as ingredients to the Food object
             for(JCheckBox checkBox : checkBoxes)
@@ -509,11 +509,11 @@ public class Drinks extends javax.swing.JPanel{
         return Double.toString(order.getSubTotal());
     }
         
-    //This method finds where in the entrees array a Food item is stored
+    //This method finds where in the drinks array a Food item is stored
     public int findindex(String name)
     {
         int index = 0;
-        while(entrees.get(index).GetName() != name)
+        while(drinks.get(index).GetName() != name)
         {
             index++;
         }

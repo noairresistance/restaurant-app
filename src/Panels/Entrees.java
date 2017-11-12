@@ -405,7 +405,7 @@ public class Entrees extends javax.swing.JPanel{
         if(addToOrder.getText() == "ADD TO ORDER")
         {
             //Create new Food object with name and price of selected item
-            Food foodItem = new Food(selection, typeOf, entrees.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+            Food foodItem = new Food(selection, typeOf, entrees.get(index).getItemCatagory(), entrees.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
             
             //Add all selected checkboxes as ingredients to the Food object
             for(JCheckBox checkBox : checkBoxes)

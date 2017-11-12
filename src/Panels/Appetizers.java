@@ -25,11 +25,11 @@ import static javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION;
 public class Appetizers extends javax.swing.JPanel{
 
     Navigator navigator;
-    ArrayList<Food> entrees;   
+    ArrayList<Food> appetizers;   
     DefaultListModel dlmEntreeItems, dlmIngredients, dlmOrder;//This lets you add items to a list after the list has been created 
     String selection;//Holds the value of the item selected from the list
     String typeOf;//used to determine type of item (food, drink, or merch)
-    int index;//used for finding values in the entrees array
+    int index;//used for finding values in the appetizers array
     Order order;//Holds the customers entire order
     ArrayList<JCheckBox> checkBoxes;//holds list of ingredient checkboxes
     Food modifiedFoodItem;//Used when modifying orders
@@ -40,20 +40,20 @@ public class Appetizers extends javax.swing.JPanel{
     /**CLASS CONSTRUCTOR
      * Creates new form EntreeItems
      */
-    public Appetizers(Navigator navigator, ArrayList<Food> entrees, Order order) {
+    public Appetizers(Navigator navigator, ArrayList<Food> appetizers, Order order) {
         initComponents();
         setSize(1024, 768);
         scrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         removeFromOrder.setEnabled(false);
         this.navigator = navigator;
-        this.entrees = entrees;
+        this.appetizers = appetizers;
         this.order = order;
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
-        //Add item names from the entrees array to the dlm
-        for (int i = 0; i < entrees.size(); i++)
+        //Add item names from the appetizers array to the dlm
+        for (int i = 0; i < appetizers.size(); i++)
         {
-            dlmEntreeItems.addElement(entrees.get(i).GetName());
+            dlmEntreeItems.addElement(appetizers.get(i).GetName());
         }
         
         //Add the dlm to the list
@@ -357,20 +357,20 @@ public class Appetizers extends javax.swing.JPanel{
         dlmIngredients = new DefaultListModel();//Default List Model for the ingredient list
 
         selection = foodList.getSelectedValue();//Get the selected item
-        index = findindex(selection);//Finds the index of the selected item from the entrees array
+        index = findindex(selection);//Finds the index of the selected item from the appetizers array
         itemName.setText(selection);//Set the itemName JLabel to display the selected item's name
-        itemDescription.setText(entrees.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
+        itemDescription.setText(appetizers.get(index).GetDescription());//Set the itemDescription JLabel to display the selected item's description
        
         checkBoxes = new ArrayList<>();//create array of checkbox comoponents
         
         //create and add checkboxes to the checkbox array
-        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
         {
-            checkBoxes.add(new JCheckBox(entrees.get(index).GetIngredients(i)));          
+            checkBoxes.add(new JCheckBox(appetizers.get(index).GetIngredients(i)));          
         }
         
         //Creates checkboxes with selected food item's ingredients
-        for (int i = 0; i < entrees.get(index).getIngrediantArraySize(); i++)
+        for (int i = 0; i < appetizers.get(index).getIngrediantArraySize(); i++)
         {
             itemIngredients.add(checkBoxes.get(i));
         }
@@ -391,7 +391,7 @@ public class Appetizers extends javax.swing.JPanel{
         if(addToOrder.getText() == "ADD TO ORDER")
         {
             //Create new Food object with name and price of selected item
-            Food foodItem = new Food(selection, typeOf, entrees.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
+            Food foodItem = new Food(selection, typeOf, appetizers.get(index).getItemCatagory(),appetizers.get(index).GetPrice(), Boolean.TRUE, Boolean.TRUE);
             
             //Add all selected checkboxes as ingredients to the Food object
             for(JCheckBox checkBox : checkBoxes)
@@ -500,11 +500,11 @@ public class Appetizers extends javax.swing.JPanel{
          
     //******************* HELPER METHODS ********************************//
     
-    //This method finds where in the entrees array a Food item is stored
+    //This method finds where in the appetizers array a Food item is stored
     public int findindex(String name)
     {
         int index = 0;
-        while(entrees.get(index).GetName() != name)
+        while(appetizers.get(index).GetName() != name)
         {
             index++;
         }

@@ -11,12 +11,14 @@ public class Food extends RestaurantItem
 {
     private Boolean IsSpecial;
     private ArrayList<String> Ingredients;
+    private String itemCatagory;
      
-    public Food (String Name, String Type, Double Price,Boolean IsAvailable, Boolean Status)
+    public Food (String Name, String Type, String itemCatagory, Double Price,Boolean IsAvailable, Boolean Status)
     {
         super (Name, Type, Price, IsAvailable );
         IsSpecial = Status;
         Ingredients = new ArrayList<String>();
+        this.itemCatagory = itemCatagory;
     }
     
     public void SetIngredients(String newIngredient)
@@ -46,6 +48,22 @@ public class Food extends RestaurantItem
     public Boolean GetIsSpecial()
     {
         return this.IsSpecial;
+    }
+
+    /**
+     * @return the itemCatagory
+     */
+    public String getItemCatagory()
+    {
+        return itemCatagory;
+    }
+
+    /**
+     * @param itemCatagory the itemCatagory to set
+     */
+    public void setItemCatagory(String itemCatagory)
+    {
+        this.itemCatagory = itemCatagory;
     }
     
 }
