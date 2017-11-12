@@ -18,6 +18,7 @@ public class Order implements Serializable
     private ArrayList<Food> drink;
     private double totalPrice;
     private double subTotal;
+    private double tax;
     private boolean hasAddedToOrder;
 
     public Order()
@@ -50,7 +51,17 @@ public class Order implements Serializable
         
         subTotal += temp;
     }
+    
+    public void calculateTax()
+    {
+        tax = subTotal * 0.0825;      
+    }
 
+    public void calculateTotalPrice()
+    {
+        totalPrice = subTotal + tax;
+    }
+    
     public int GetOrderSize()
     {
         return this.foodItem.size();
@@ -61,6 +72,7 @@ public class Order implements Serializable
         return foodItem.get(i);
     }
     
+
     public void AddToOrder(Food newItem)
     {
         foodItem.add(newItem);
@@ -71,6 +83,11 @@ public class Order implements Serializable
         return foodItem;
     }
 
+    public void setDrinkItem(Food drink)
+    {
+        this.drink.add(drink);
+    }
+    
 
     public void setFoodItem(Food foodItem)
     {
@@ -155,6 +172,15 @@ public class Order implements Serializable
     {
         this.subTotal = subTotal;
     }
+
+    /**
+     * @return the tax
+     */
+    public double getTax()
+    {
+        return tax;
+    }
+
     
     
     

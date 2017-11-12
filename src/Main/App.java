@@ -173,7 +173,7 @@ public class App extends javax.swing.JFrame {
         public void goToDesserts()
         {
 
-             if(current != null)
+            if(current != null)
             {
                 layeredPane.remove(current);//remove the current screen    
             }
@@ -185,6 +185,12 @@ public class App extends javax.swing.JFrame {
             layeredPane.add(current);//add the new panel to the screen
             repaint();
             validate();
+        }
+
+        @Override
+        public void goToConfirmOrder()
+        {
+            swapPanel(new ConfirmOrder(this, order));
         }
   
     };
@@ -213,6 +219,8 @@ public class App extends javax.swing.JFrame {
         {
             ex.printStackTrace();
         }
+        
+        order = table1.getOrder();
         
         masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
        
