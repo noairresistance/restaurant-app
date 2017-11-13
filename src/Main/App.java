@@ -190,7 +190,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToConfirmOrder()
         {
-            swapPanel(new ConfirmOrder(this, order));
+            swapPanel(new ConfirmOrder(this, order, table1));
         }
   
     };
