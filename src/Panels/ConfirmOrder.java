@@ -8,12 +8,14 @@ package Panels;
 import Food.*;
 import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
+import Table.Table;
 
 
 public class ConfirmOrder extends javax.swing.JPanel
 {
     Order order;
     Navigator navigator;
+    Table table;
     
     OrderItemDetailsListener listener = new OrderItemDetailsListener() 
     {
@@ -32,7 +34,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         
     };
 
-    public ConfirmOrder(Navigator navigator, Order order)
+    public ConfirmOrder(Navigator navigator, Order order, Table table)
     {
         initComponents();
         setSize(1024, 768);
@@ -43,6 +45,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         
         this.navigator = navigator;
         this.order = order;
+        this.table = table;
        
         clearAllPanels();//Clear panels of all information
         
@@ -282,6 +285,13 @@ public class ConfirmOrder extends javax.swing.JPanel
         placeOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         placeOrder.setText("***PLACE ORDER***");
         placeOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        placeOrder.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                placeOrderMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
@@ -368,6 +378,14 @@ public class ConfirmOrder extends javax.swing.JPanel
                 .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    //CONFIRM ORDER
+    private void placeOrderMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_placeOrderMouseClicked
+    {//GEN-HEADEREND:event_placeOrderMouseClicked
+        table.SendOrder();
+        placeOrder.setText("ORDER HAS BEEN PLACED!");
+    }//GEN-LAST:event_placeOrderMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
