@@ -4,7 +4,6 @@
  * 
  */
 package Panels;
-import Food.Order;
 import Listeners.Navigator;
 import javafx.scene.control.MenuButton;
 import javax.swing.JLabel;
@@ -35,12 +34,11 @@ CREATING A NEW PANEL
 public class HomeScreen extends javax.swing.JPanel {
     
     private Navigator navigator;
-    private Order order;
-    public HomeScreen(Navigator navigator,Order order) {
+
+    public HomeScreen(Navigator navigator) {
         initComponents();
         setSize(1024, 768);
         this.navigator = navigator;
-        this.order = order;
     }
     
     /**
@@ -55,7 +53,6 @@ public class HomeScreen extends javax.swing.JPanel {
         menuButton1 = new javax.swing.JLabel();
         gamesButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        menuButton2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -65,7 +62,7 @@ public class HomeScreen extends javax.swing.JPanel {
         menuButton1.setBackground(new java.awt.Color(204, 0, 0));
         menuButton1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         menuButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuButton1.setText("MERCH");
+        menuButton1.setText("MENU");
         menuButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         menuButton1.setOpaque(true);
         menuButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,46 +94,28 @@ public class HomeScreen extends javax.swing.JPanel {
             }
         });
 
-        menuButton2.setBackground(new java.awt.Color(204, 0, 0));
-        menuButton2.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        menuButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuButton2.setText("MENU");
-        menuButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        menuButton2.setOpaque(true);
-        menuButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuButton2MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(4, 4, 4))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menuButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -158,16 +137,10 @@ public class HomeScreen extends javax.swing.JPanel {
         navigator.goToPay();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void menuButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuButton2MouseClicked
-        // TODO add your handling code here:
-        navigator.goToMenu();
-    }//GEN-LAST:event_menuButton2MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gamesButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel menuButton1;
-    private javax.swing.JLabel menuButton2;
     // End of variables declaration//GEN-END:variables
 }

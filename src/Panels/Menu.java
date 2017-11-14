@@ -5,11 +5,8 @@
  */
 package Panels;
 
-import Food.Order;
 import Listeners.Navigator;
-import Food.Food;
 import javax.swing.JLabel;
-import Listeners.OrderItemDetailsListener;
 
 /**
  *
@@ -23,34 +20,12 @@ public class Menu extends javax.swing.JPanel {
     
     
     private Navigator navigator;
-    private Order order;
-  
+    
     public Menu(Navigator navigator) {
         initComponents();
         setSize(1024,768);
         this.navigator = navigator;
-        this.order = order;
         
-       OrderItemDetailsListener listener;
-        
-       listener = new OrderItemDetailsListener()
-        {
-            @Override
-            public void modifyItem(Food item) {
-                
-            }
-            
-            @Override
-            public void recallItem() {
-                
-            }
-            
-          
-        };
-     
-       
-        
-    
     }
  /*   
     public JLabel getEntreeButton(){
@@ -70,8 +45,6 @@ public class Menu extends javax.swing.JPanel {
         entreesButton = new javax.swing.JLabel();
         DESSERTS = new javax.swing.JLabel();
         APPETIZERS = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        subTotal1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setMaximumSize(new java.awt.Dimension(1024, 768));
@@ -99,6 +72,7 @@ public class Menu extends javax.swing.JPanel {
         entreesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menuButtons/burger.png"))); // NOI18N
         entreesButton.setText("ENTREES");
         entreesButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        entreesButton.setOpaque(true);
         entreesButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 entreesButtonMouseClicked(evt);
@@ -139,15 +113,6 @@ public class Menu extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ORDER");
-        jLabel1.setOpaque(true);
-
-        subTotal1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        subTotal1.setForeground(new java.awt.Color(255, 255, 0));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,43 +120,30 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(APPETIZERS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DESSERTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(476, 476, 476)
-                    .addComponent(subTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(476, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DESSERTS, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(APPETIZERS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(drinksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addComponent(APPETIZERS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(entreesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(drinksButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(APPETIZERS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DESSERTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entreesButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(625, 625, 625)))
+                        .addComponent(DESSERTS, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(376, 376, 376)
-                    .addComponent(subTotal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(376, 376, 376)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,7 +175,5 @@ public class Menu extends javax.swing.JPanel {
     private javax.swing.JLabel DESSERTS;
     private javax.swing.JLabel drinksButton;
     private javax.swing.JLabel entreesButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel subTotal1;
     // End of variables declaration//GEN-END:variables
 }
