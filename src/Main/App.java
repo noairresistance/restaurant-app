@@ -51,7 +51,7 @@ public class App extends javax.swing.JFrame {
         public void goToHomeScreen() 
         {    
             history.clear();//when going to the home screen, clear the stack
-            swapPanel(new HomeScreen(this));
+            swapPanel(new HomeScreen(this,order));
         }
 
         @Override
@@ -83,7 +83,7 @@ public class App extends javax.swing.JFrame {
         {
             //if the menu button is selected a new order object is created
             //order object is set to null for cheking if items have been addded to the order
-            order = new Order();
+           
             swapPanel(new Menu(this));
             
         }
@@ -192,7 +192,21 @@ public class App extends javax.swing.JFrame {
         {
             swapPanel(new ConfirmOrder(this, order, table1));
         }
-  
+        
+        
+        @Override
+        public void goToWelcome()
+        {
+            order = new Order();
+            swapPanel(new Welcome(this, order));
+        }
+        
+        @Override
+        public void goToRefill()
+        {
+            swapPanel(new Refill(this, order));
+        }
+        
     };
     
     /**
@@ -225,7 +239,7 @@ public class App extends javax.swing.JFrame {
         masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
        
         //Open the homescreen
-        navigator.goToHomeScreen();
+        navigator.goToWelcome();
 
               
     }
@@ -237,8 +251,7 @@ public class App extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         layeredPane = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
@@ -259,10 +272,8 @@ public class App extends javax.swing.JFrame {
         jLabel1.setText("HOME");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
@@ -271,10 +282,8 @@ public class App extends javax.swing.JFrame {
         jLabel2.setText("BACK");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
@@ -283,6 +292,11 @@ public class App extends javax.swing.JFrame {
         jLabel3.setText("REFILL");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/waiter-icon-48x48.png"))); // NOI18N
         jLabel4.setText("WAITER");
@@ -314,15 +328,14 @@ public class App extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel4)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         layeredPane.setLayer(jPanel1, javax.swing.JLayeredPane.PALETTE_LAYER);
@@ -346,6 +359,11 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         navigator.goBack();    
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        navigator.goToRefill();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments

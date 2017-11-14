@@ -64,8 +64,7 @@ public class Drinks extends javax.swing.JPanel{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -119,10 +118,8 @@ public class Drinks extends javax.swing.JPanel{
         confirmOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         confirmOrder.setText("CONFIRM ORDER");
         confirmOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
-        confirmOrder.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        confirmOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 confirmOrderMouseClicked(evt);
             }
         });
@@ -176,10 +173,8 @@ public class Drinks extends javax.swing.JPanel{
         foodList.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         foodList.setForeground(new java.awt.Color(255, 255, 0));
         foodList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener()
-        {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt)
-            {
+        foodList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 foodListValueChanged(evt);
             }
         });
@@ -226,10 +221,8 @@ public class Drinks extends javax.swing.JPanel{
         itemIngredients.setLayout(new javax.swing.BoxLayout(itemIngredients, javax.swing.BoxLayout.Y_AXIS));
 
         addToOrder.setText("ADD TO ORDER");
-        addToOrder.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addToOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToOrderActionPerformed(evt);
             }
         });
@@ -239,10 +232,8 @@ public class Drinks extends javax.swing.JPanel{
         jLabel3.setText("Special Request");
 
         removeFromOrder.setText("REMOVE FROM ORDER");
-        removeFromOrder.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        removeFromOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeFromOrderActionPerformed(evt);
             }
         });
@@ -447,9 +438,9 @@ public class Drinks extends javax.swing.JPanel{
             order.setDrinkItem(foodItem);//add food item to order
 
             //Create OrderItemDetailPanels for each Food object that has been given to the Order object
-            for(Food item : order.getDrink())
+            for(Food drink : order.getDrink())
             {
-                orderDetails.add(new OrderItemDetails(item, listener));
+                orderDetails.add(new OrderItemDetails(drink, listener));
             }
 
             //Update the order details panel
@@ -482,11 +473,12 @@ public class Drinks extends javax.swing.JPanel{
             
             //Replace the Food object to the Order object
             int z = 0;
-            while(order.getFoodItem().get(z).GetName() != modifiedFoodItem.GetName())
+            while(order.getDrinkItem().get(z).GetName() != modifiedFoodItem.GetName())
             {
                 z++;
             }
-            order.getFoodItem().set(z, modifiedFoodItem);//Swap Food objects 
+            order.getDrinkItem().set(z, modifiedFoodItem);//Swap Food objects 
+            
             
             //This section removes and replaced all items in the Order Details area
             
@@ -513,16 +505,16 @@ public class Drinks extends javax.swing.JPanel{
         repaint();
         
         int z = 0;
-        while(order.getFoodItem().get(z).GetName() != modifiedFoodItem.GetName())
+        while(order.getDrinkItem().get(z).GetName() != modifiedFoodItem.GetName())
         {
             z++;
         }
-        order.getFoodItem().remove(z);//Remove Food objects 
+        order.getDrinkItem().remove(z);//Remove Food objects 
 
         //This section removes and replaced all items in the Order Details area
-        for(Food item : order.getFoodItem())
+        for(Food drink : order.getDrinkItem())
         {
-            orderDetails.add(new OrderItemDetails(item, listener));
+            orderDetails.add(new OrderItemDetails(drink, listener));
         }
         
         subTotal.setText(setSubTotal());//Display the subtotal
