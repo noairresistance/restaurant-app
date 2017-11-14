@@ -169,6 +169,12 @@ public class Table
             
             Thread.sleep(100);
             
+            if(getOrder() == null)
+            {
+                
+            }    
+            
+            
             ObjOut.writeObject(getOrder()); // send the object to the server
             ObjOut.flush();
                       

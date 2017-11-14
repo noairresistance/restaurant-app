@@ -197,7 +197,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToWelcome()
         {
-            order = new Order();
+            
             swapPanel(new Welcome(this, order));
         }
         
