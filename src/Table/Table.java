@@ -173,6 +173,16 @@ public class Table
             
             Thread.sleep(100);
             
+            if(Order.getDrink().isEmpty())
+            {
+                System.out.println("empty");
+            }
+            else
+            {
+                System.out.println("is not empty");
+            }
+            
+            
             ObjOut.writeObject(getOrder()); // send the object to the server
             ObjOut.flush();
                       
