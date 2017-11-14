@@ -383,6 +383,9 @@ public class ConfirmOrder extends javax.swing.JPanel
     //CONFIRM ORDER
     private void placeOrderMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_placeOrderMouseClicked
     {//GEN-HEADEREND:event_placeOrderMouseClicked
+        
+        System.out.println(table.getOrder().GetOrderSize());        
+        
         table.SendOrder();
         placeOrder.setText("ORDER HAS BEEN PLACED!");
     }//GEN-LAST:event_placeOrderMouseClicked
