@@ -21,7 +21,8 @@ public interface Navigator {
     void goToAppetizers();
     void goToDesserts();
     void goToConfirmOrder();
-    
+    void goToWelcome();
+    void goToRefill();
     
     
 }
