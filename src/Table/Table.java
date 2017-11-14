@@ -175,7 +175,7 @@ public class Table
             }    
             
             
-            ObjOut.writeObject(getOrder()); // send the object to the server
+            ObjOut.writeObject(Order); // send the object to the server
             ObjOut.flush();
                       
             Thread.sleep(100);

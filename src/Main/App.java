@@ -51,31 +51,31 @@ public class App extends javax.swing.JFrame {
         public void goToHomeScreen() 
         {    
             history.clear();//when going to the home screen, clear the stack
-            swapPanel(new HomeScreen(this,order));
+            swapPanel(new HomeScreen(this,table1.getOrder()));
         }
 
         @Override
         public void goToPay()
         {
-            swapPanel(new Pay(this, order));
+            swapPanel(new Pay(this, table1.getOrder()));
         }
         
         @Override
         public void goToCard()
         {
-            swapPanel(new Card(this, order));
+            swapPanel(new Card(this, table1.getOrder()));
         }
         
         @Override
         public void goToTip()
         {
-            swapPanel(new Tip(this, order));
+            swapPanel(new Tip(this, table1.getOrder()));
         }
         
         @Override
         public void goToSplit()
         {
-            swapPanel(new Split(this, order));
+            swapPanel(new Split(this, table1.getOrder()));
         }
         
         @Override
@@ -104,7 +104,7 @@ public class App extends javax.swing.JFrame {
                 layeredPane.remove(current);//remove the current screen    
             }
             
-            current = new Entrees(this, masterFoodItemList.entries, order);//set current to the new panel
+            current = new Entrees(this, masterFoodItemList.entries, table1.getOrder());//set current to the new panel
             
             
             history.push(current);//push the new panel onto the stack
@@ -122,7 +122,7 @@ public class App extends javax.swing.JFrame {
                 layeredPane.remove(current);//remove the current screen    
             }
             
-            current = new Drinks(this, masterFoodItemList.drinks, order);//set current to the new panel
+            current = new Drinks(this, masterFoodItemList.drinks, table1.getOrder());//set current to the new panel
             
 
             history.push(current);//push the new panel onto the stack
@@ -159,7 +159,7 @@ public class App extends javax.swing.JFrame {
                 layeredPane.remove(current);//remove the current screen    
             }
             
-            current = new Appetizers(this, masterFoodItemList.appetizers, order);//set current to the new panel
+            current = new Appetizers(this, masterFoodItemList.appetizers, table1.getOrder());//set current to the new panel
             
 
             history.push(current);//push the new panel onto the stack
@@ -178,7 +178,7 @@ public class App extends javax.swing.JFrame {
                 layeredPane.remove(current);//remove the current screen    
             }
             
-            current = new Desserts(this, masterFoodItemList.desserts, order);//set current to the new panel
+            current = new Desserts(this, masterFoodItemList.desserts, table1.getOrder());//set current to the new panel
             
 
             history.push(current);//push the new panel onto the stack
@@ -190,7 +190,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToConfirmOrder()
         {
-            swapPanel(new ConfirmOrder(this, order, table1));
+            swapPanel(new ConfirmOrder(this, table1));
         }
         
         
@@ -198,13 +198,13 @@ public class App extends javax.swing.JFrame {
         public void goToWelcome()
         {
             
-            swapPanel(new Welcome(this, order));
+            swapPanel(new Welcome(this, table1.getOrder()));
         }
         
         @Override
         public void goToRefill()
         {
-            swapPanel(new Refill(this, order));
+            swapPanel(new Refill(this, table1.getOrder()));
         }
         
     };
@@ -221,8 +221,8 @@ public class App extends javax.swing.JFrame {
         //Set back button location
         history = new Stack<>();
         
-        table1 = new Table();
-        table1.Handshake();
+        table1 = new Table();//Create new table
+        table1.Handshake();//Connect table to the server
         
         //Weak fix to Table/Server thread issue
         try
@@ -233,8 +233,6 @@ public class App extends javax.swing.JFrame {
         {
             ex.printStackTrace();
         }
-        
-        order = table1.getOrder();
         
         masterFoodItemList = table1.getMasterFoodItemList();//gets the Menu from the Table class
        

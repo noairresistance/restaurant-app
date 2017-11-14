@@ -30,7 +30,7 @@ public class Refill extends javax.swing.JPanel {
         setSize(1024,768);
         this.navigator = navigator;
         this.order = order;
-        this.drinkArray = order.drink;
+        this.drinkArray = order.getDrink();
       
         dlmDrinkItems = new DefaultListModel();
         

@@ -15,7 +15,7 @@ public class Order implements Serializable
     private int tableNumber;
     private int orderNumber;
     private ArrayList<Food> foodItem;
-    public ArrayList<Food> drink;
+    private ArrayList<Food> drink;
     private double totalPrice;
     private double subTotal;
     private double tax;
@@ -82,7 +82,8 @@ public class Order implements Serializable
     {
         return foodItem;
     }
-     public ArrayList<Food> getDrinkItem()
+     
+    public ArrayList<Food> getDrinkItem()
     {
         return drink;
     }

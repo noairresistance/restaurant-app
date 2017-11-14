@@ -13,7 +13,6 @@ import Table.Table;
 
 public class ConfirmOrder extends javax.swing.JPanel
 {
-    Order order;
     Navigator navigator;
     Table table;
     
@@ -34,7 +33,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         
     };
 
-    public ConfirmOrder(Navigator navigator, Order order, Table table)
+    public ConfirmOrder(Navigator navigator, Table table)
     {
         initComponents();
         setSize(1024, 768);
@@ -44,7 +43,6 @@ public class ConfirmOrder extends javax.swing.JPanel
         dessertScrollPane.getViewport().setOpaque(false);//this makes the scrollpane transparent
         
         this.navigator = navigator;
-        this.order = order;
         this.table = table;
        
         clearAllPanels();//Clear panels of all information
@@ -89,13 +87,13 @@ public class ConfirmOrder extends javax.swing.JPanel
         clearAllPanels();//Clear panels of all information
         
         //Populate Drinks
-        for(Food drink : order.getDrink())
+        for(Food drink : table.getOrder().getDrink())
         {
             drinkDetails.add(new OrderItemDetails(drink, listener));
         }
         
         //Populate Appetizers, Entrees, and Desserts
-        for(Food item : order.getFoodItem())
+        for(Food item : table.getOrder().getFoodItem())
         {
             if(item.getItemCatagory().equals("appetizer"))
             {
@@ -128,20 +126,20 @@ public class ConfirmOrder extends javax.swing.JPanel
     //Calculates subtotal an returns it as a string
     public String setSubTotal()
     {
-        order.calculateSubTotal();//Calculate the total price of the order
-        return String.format("%.02f", order.getSubTotal());
+        table.getOrder().calculateSubTotal();//Calculate the total price of the order
+        return String.format("%.02f", table.getOrder().getSubTotal());
     }
     
     public String setTax()
     {
-        order.calculateTax();
-        return String.format("%.02f", order.getTax());
+        table.getOrder().calculateTax();
+        return String.format("%.02f", table.getOrder().getTax());
     }
     
     public String setGrandTotal()
     {
-        order.calculateTotalPrice();
-        return String.format("%.02f", order.getTotalPrice());
+        table.getOrder().calculateTotalPrice();
+        return String.format("%.02f", table.getOrder().getTotalPrice());
     }
     
     
