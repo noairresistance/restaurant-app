@@ -159,6 +159,10 @@ public class Table
         getOrder().AddToOrder(newItem); // call the add to order in the list class
     }
     
+    public void addAnOrder(Order newOrder)
+    {
+        Order = newOrder;
+    }
     // this function is used to send a table's order to the server
     public void SendOrder()
     {
