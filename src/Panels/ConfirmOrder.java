@@ -45,6 +45,10 @@ public class ConfirmOrder extends javax.swing.JPanel
         
         this.navigator = navigator;
         this.order = order;
+        
+        //System.out.println(order.getDrink().get(0).GetName());
+        
+        
         this.table = table;
        
         clearAllPanels();//Clear panels of all information
@@ -383,7 +387,7 @@ public class ConfirmOrder extends javax.swing.JPanel
     //CONFIRM ORDER
     private void placeOrderMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_placeOrderMouseClicked
     {//GEN-HEADEREND:event_placeOrderMouseClicked
-        table.addAnOrder(order);
+        table.addAnOrder(order); 
         table.SendOrder();
         
         placeOrder.setText("ORDER HAS BEEN PLACED!");
