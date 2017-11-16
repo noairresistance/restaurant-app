@@ -14,11 +14,13 @@ import java.net.Socket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Table
 {
-    private final int ID = 1; // the table's id
+    private static int ID = 0; // the table's id
     private Socket TableSkt; // the table's socket
     private ObjectInputStream ObjIn; // stream used to read in objects
     private ObjectOutputStream ObjOut; // stream used to output objects
@@ -31,7 +33,7 @@ public class Table
     public Table()
     {
            Order = new Order();
-           
+           ID++;
     }
     
     public void Handshake()
@@ -261,6 +263,20 @@ public class Table
         this.Order = Order;
     }
 
-   
+    public void requestRefill(String request)
+    {
+        try 
+        {
+            ObjOut.writeUTF("Refill");
+            ObjOut.flush();
+            
+            ObjOut.writeUTF("Table " + ID + " request refill of: "+ request);
+            ObjOut.flush();
+        } catch (Exception ex)
+        {
+            System.out.println("Error sending refill request." + ex);
+        }
+    }
+    
 }
 
