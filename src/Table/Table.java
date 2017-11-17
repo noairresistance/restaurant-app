@@ -197,7 +197,7 @@ public class Table
         try
         {
             // System.out.println("Sending help."); // test
-            ObjOut.writeUTF("Help@"+Integer.toString(ID)); // Send the request to the server
+            ObjOut.writeUTF("Table " + ID + " requested help."); // Send the request to the server
             ObjOut.flush();
         }
         catch(Exception e)
