@@ -59,18 +59,9 @@ public class Table
             ObjOut.writeUTF(category);
             ObjOut.flush();
             
-            /* //sends a message to server. This triggers the server to send the message to the waiter.
-            String ToGoReq = "ToGoBox";
-            System.out.println("Testing TO Go Box Request"); // testing togobox
-            ObjOut.writeUTF(ToGoReq);
-            ObjOut.flush();
-            */
-            /*
-            String Pay1 = "Cash";
-            String Pay2 = "Card";
-            OrderPaid(Pay1);
-            OrderPaid(Pay2);
-            */
+            ToGoBox();
+            
+            //testing the payment methods.
             OrderPaidByCard();
             OrderPaidByCash();
             
@@ -275,7 +266,7 @@ public class Table
     {
         try
         {
-            ObjOut.writeUTF("Table " + ID + "has requested a box to go.");
+            ObjOut.writeUTF("Table [" + ID + "] has requested a to go box.");
             ObjOut.flush();
         }
         catch(Exception e)
