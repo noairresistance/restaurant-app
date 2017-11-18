@@ -6,28 +6,35 @@
 package Panels;
 
 import Food.Food;
+import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import Panels.Drinks;
+import Panels.Desserts;
+import Panels.Entrees;
+import Panels.Appetizers;
 
 public class OrderItemDetails extends javax.swing.JPanel
 {
     
     OrderItemDetailsListener listener;
     Food item; 
-
+    Navigator navigator;
+    JPanel current;
     /**
      * Creates new form OrderItemDetails
      */
-    public OrderItemDetails(Food item, OrderItemDetailsListener listener)
+    public OrderItemDetails(Food item, OrderItemDetailsListener listener,Navigator navigator)
     {
         initComponents();
         setSize(270, 270);
         this.listener = listener;
         this.item = item;
+        this.navigator = navigator;
         itemName.setText(item.GetName());//Display the name
         itemPrice.setText((Double.toString(item.GetPrice())));//Display the price
-       
+        
         //Display the ingredients
         for(int i = 0; i < item.getIngrediantArraySize(); i++)
         {
@@ -82,6 +89,26 @@ public class OrderItemDetails extends javax.swing.JPanel
     private void formMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMouseClicked
     {//GEN-HEADEREND:event_formMouseClicked
         // TODO add your handling code here:
+              
+         if(item.getItemCatagory().equals("appetizer"))//goes to the correct panels
+         { 
+            // if (current != Appetizers)
+             navigator.goToAppetizers();
+         }
+         if(item.getItemCatagory().equals("entree"))
+         {
+                navigator.goToEntrees();
+         }
+         if(item.getItemCatagory().equals( "dessert"))
+         {
+                navigator.goToDesserts();
+         }
+         if(item.getItemCatagory().equals( "drink"))
+         {
+               
+            navigator.goToDrinks();
+           
+         }
         listener.modifyItem(item);
     }//GEN-LAST:event_formMouseClicked
 

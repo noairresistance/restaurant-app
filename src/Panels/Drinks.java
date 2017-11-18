@@ -46,6 +46,8 @@ public class Drinks extends javax.swing.JPanel{
         this.order = order;
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
         
+       
+        populateOrder();
         //Add item names from the drinks array to the dlm
         for (int i = 0; i < drinks.size(); i++)
         {
@@ -129,12 +131,6 @@ public class Drinks extends javax.swing.JPanel{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                    .addComponent(scrollPane))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,6 +139,12 @@ public class Drinks extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPane)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +159,7 @@ public class Drinks extends javax.swing.JPanel{
                     .addComponent(subTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 0));
@@ -410,10 +412,8 @@ public class Drinks extends javax.swing.JPanel{
     private void addToOrderActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addToOrderActionPerformed
     {//GEN-HEADEREND:event_addToOrderActionPerformed
       //Remove all orders from Order Details
-        orderDetails.removeAll();
-        revalidate();
-        repaint();
-
+     
+        
         if(addToOrder.getText() == "ADD TO ORDER")
         {
             //Create new Food object with name and price of selected item
@@ -438,14 +438,10 @@ public class Drinks extends javax.swing.JPanel{
             order.setDrinkItem(foodItem);//add food item to order
 
             //Create OrderItemDetailPanels for each Food object that has been given to the Order object
-            for(Food drink : order.getDrink())
-            {
-                orderDetails.add(new OrderItemDetails(drink, listener));
-            }
+            
 
             //Update the order details panel
-            orderDetails.revalidate();
-            orderDetails.repaint();
+            populateOrder();
 
             
             order.setHasAddedToOrder(true);//Set the has added to order field to true
@@ -482,16 +478,12 @@ public class Drinks extends javax.swing.JPanel{
             
             //This section removes and replaced all items in the Order Details area
             
-            for(Food item : order.getFoodItem())
-            {
-                orderDetails.add(new OrderItemDetails(item, listener));
-            }
+           
            
             subTotal.setText(setSubTotal());//Display the subtotal
             
             //Update the order details panel
-            orderDetails.revalidate();
-            orderDetails.repaint();
+            populateOrder();
             
             resetMenu();//Resets the menu state
         }
@@ -512,16 +504,12 @@ public class Drinks extends javax.swing.JPanel{
         order.getDrinkItem().remove(z);//Remove Food objects 
 
         //This section removes and replaced all items in the Order Details area
-        for(Food drink : order.getDrinkItem())
-        {
-            orderDetails.add(new OrderItemDetails(drink, listener));
-        }
+        
         
         subTotal.setText(setSubTotal());//Display the subtotal
 
         //Update the order details panel
-        orderDetails.revalidate();
-        orderDetails.repaint();
+        populateOrder();
 
         resetMenu();//Resets the menu state
     }//GEN-LAST:event_removeFromOrderActionPerformed
@@ -573,6 +561,23 @@ public class Drinks extends javax.swing.JPanel{
             itemIngredients.revalidate();
             itemIngredients.repaint(); 
     }
+    
+    public void populateOrder()//displays the menu on order details
+    {
+        orderDetails.removeAll();
+        for(Food drink : order.getDrinkItem())
+        {
+            orderDetails.add(new OrderItemDetails(drink, listener, navigator));
+        }
+        for(Food food : order.getFoodItem())
+        {
+            orderDetails.add(new OrderItemDetails(food, listener, navigator));
+        }
+        revalidate();
+        repaint(); 
+        
+    }
+
 
     
     
