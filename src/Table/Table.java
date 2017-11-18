@@ -59,6 +59,13 @@ public class Table
             ObjOut.writeUTF(category);
             ObjOut.flush();
             
+         
+            
+            //testing the payment methods and togobox requests
+            //OrderPaidByCard();
+            //OrderPaidByCash();
+            //ToGoBox();
+            
             Thread.sleep(100); // test may be part of final build allow server to catch up
         }
         catch(SocketException se)
@@ -206,17 +213,58 @@ public class Table
         }
     }
     
-        public void OrderPaid()
+    public void OrderPaidByCash()
     {
         try
         {
             // Send the paid notification request to the server
-            ObjOut.writeUTF("Paid@"+Integer.toString(ID));
+            ObjOut.writeUTF("Table ["+ ID + "] has paid $" + Order.getTotalPrice() + " with cash.");
             ObjOut.flush();
         }
         catch(Exception e)
         {
             System.out.println("Error Requesting Help."+ e);
+        }
+    }
+    public void OrderPaidByCard()
+    {
+        try
+        {
+        // Send the paid notification request to the server
+        ObjOut.writeUTF("Table [" + ID + "] has paid $" + Order.getTotalPrice() + " with a card.");
+        ObjOut.flush();
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+
+    public void ToGoBox()
+    {
+        try
+        {
+            ObjOut.writeUTF("Table [" + ID + "] has requested a to go box.");
+            ObjOut.flush();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error @ ToGoBox Request."+ e);
+        }
+    }
+    
+    public void requestRefill(String request)
+    {
+        try 
+        {
+            ObjOut.writeUTF("Refill");
+            ObjOut.flush();
+            
+            ObjOut.writeUTF("Table " + ID + " request refill of: "+ request);
+            ObjOut.flush();
+        } catch (Exception ex)
+        {
+            System.out.println("Error sending refill request." + ex);
         }
     }
     

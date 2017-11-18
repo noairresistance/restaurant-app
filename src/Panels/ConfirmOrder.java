@@ -89,7 +89,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         //Populate Drinks
         for(Food drink : table.getOrder().getDrink())
         {
-            drinkDetails.add(new OrderItemDetails(drink, listener));
+            drinkDetails.add(new OrderItemDetails(drink, listener, navigator));
         }
         
         //Populate Appetizers, Entrees, and Desserts
@@ -97,15 +97,15 @@ public class ConfirmOrder extends javax.swing.JPanel
         {
             if(item.getItemCatagory().equals("appetizer"))
             {
-                appetizerDetails.add(new OrderItemDetails(item, listener));
+                appetizerDetails.add(new OrderItemDetails(item, listener, navigator));
             }
             if(item.getItemCatagory().equals("entree"))
             {
-                entreeDetails.add(new OrderItemDetails(item, listener));
+                entreeDetails.add(new OrderItemDetails(item, listener, navigator));
             }
             if(item.getItemCatagory().equals( "dessert"))
             {
-                dessertDetails.add(new OrderItemDetails(item, listener));
+                dessertDetails.add(new OrderItemDetails(item, listener, navigator));
             }
         }
         
@@ -151,8 +151,7 @@ public class ConfirmOrder extends javax.swing.JPanel
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         itemGroup = new javax.swing.JPanel();
         drinks = new javax.swing.JPanel();
@@ -179,7 +178,6 @@ public class ConfirmOrder extends javax.swing.JPanel
         setBackground(new java.awt.Color(204, 0, 0));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         setPreferredSize(new java.awt.Dimension(1024, 768));
-        setSize(new java.awt.Dimension(1024, 768));
 
         itemGroup.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         itemGroup.setOpaque(false);
@@ -193,16 +191,17 @@ public class ConfirmOrder extends javax.swing.JPanel
         drinkDetails.setOpaque(false);
         drinkDetails.setLayout(new javax.swing.BoxLayout(drinkDetails, javax.swing.BoxLayout.Y_AXIS));
         drinkScrollPane.setViewportView(drinkDetails);
+        drinkDetails.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout drinksLayout = new javax.swing.GroupLayout(drinks);
         drinks.setLayout(drinksLayout);
         drinksLayout.setHorizontalGroup(
             drinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         drinksLayout.setVerticalGroup(
             drinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         itemGroup.add(drinks);
@@ -220,11 +219,11 @@ public class ConfirmOrder extends javax.swing.JPanel
         appetizers.setLayout(appetizersLayout);
         appetizersLayout.setHorizontalGroup(
             appetizersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         appetizersLayout.setVerticalGroup(
             appetizersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         itemGroup.add(appetizers);
@@ -242,11 +241,11 @@ public class ConfirmOrder extends javax.swing.JPanel
         entrees.setLayout(entreesLayout);
         entreesLayout.setHorizontalGroup(
             entreesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         entreesLayout.setVerticalGroup(
             entreesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         itemGroup.add(entrees);
@@ -264,11 +263,11 @@ public class ConfirmOrder extends javax.swing.JPanel
         desserts.setLayout(dessertsLayout);
         dessertsLayout.setHorizontalGroup(
             dessertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         dessertsLayout.setVerticalGroup(
             dessertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         itemGroup.add(desserts);
@@ -283,10 +282,8 @@ public class ConfirmOrder extends javax.swing.JPanel
         placeOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         placeOrder.setText("***PLACE ORDER***");
         placeOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
-        placeOrder.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        placeOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 placeOrderMouseClicked(evt);
             }
         });

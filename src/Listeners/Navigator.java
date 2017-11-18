@@ -5,6 +5,8 @@
  */
 package Listeners;
 
+import javax.swing.JPanel;
+
 
 public interface Navigator {
     
@@ -23,6 +25,7 @@ public interface Navigator {
     void goToConfirmOrder();
     void goToWelcome();
     void goToRefill();
+    JPanel getCurrent();
     
     
 }

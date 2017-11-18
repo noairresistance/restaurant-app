@@ -47,7 +47,7 @@ public class Appetizers extends javax.swing.JPanel{
         this.appetizers = appetizers;
         this.order = order;
         dlmEntreeItems = new DefaultListModel();//Create new Default List Model for list of entree items
-        
+         populateOrder();
         //Add item names from the appetizers array to the dlm
         for (int i = 0; i < appetizers.size(); i++)
         {
@@ -437,13 +437,11 @@ public class Appetizers extends javax.swing.JPanel{
             //Create OrderItemDetailPanels for each Food object that has been given to the Order object
             for(Food item : order.getFoodItem())
             {
-                orderDetails.add(new OrderItemDetails(item, listener));
+                orderDetails.add(new OrderItemDetails(item, listener, navigator));
             }
 
             //Update the order details panel
-            orderDetails.revalidate();
-            orderDetails.repaint();
-
+            populateOrder();
             
             order.setHasAddedToOrder(true);//Set the has added to order field to true
             
@@ -480,14 +478,13 @@ public class Appetizers extends javax.swing.JPanel{
             
             for(Food item : order.getFoodItem())
             {
-                orderDetails.add(new OrderItemDetails(item, listener));
+                orderDetails.add(new OrderItemDetails(item, listener, navigator));
             }
            
             subTotal.setText(setSubTotal());//Display the subtotal
             
             //Update the order details panel
-            orderDetails.revalidate();
-            orderDetails.repaint();
+            populateOrder();
             
             resetMenu();//Resets the menu state
         }
@@ -509,14 +506,13 @@ public class Appetizers extends javax.swing.JPanel{
         //This section removes and replaced all items in the Order Details area
         for(Food item : order.getFoodItem())
         {
-            orderDetails.add(new OrderItemDetails(item, listener));
+            orderDetails.add(new OrderItemDetails(item, listener, navigator));
         }
         
         subTotal.setText(setSubTotal());//Display the subtotal
 
         //Update the order details panel
-        orderDetails.revalidate();
-        orderDetails.repaint();
+        populateOrder();
 
         resetMenu();//Resets the menu state
     }//GEN-LAST:event_removeFromOrderActionPerformed
@@ -564,7 +560,21 @@ public class Appetizers extends javax.swing.JPanel{
         order.calculateSubTotal();//Calculate the total price of the order
         return Double.toString(order.getSubTotal());
     }
-
+    
+    public void populateOrder()//populates the order
+    {
+        orderDetails.removeAll();
+        for(Food drink : order.getDrinkItem())
+        {
+            orderDetails.add(new OrderItemDetails(drink, listener, navigator));
+        }
+        for(Food food : order.getFoodItem())
+        {
+            orderDetails.add(new OrderItemDetails(food, listener, navigator));
+        }
+        revalidate();
+        repaint(); 
+    }
     
     
     
