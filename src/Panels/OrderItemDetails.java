@@ -94,22 +94,26 @@ public class OrderItemDetails extends javax.swing.JPanel
          { 
             // if (current != Appetizers)
              navigator.goToAppetizers();
+             listener.modifyItem(item);
          }
          if(item.getItemCatagory().equals("entree"))
          {
                 navigator.goToEntrees();
+                listener.modifyItem(item);
          }
          if(item.getItemCatagory().equals( "dessert"))
          {
                 navigator.goToDesserts();
+                listener.modifyItem(item);
          }
          if(item.getItemCatagory().equals( "drink"))
          {
                
             navigator.goToDrinks();
+            listener.modifyItem(item);
            
          }
-        listener.modifyItem(item);
+        
     }//GEN-LAST:event_formMouseClicked
 
 
