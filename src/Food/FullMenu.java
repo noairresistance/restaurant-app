@@ -13,18 +13,20 @@ public class FullMenu implements Serializable
         private FoodList Appetizers;
         private FoodList Drinks;
         private FoodList Desserts;
+        private FoodList Merchs;
         
         public FullMenu()
         {
             // empty constructor
         }
         
-        public FullMenu(FoodList entrees, FoodList apps, FoodList drinks, FoodList desserts)
+        public FullMenu(FoodList entrees, FoodList apps, FoodList drinks, FoodList desserts, FoodList merch)
         {
             Entrees = entrees;
             Appetizers = apps;
             Drinks = drinks;
             Desserts = desserts;
+            Merchs = merch;
         }
         
         public int entreesSize()
@@ -47,6 +49,11 @@ public class FullMenu implements Serializable
             return Appetizers.getListSize();
         }
         
+        public int merchSize()
+        {
+            return Merchs.getListSize();
+        }
+        
         public Food getDrink(int i)
         {
             return Drinks.getItem(i);
@@ -65,6 +72,11 @@ public class FullMenu implements Serializable
         public Food getEntree(int i)
         {
             return Entrees.getItem(i);
+        }
+        
+        public Food getMerch(int i)
+        {
+            return Merchs.getItem(i);
         }
         
         public void printMenu()
@@ -107,6 +119,14 @@ public class FullMenu implements Serializable
                 {
                     System.out.print(Entrees.getItem(i).GetIngredients(j));
                 }
+            }
+            
+            for(int i = 0; i < merchSize(); i++)
+            {
+                System.out.println(Merchs.getItem(i).GetName());
+                System.out.println(Merchs.getItem(i).GetPrice());
+                 //This is an item size, not the list size.
+                //since merch has no ingredients, we will omit Ingredients.
             }
         }
 }

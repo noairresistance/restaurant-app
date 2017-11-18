@@ -13,13 +13,14 @@ public class ServerSentMasterList implements Serializable
 {
     public ArrayList<ArrayList<Food>> totalList;
     
-    public ServerSentMasterList(ArrayList<Food> drinks, ArrayList<Food>appitizers, ArrayList<Food> entrees, ArrayList<Food>deserts)
+    public ServerSentMasterList(ArrayList<Food> drinks, ArrayList<Food>appitizers, ArrayList<Food> entrees, ArrayList<Food>deserts, ArrayList<Food>merchandise)
     {
         totalList = new ArrayList<>();
         totalList.add(drinks);
         totalList.add(appitizers);
         totalList.add(entrees);
         totalList.add(deserts);
+        totalList.add(merchandise);
     }
     
     

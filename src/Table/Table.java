@@ -57,6 +57,13 @@ public class Table
             ObjOut.writeUTF(category);
             ObjOut.flush();
             
+            /* //sends a message to server. This triggers the server to send the message to the waiter.
+            String ToGoReq = "ToGoBox";
+            System.out.println("Testing TO Go Box Request"); // testing togobox
+            ObjOut.writeUTF(ToGoReq);
+            ObjOut.flush();
+            */
+            
             Thread.sleep(100); // test may be part of final build allow server to catch up
         }
         catch(SocketException se)
@@ -215,6 +222,18 @@ public class Table
         catch(Exception e)
         {
             System.out.println("Error Requesting Help."+ e);
+        }
+    }
+    public void ToGoBox()
+    {
+        try
+        {
+            ObjOut.writeUTF("ToGoBox requested by Table#"+Integer.toString(ID));
+            ObjOut.flush();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error @ ToGoBox Request."+ e);
         }
     }
     
