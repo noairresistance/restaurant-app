@@ -59,12 +59,12 @@ public class Table
             ObjOut.writeUTF(category);
             ObjOut.flush();
             
-            ToGoBox();
+         
             
-            //testing the payment methods.
-            OrderPaidByCard();
-            OrderPaidByCash();
-            
+            //testing the payment methods and togobox requests
+            //OrderPaidByCard();
+            //OrderPaidByCash();
+            //ToGoBox();
             
             Thread.sleep(100); // test may be part of final build allow server to catch up
         }
@@ -239,29 +239,7 @@ public class Table
 
         }
     }
-    
-    /*
-    public void OrderPaid(String request)
-    {
-        try
-        {
-            if (request.equals("Cash"))
-            {
-                ObjOut.writeUTF("Cash : Table["+ ID + "] has paid with cash.");
-                ObjOut.flush();
-            }
-            else if (request.equals("Card"))
-            {
-                ObjOut.writeUTF("Card : Ta" + ID + " has paid with a card.");
-                ObjOut.flush();  
-            }
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error @ OrderPaid."+ e);
-        }
-    }
-      */  
+
     public void ToGoBox()
     {
         try
