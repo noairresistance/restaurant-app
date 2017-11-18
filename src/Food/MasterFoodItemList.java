@@ -14,6 +14,7 @@ public class MasterFoodItemList
     public ArrayList<Food> entries;
     public ArrayList<Food> desserts;
     public ArrayList<Food> merchandise;
+    public ArrayList<Food> specials;
     
     
     public MasterFoodItemList(ArrayList<ArrayList<Food>> sentItemList)
@@ -23,5 +24,6 @@ public class MasterFoodItemList
         entries = sentItemList.get(2);
         desserts = sentItemList.get(3);
         merchandise = sentItemList.get(4);
+        specials = sentItemList.get(5);
     }
 }

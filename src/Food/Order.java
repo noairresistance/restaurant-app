@@ -33,6 +33,7 @@ public class Order implements Serializable
         foodItem = new ArrayList<Food>();
         drink = new ArrayList<Food>();
         merch = new ArrayList<Food>();
+        special = new ArrayList<Food>();
     }
     
     
