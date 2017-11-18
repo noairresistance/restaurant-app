@@ -14,11 +14,13 @@ import java.net.Socket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Table
 {
-    private final int ID = 1; // the table's id
+    private static int ID = 0; // the table's id
     private Socket TableSkt; // the table's socket
     private ObjectInputStream ObjIn; // stream used to read in objects
     private ObjectOutputStream ObjOut; // stream used to output objects
@@ -31,7 +33,7 @@ public class Table
     public Table()
     {
            Order = new Order();
-           
+           ID++;
     }
     
     public void Handshake()
@@ -63,6 +65,15 @@ public class Table
             ObjOut.writeUTF(ToGoReq);
             ObjOut.flush();
             */
+            /*
+            String Pay1 = "Cash";
+            String Pay2 = "Card";
+            OrderPaid(Pay1);
+            OrderPaid(Pay2);
+            */
+            OrderPaidByCard();
+            OrderPaidByCash();
+            
             
             Thread.sleep(100); // test may be part of final build allow server to catch up
         }
@@ -202,7 +213,7 @@ public class Table
         try
         {
             // System.out.println("Sending help."); // test
-            ObjOut.writeUTF("Help@"+Integer.toString(ID)); // Send the request to the server
+            ObjOut.writeUTF("Table " + ID + " requested help."); // Send the request to the server
             ObjOut.flush();
         }
         catch(Exception e)
@@ -211,12 +222,12 @@ public class Table
         }
     }
     
-        public void OrderPaid()
+    public void OrderPaidByCash()
     {
         try
         {
             // Send the paid notification request to the server
-            ObjOut.writeUTF("Paid@"+Integer.toString(ID));
+            ObjOut.writeUTF("Table ["+ ID + "] has paid $" + Order.getTotalPrice() + " with cash.");
             ObjOut.flush();
         }
         catch(Exception e)
@@ -224,16 +235,67 @@ public class Table
             System.out.println("Error Requesting Help."+ e);
         }
     }
+    public void OrderPaidByCard()
+    {
+        try
+        {
+        // Send the paid notification request to the server
+        ObjOut.writeUTF("Table [" + ID + "] has paid $" + Order.getTotalPrice() + " with a card.");
+        ObjOut.flush();
+        }
+        catch(Exception e)
+        {
+
+        }
+    }
+    
+    /*
+    public void OrderPaid(String request)
+    {
+        try
+        {
+            if (request.equals("Cash"))
+            {
+                ObjOut.writeUTF("Cash : Table["+ ID + "] has paid with cash.");
+                ObjOut.flush();
+            }
+            else if (request.equals("Card"))
+            {
+                ObjOut.writeUTF("Card : Ta" + ID + " has paid with a card.");
+                ObjOut.flush();  
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error @ OrderPaid."+ e);
+        }
+    }
+      */  
     public void ToGoBox()
     {
         try
         {
-            ObjOut.writeUTF("ToGoBox requested by Table#"+Integer.toString(ID));
+            ObjOut.writeUTF("Table " + ID + "has requested a box to go.");
             ObjOut.flush();
         }
         catch(Exception e)
         {
             System.out.println("Error @ ToGoBox Request."+ e);
+        }
+    }
+    
+    public void requestRefill(String request)
+    {
+        try 
+        {
+            ObjOut.writeUTF("Refill");
+            ObjOut.flush();
+            
+            ObjOut.writeUTF("Table " + ID + " request refill of: "+ request);
+            ObjOut.flush();
+        } catch (Exception ex)
+        {
+            System.out.println("Error sending refill request." + ex);
         }
     }
     
