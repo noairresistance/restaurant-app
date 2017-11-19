@@ -13,6 +13,7 @@ public class Order implements Serializable
     private static int ID = 1;
     
     private int tableNumber;
+    private int assignedWaiter;
     private int orderNumber;
     private ArrayList<Food> foodItem;
     private ArrayList<Food> drink;
@@ -209,7 +210,13 @@ public class Order implements Serializable
         return tax;
     }
 
+    public void setWaiter(int i)
+    {
+        this.assignedWaiter = i;
+    }
     
-    
-    
+    public int getWaiter()
+    {
+        return this.assignedWaiter;
+    }
 }

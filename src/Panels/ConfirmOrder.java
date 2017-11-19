@@ -380,7 +380,6 @@ public class ConfirmOrder extends javax.swing.JPanel
     {//GEN-HEADEREND:event_placeOrderMouseClicked
          
         table.SendOrder();
-        
         placeOrder.setText("ORDER HAS BEEN PLACED!");
     }//GEN-LAST:event_placeOrderMouseClicked
 
