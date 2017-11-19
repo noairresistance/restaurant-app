@@ -6,29 +6,22 @@
 package Panels;
 
 import Listeners.Navigator;
-import Food.Order;
 
 /**
  *
- * @author Birdman
+ * @author DESKTOP
  */
+public class Togobox extends javax.swing.JPanel {
 
-public class Card extends javax.swing.JPanel {
-
-    
-    private
-    Navigator navigator;
-    Order order;
-    
     /**
-     * 
-     * Creates new form Card
+     * Creates new form Togobox
      */
-    public Card(Navigator navigator, Order order) {
+    private Navigator navigator;
+    
+    public Togobox(Navigator navigator) {
         initComponents();
-        setSize(1024, 768);
+        setSize(1024,768);
         this.navigator = navigator;
-        this.order = order;
     }
 
     /**
@@ -44,10 +37,10 @@ public class Card extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 0));
 
-        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("You paid with card!");
+        jLabel1.setText("You requested a To Go Box!");
         jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -59,17 +52,17 @@ public class Card extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
