@@ -266,7 +266,8 @@ public class App extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         layeredPane = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
@@ -287,8 +288,10 @@ public class App extends javax.swing.JFrame {
         jLabel1.setText("HOME");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel1MouseClicked(evt);
             }
         });
@@ -297,8 +300,10 @@ public class App extends javax.swing.JFrame {
         jLabel2.setText("BACK");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel2MouseClicked(evt);
             }
         });
@@ -307,8 +312,10 @@ public class App extends javax.swing.JFrame {
         jLabel3.setText("REFILL");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jLabel3MouseClicked(evt);
             }
         });
@@ -317,6 +324,13 @@ public class App extends javax.swing.JFrame {
         jLabel4.setText("WAITER");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/tutorial-icon-48x48.png"))); // NOI18N
         jLabel5.setText("INFO");
@@ -379,6 +393,11 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         navigator.goToRefill();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
+    {//GEN-HEADEREND:event_jLabel4MouseClicked
+        table1.RequestHelp();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
