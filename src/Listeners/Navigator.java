@@ -26,6 +26,8 @@ public interface Navigator {
     void goToWelcome();
     void goToRefill();
     JPanel getCurrent();
+    void goToCash();
+    void goToTogobox();
     
     
 }

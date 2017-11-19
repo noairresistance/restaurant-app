@@ -9,8 +9,11 @@ import Food.Food;
 import Food.Order;
 import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
+import Table.Table;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -22,26 +25,51 @@ public class Refill extends javax.swing.JPanel {
     private Order order;
     DefaultListModel dlmDrinkItems;
     ArrayList<Food> drinkArray;
-    /**
+    private Table table;
+    boolean clearListStatus;
+    //private Table table; 
+   /**
      * Creates new form Refill
      */
-    public Refill(Navigator navigator, Order order) {
+    public Refill(Navigator navigator, Table table) {
         initComponents();
         setSize(1024,768);
         this.navigator = navigator;
-        this.order = order;
+        this.table = table;
+        this.order = table.getOrder();
         this.drinkArray = order.getDrink();
-      
+        this.clearListStatus = false;
         dlmDrinkItems = new DefaultListModel();
-        
-        
+  
         for(Food drink : order.getDrink())
         {
              dlmDrinkItems.addElement(drink.GetName());
         }
-        
-    
+ 
         drinkList.setModel(dlmDrinkItems);
+        
+        drinkList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                
+                if(!clearListStatus)
+                {
+                    drinkSelection.setText(drinkList.getSelectedValue().toString());//updates the selected drink
+                }
+                
+                
+              
+           
+           
+                
+                
+              
+            }
+        });   
+        
+        
+        
+      
     }
 
     /**
@@ -58,6 +86,7 @@ public class Refill extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         drinkList = new javax.swing.JList<>();
+        drinkSelection = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 51));
 
@@ -67,7 +96,12 @@ public class Refill extends javax.swing.JPanel {
         jLabel1.setText("REFILL");
         jLabel1.setOpaque(true);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("REFILL");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(204, 0, 0));
         jLabel2.setFont(new java.awt.Font("Lucida Console", 0, 24)); // NOI18N
@@ -84,6 +118,11 @@ public class Refill extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(drinkList);
 
+        drinkSelection.setBackground(new java.awt.Color(204, 0, 0));
+        drinkSelection.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        drinkSelection.setText(" ");
+        drinkSelection.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +135,8 @@ public class Refill extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(drinkSelection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(453, 453, 453))
         );
         layout.setVerticalGroup(
@@ -111,15 +151,32 @@ public class Refill extends javax.swing.JPanel {
                         .addGap(42, 42, 42)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
+                        .addGap(94, 94, 94)
+                        .addComponent(drinkSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(269, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if(!(drinkSelection.getText().equals(" ")))
+        {
+            table.requestRefill(drinkList.getSelectedValue().toString());//sends a message so to refill the selected drink
+            drinkSelection.setText(" ");//resets the text panel that shows what drink you picked
+            
+            clearListStatus = true;//makes the list selection listener ignore clearing the list
+            drinkList.clearSelection();
+            clearListStatus = false;
+        }
+         
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> drinkList;
+    private javax.swing.JLabel drinkSelection;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

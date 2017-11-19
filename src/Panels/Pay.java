@@ -7,6 +7,7 @@ package Panels;
 
 import Listeners.Navigator;
 import Food.Order;
+import Table.Table;
 
 /**
  *
@@ -21,12 +22,15 @@ public class Pay extends javax.swing.JPanel {
     private
     Navigator navigator;
     Order order;
+    private Table table;
     
-    public Pay(Navigator navigator, Order order) {
+    public Pay(Navigator navigator, Table table) {
         initComponents();
         setSize(1024, 768);
         this.navigator = navigator;
-        this.order = order;
+        this.table = table;
+        this.order = table.getOrder();
+    
     }
 
     /**
@@ -74,12 +78,22 @@ public class Pay extends javax.swing.JPanel {
         togoboxButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         togoboxButton.setText("Request To Go Box");
         togoboxButton.setOpaque(true);
+        togoboxButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                togoboxButtonMouseClicked(evt);
+            }
+        });
 
         cashButton.setBackground(new java.awt.Color(255, 51, 0));
         cashButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         cashButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cashButton.setText("Cash");
         cashButton.setOpaque(true);
+        cashButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cashButtonMouseClicked(evt);
+            }
+        });
 
         tipButton.setBackground(new java.awt.Color(255, 51, 0));
         tipButton.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -129,6 +143,8 @@ public class Pay extends javax.swing.JPanel {
     private void cardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardButtonMouseClicked
         // TODO add your handling code here:
         navigator.goToCard();
+        table.OrderPaidByCard();
+        
     }//GEN-LAST:event_cardButtonMouseClicked
 
     private void tipButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipButtonMouseClicked
@@ -140,6 +156,19 @@ public class Pay extends javax.swing.JPanel {
         // TODO add your handling code here:
         navigator.goToSplit();
     }//GEN-LAST:event_splitcheckButtonMouseClicked
+
+    private void cashButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashButtonMouseClicked
+        // TODO add your handling code here:
+        navigator.goToCash();
+        table.OrderPaidByCash();
+    }//GEN-LAST:event_cashButtonMouseClicked
+
+    private void togoboxButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_togoboxButtonMouseClicked
+        // TODO add your handling code here:
+        
+        navigator.goToTogobox();
+        table.ToGoBox();
+    }//GEN-LAST:event_togoboxButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

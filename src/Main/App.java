@@ -57,7 +57,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToPay()
         {
-            swapPanel(new Pay(this, table1.getOrder()));
+            swapPanel(new Pay(this, table1));
         }
         
         @Override
@@ -204,13 +204,25 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToRefill()
         {
-            swapPanel(new Refill(this, table1.getOrder()));
+            swapPanel(new Refill(this, table1));
         }
 
         @Override
         public JPanel getCurrent() {
             return current;
         }
+        @Override
+        public void goToCash()
+        {
+            swapPanel(new Cash(this));
+        }
+        
+        @Override
+        public void goToTogobox()
+        {
+            swapPanel(new Togobox(this));
+        }
+
         
     };
     
