@@ -142,8 +142,8 @@ public class Pay extends javax.swing.JPanel {
 
     private void cardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardButtonMouseClicked
         // TODO add your handling code here:
-        navigator.goToCard();
         table.OrderPaidByCard();
+        navigator.goToCard();
         
     }//GEN-LAST:event_cardButtonMouseClicked
 
@@ -159,8 +159,8 @@ public class Pay extends javax.swing.JPanel {
 
     private void cashButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashButtonMouseClicked
         // TODO add your handling code here:
-        navigator.goToCash();
         table.OrderPaidByCash();
+        navigator.goToCash();
     }//GEN-LAST:event_cashButtonMouseClicked
 
     private void togoboxButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_togoboxButtonMouseClicked

@@ -203,6 +203,9 @@ public class Table
     {
         try
         {
+            ObjOut.writeUTF("Help");
+            ObjOut.flush();
+            
             // System.out.println("Sending help."); // test
             ObjOut.writeUTF("Table " + ID + " requested help."); // Send the request to the server
             ObjOut.flush();
@@ -217,6 +220,9 @@ public class Table
     {
         try
         {
+            ObjOut.writeUTF("Cash");
+            ObjOut.flush();
+            
             // Send the paid notification request to the server
             ObjOut.writeUTF("Table ["+ ID + "] has paid $" + Order.getTotalPrice() + " with cash.");
             ObjOut.flush();
@@ -230,9 +236,12 @@ public class Table
     {
         try
         {
-        // Send the paid notification request to the server
-        ObjOut.writeUTF("Table [" + ID + "] has paid $" + Order.getTotalPrice() + " with a card.");
-        ObjOut.flush();
+            ObjOut.writeUTF("Card");
+            ObjOut.flush();
+            
+            // Send the paid notification request to the server
+            ObjOut.writeUTF("Table [" + ID + "] has paid $" + Order.getTotalPrice() + " with a card.");
+            ObjOut.flush();
         }
         catch(Exception e)
         {
@@ -244,6 +253,9 @@ public class Table
     {
         try
         {
+            ObjOut.writeUTF("togo");
+            ObjOut.flush();
+                       
             ObjOut.writeUTF("Table [" + ID + "] has requested a to go box.");
             ObjOut.flush();
         }
@@ -310,21 +322,5 @@ public class Table
     {
         this.Order = Order;
     }
-
-    public void requestRefill(String request)
-    {
-        try 
-        {
-            ObjOut.writeUTF("Refill");
-            ObjOut.flush();
-            
-            ObjOut.writeUTF("Table " + ID + " request refill of: "+ request);
-            ObjOut.flush();
-        } catch (Exception ex)
-        {
-            System.out.println("Error sending refill request." + ex);
-        }
-    }
-    
 }
 
