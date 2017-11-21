@@ -32,10 +32,11 @@ public class Table
     
     public Table()
     {
-           Order = new Order();
-           ID++;
+           Order = new Order(); // create a new order
+           ID++; // assign a new ID
     }
     
+    // this function is used to connect to the server
     public void Handshake()
     {
         try
@@ -59,14 +60,7 @@ public class Table
             ObjOut.writeUTF(category);
             ObjOut.flush();
             
-         
-            
-            //testing the payment methods and togobox requests
-            //OrderPaidByCard();
-            //OrderPaidByCash();
-            //ToGoBox();
-            
-            Thread.sleep(100); // test may be part of final build allow server to catch up
+            Thread.sleep(100); // allow server to catch up
         }
         catch(SocketException se)
         {
@@ -91,64 +85,20 @@ public class Table
                        
             try
             {
-                System.out.println("Getting Menu");
+                // get the menu from the server
                 SentMenu = (ServerSentMasterList)ObjIn.readObject();
                 Menu = new MasterFoodItemList(SentMenu.totalList);
-                System.out.println("Menu Received");
-                /*
-                for (int i = 0; i < Menu.drinks.size(); i++)
+                
+                while((Message = ObjIn.readUTF()) != null) // while there is input to read from the server
                 {
-                    System.out.println(Menu.drinks.get(i).GetName());
-                }
-                System.out.println();
-
-                for (int i = 0; i < Menu.appetizers.size(); i++)
-                {
-                    System.out.println(Menu.appetizers.get(i).GetName());
-                }
-                System.out.println();
-
-                for (int i = 0; i < Menu.entries.size(); i++)
-                {
-                    System.out.println(Menu.entries.get(i).GetName());
-                }
-                System.out.println();
-
-                for (int i = 0; i < Menu.desserts.size(); i++)
-                {
-                    System.out.println(Menu.desserts.get(i).GetName());
-                }
-                System.out.println();
-                */
-                while((Message = ObjIn.readUTF()) != null)
-                {
-                   
-                    
                     System.out.println(Message); // test
                     if(Message.equals("Modify")) // if the order was modified by the waiter
                     {
+                        // read the modified order from the server
                         Order ModifiedOrder = (Order)ObjIn.readObject();
                         setOrder(ModifiedOrder);
-                        
-                        
-                        System.out.println("Checking contents of modified Order.");
-                        for(int i = 0; i < getOrder().GetOrderSize(); i++)
-                        {
-                            System.out.println(getOrder().GetItem(i).GetName());
-                            for(int j = 0; j < (((Food)getOrder().GetItem(i)).getIngrediantArraySize()); j++)
-                            {
-                                System.out.println(((Food)getOrder().GetItem(i)).GetIngredients(j));
-                            }
-                        }
-                        
-                        // clear the order and read the new order
                     }
-                    else if(Message.equals("Dismiss")) // if the waiter cleared the table
-                    {
-                        // remove all necessary values, i.e. price, gamepin
-                        // send a message to remove waiter
-                    }
-                    else if(Message.equals("Shutdown")) // test
+                    else if(Message.equals("Shutdown")) // if the table needs to shutdown
                     {
                         break;
                     }
@@ -168,6 +118,7 @@ public class Table
         getOrder().AddToOrder(newItem); // call the add to order in the list class
     }
     
+    // this function is used to assign the table's order to the parameter
     public void addAnOrder(Order newOrder)
     {
         Order = newOrder;
@@ -180,13 +131,12 @@ public class Table
             ObjOut.writeUTF("Send"); // send a message to the server
             ObjOut.flush();
             
-            Thread.sleep(100);
+            Thread.sleep(100); // allow the server to catch up
             
             if(getOrder() == null)
             {
                 
             }    
-            
             
             ObjOut.writeObject(Order); // send the object to the server
             ObjOut.flush();
@@ -199,14 +149,15 @@ public class Table
         }
     }
     
+    // this function is used to send a help request to the waiter
     public void RequestHelp()
     {
         try
         {
+            // send a message to the server
             ObjOut.writeUTF("Help");
             ObjOut.flush();
             
-            // System.out.println("Sending help."); // test
             ObjOut.writeUTF("Table " + ID + " requested help."); // Send the request to the server
             ObjOut.flush();
         }
@@ -216,10 +167,12 @@ public class Table
         }
     }
     
+    // this function sends a message to the waiter that the table paid by cash
     public void OrderPaidByCash()
     {
         try
         {
+            // send a prep message to the server
             ObjOut.writeUTF("Cash");
             ObjOut.flush();
             
@@ -232,10 +185,13 @@ public class Table
             System.out.println("Error Requesting Help."+ e);
         }
     }
+    
+    // this function sends a message to the waiter that the table paid by card
     public void OrderPaidByCard()
     {
         try
         {
+            // prep the server with a message
             ObjOut.writeUTF("Card");
             ObjOut.flush();
             
@@ -249,13 +205,17 @@ public class Table
         }
     }
 
+    
+    // this function sends requests a to go box from the waiter
     public void ToGoBox()
     {
         try
         {
+            // prep the server with a message
             ObjOut.writeUTF("togo");
             ObjOut.flush();
                        
+            // send the request
             ObjOut.writeUTF("Table [" + ID + "] has requested a to go box.");
             ObjOut.flush();
         }
@@ -265,13 +225,16 @@ public class Table
         }
     }
     
+    // this function requests a refill from the waiter
     public void requestRefill(String request)
     {
         try 
         {
+            // prep the server with a message
             ObjOut.writeUTF("Refill");
             ObjOut.flush();
             
+            // send the request
             ObjOut.writeUTF("Table " + ID + " request refill of: "+ request);
             ObjOut.flush();
         } catch (Exception ex)
@@ -280,6 +243,7 @@ public class Table
         }
     }
     
+    // this function is used to close the table's connections
     public void CloseConnections()
     {
         try
@@ -296,10 +260,27 @@ public class Table
         
     }
     
+    // this function send a message saying that the table won a free dessert
+    public void freeDessert()
+    {
+        try 
+        {
+            // prep the server
+            ObjOut.writeUTF("Free");
+            ObjOut.flush();
+            
+            // send the server
+            ObjOut.writeUTF("Table " + ID + " won a free Dessert!");
+            ObjOut.flush();
+        } catch (Exception ex)
+        {
+            System.out.println("Error sending refill request." + ex);
+        }
+    }
+    
+    // test function
     public MasterFoodItemList getMasterFoodItemList()
     {
-        
-        
         if(Menu == null)
         {
             System.out.println("Table menu so null");
@@ -307,17 +288,13 @@ public class Table
         return Menu;
     }
 
-    /**
-     * @return the Order
-     */
+    // this function returns the table's 
     public Order getOrder()
     {
         return Order;
     }
 
-    /**
-     * @param Order the Order to set
-     */
+    // this function sets the table's order
     public void setOrder(Order Order)
     {
         this.Order = Order;
