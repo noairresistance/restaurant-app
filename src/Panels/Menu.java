@@ -209,7 +209,7 @@ public class Menu extends javax.swing.JPanel {
         subTotal1.setForeground(new java.awt.Color(255, 255, 0));
 
         orderDetails.setBackground(new java.awt.Color(204, 0, 0));
-        orderDetails.setLayout(new java.awt.GridLayout());
+        orderDetails.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(orderDetails);
 
         Details.setBackground(new java.awt.Color(204, 0, 0));
@@ -284,7 +284,7 @@ public class Menu extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)

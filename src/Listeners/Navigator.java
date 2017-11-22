@@ -28,6 +28,17 @@ public interface Navigator {
     JPanel getCurrent();
     void goToCash();
     void goToTogobox();
+    void goToSurvey();
+    void goToMerch();
+    void goToConfirmOrderInfo();
+    void goToGameInfo();
+    void goToHomeScreenInfo();
+    void goToItemInfo();
+    void goToMenuInfo();
+    void goToPayInfo();
+    void goToRefillInfo();
+    void goToSurveyInfo();
+
     
     
 }

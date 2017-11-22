@@ -52,7 +52,7 @@ public class HomeScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuButton1 = new javax.swing.JLabel();
+        merchButton1 = new javax.swing.JLabel();
         gamesButton = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         menuButton2 = new javax.swing.JLabel();
@@ -62,15 +62,15 @@ public class HomeScreen extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        menuButton1.setBackground(new java.awt.Color(204, 0, 0));
-        menuButton1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        menuButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuButton1.setText("MERCH");
-        menuButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        menuButton1.setOpaque(true);
-        menuButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        merchButton1.setBackground(new java.awt.Color(204, 0, 0));
+        merchButton1.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        merchButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        merchButton1.setText("MERCH");
+        merchButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        merchButton1.setOpaque(true);
+        merchButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuButton1MouseClicked(evt);
+                merchButton1MouseClicked(evt);
             }
         });
 
@@ -116,7 +116,7 @@ public class HomeScreen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(menuButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(merchButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menuButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,17 +135,17 @@ public class HomeScreen extends javax.swing.JPanel {
                     .addComponent(gamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menuButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(merchButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_menuButton1MouseClicked
-    {//GEN-HEADEREND:event_menuButton1MouseClicked
+    private void merchButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_merchButton1MouseClicked
+    {//GEN-HEADEREND:event_merchButton1MouseClicked
         // TODO add your handling code here:
-        navigator.goToMenu();
-    }//GEN-LAST:event_menuButton1MouseClicked
+        navigator.goToMerch();
+    }//GEN-LAST:event_merchButton1MouseClicked
 
     private void gamesButtonMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_gamesButtonMouseClicked
     {//GEN-HEADEREND:event_gamesButtonMouseClicked
@@ -167,7 +167,7 @@ public class HomeScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gamesButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel menuButton1;
     private javax.swing.JLabel menuButton2;
+    private javax.swing.JLabel merchButton1;
     // End of variables declaration//GEN-END:variables
 }
