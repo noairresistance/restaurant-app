@@ -274,7 +274,7 @@ public class Table
             ObjOut.flush();
         } catch (Exception ex)
         {
-            System.out.println("Error sending refill request." + ex);
+            System.out.println("Error sending free dessert request." + ex);
         }
     }
     
