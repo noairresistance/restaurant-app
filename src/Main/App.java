@@ -7,6 +7,14 @@ package Main;
 
 import Food.MasterFoodItemList;
 import Food.Order;
+import Info.ConfirmOrderInfo;
+import Info.GameInfo;
+import Info.HomeScreenInfo;
+import Info.ItemInfo;
+import Info.MenuInfo;
+import Info.PayInfo;
+import Info.RefillInfo;
+import Info.SurveyInfo;
 import Listeners.Navigator;
 import Manager.Authenticate;
 import Manager.CompItem;
@@ -151,8 +159,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToGames()
         {
-            manager.setVisible(false);
-            swapPanel(new Games());
+            swapPanel(new Games(table1));
         }
 
         @Override
@@ -216,6 +223,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToWelcome()
         {
+            history.clear();//when going to the home screen, clear the stack
             manager.setVisible(false);
             swapPanel(new Welcome(this, table1.getOrder()));
         }
@@ -280,7 +288,67 @@ public class App extends javax.swing.JFrame {
         {
             
         }
+        @Override
+        public void goToSurvey()
+        {
+            swapPanel(new Survey(this));
+        }
+        @Override
+        public void goToMerch()
+        {
+             if(current != null)
+            {
+                layeredPane.remove(current);//remove the current screen    
+            }
+            
+            current = new Merch(this, masterFoodItemList.merchandise, table1.getOrder());//set current to the new panel
+            
 
+            history.push(current);//push the new panel onto the stack
+            layeredPane.add(current);//add the new panel to the screen
+            repaint();
+            validate();
+        }
+
+        @Override
+        public void goToConfirmOrderInfo() {
+             swapPanel(new ConfirmOrderInfo());
+        }
+
+        @Override
+        public void goToGameInfo() {
+            swapPanel(new GameInfo());
+        }
+
+        @Override
+        public void goToHomeScreenInfo() {
+            swapPanel(new HomeScreenInfo());
+        }
+
+        @Override
+        public void goToItemInfo() {
+            swapPanel(new ItemInfo());
+        }
+
+        @Override
+        public void goToMenuInfo() {
+            swapPanel(new MenuInfo());
+        }
+
+        @Override
+        public void goToPayInfo() {
+           swapPanel(new PayInfo());
+        }
+
+        @Override
+        public void goToRefillInfo() {
+            swapPanel(new RefillInfo());
+        }
+
+        @Override
+        public void goToSurveyInfo() {
+            swapPanel(new SurveyInfo());
+        }
         
     };
     
@@ -324,8 +392,7 @@ public class App extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         layeredPane = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
@@ -348,10 +415,8 @@ public class App extends javax.swing.JFrame {
         jLabel1.setText("HOME");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
@@ -360,10 +425,8 @@ public class App extends javax.swing.JFrame {
         jLabel2.setText("BACK");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
@@ -372,10 +435,8 @@ public class App extends javax.swing.JFrame {
         jLabel3.setText("REFILL");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
@@ -384,10 +445,8 @@ public class App extends javax.swing.JFrame {
         jLabel4.setText("WAITER");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
@@ -396,6 +455,11 @@ public class App extends javax.swing.JFrame {
         jLabel5.setText("INFO");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -481,6 +545,58 @@ public class App extends javax.swing.JFrame {
 
         navigator.goToAuthenticate();
     }//GEN-LAST:event_managerMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        
+ 
+        String[] parsedString;
+        String delims = "[.\\[]";
+       
+        parsedString= history.peek().toString().split(delims);//finds the name of the panel and stores it in the 2nd index in parsed strings
+        
+        //System.out.println(parsedString[1]);
+        
+        switch(parsedString[1])
+        {
+            case "HomeScreen":
+                navigator.goToHomeScreenInfo();
+                break;
+                
+            case "Appetizers":
+            case "Desserts":
+            case "Entrees":
+            case "Merch":
+            case "Drinks":
+                navigator.goToItemInfo();
+                break;
+                
+            case "Games":
+                navigator.goToGameInfo();
+                break;
+                
+            case "ConfirmOrder":
+                navigator.goToConfirmOrderInfo();
+                 break;
+            case  "Pay":
+                navigator.goToPayInfo();
+                break;
+            case "Survey":
+                navigator.goToSurveyInfo();
+                break;
+            case "Menu":
+                navigator.goToMenuInfo();
+                break;
+            case "Refill":
+                navigator.goToRefillInfo();
+                break;
+            default:
+                break;
+                
+        }
+        
+        
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
      * @param args the command line arguments

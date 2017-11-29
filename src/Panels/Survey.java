@@ -5,26 +5,22 @@
  */
 package Panels;
 
-import Table.Table;
-import java.util.Random;
+import Listeners.Navigator;
 
 /**
  *
  * @author Buckwheat
  */
-public class Games extends javax.swing.JPanel {
+public class Survey extends javax.swing.JPanel {
 
-    Random rand;
-    int n;
-    private Table table;
+    private Navigator navigator;
     /**
      * Creates new form Games
      */
-    public Games(Table table) {
+    public Survey(Navigator navigator) {
         initComponents();
         setSize(1024,768);
-        rand = new Random();
-        this.table = table;
+        this.navigator = navigator;
     }
 
     /**
@@ -40,7 +36,7 @@ public class Games extends javax.swing.JPanel {
         button2 = new javax.swing.JButton();
         button3 = new javax.swing.JButton();
         button4 = new javax.swing.JButton();
-        button5 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         outputMessage = new javax.swing.JLabel();
 
@@ -79,23 +75,23 @@ public class Games extends javax.swing.JPanel {
             }
         });
 
-        button5.setText("5");
-        button5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton5.setText("5");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                button5MouseClicked(evt);
+                jButton5MouseClicked(evt);
             }
         });
 
         jLabel1.setBackground(new java.awt.Color(204, 0, 0));
         jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pick a number between 1 and 5");
+        jLabel1.setText("Rate your experience between 1 and 5");
         jLabel1.setOpaque(true);
 
         outputMessage.setBackground(new java.awt.Color(204, 0, 0));
         outputMessage.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         outputMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        outputMessage.setText(" ");
+        outputMessage.setText("Thank you!");
         outputMessage.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -116,7 +112,7 @@ public class Games extends javax.swing.JPanel {
                                 .addGap(78, 78, 78)
                                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(63, 63, 63)
-                                .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(outputMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(217, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -134,7 +130,7 @@ public class Games extends javax.swing.JPanel {
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(157, 157, 157)
                 .addComponent(outputMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(127, 127, 127))
@@ -147,39 +143,28 @@ public class Games extends javax.swing.JPanel {
 
     private void Button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button1MouseClicked
         // TODO add your handling code here:
-        outputMessage.setText(" Sorry, you lost.");
+        navigator.goToWelcome();
     }//GEN-LAST:event_Button1MouseClicked
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
         // TODO add your handling code here:
-        outputMessage.setText(" Sorry, you lost.");
+        navigator.goToWelcome();
     }//GEN-LAST:event_button2MouseClicked
 
     private void button4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button4MouseClicked
         // TODO add your handling code here:
-        outputMessage.setText(" Sorry, you lost.");
+        navigator.goToWelcome();
     }//GEN-LAST:event_button4MouseClicked
 
     private void button3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseClicked
         // TODO add your handling code here:
-          n = rand.nextInt(5)+1;//random number between 5 and 1
-          if(n == 1)
-          {
-              outputMessage.setText("You won! Have a free desert");
-              table.freeDessert();
-            
-          }
-          else
-          {
-               outputMessage.setText("You won!");
-          }
-          
+        navigator.goToWelcome();
     }//GEN-LAST:event_button3MouseClicked
 
-    private void button5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button5MouseClicked
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        outputMessage.setText(" Sorry, you lost.");
-    }//GEN-LAST:event_button5MouseClicked
+        navigator.goToWelcome();
+    }//GEN-LAST:event_jButton5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,7 +172,7 @@ public class Games extends javax.swing.JPanel {
     private javax.swing.JButton button2;
     private javax.swing.JButton button3;
     private javax.swing.JButton button4;
-    private javax.swing.JButton button5;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel outputMessage;
     // End of variables declaration//GEN-END:variables
