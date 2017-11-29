@@ -14,6 +14,7 @@ public class Order implements Serializable
     
     private int tableNumber;
     private int assignedWaiter;
+    private int waiterID;
     private int orderNumber;
     private ArrayList<Food> foodItem;
     private ArrayList<Food> drink;
@@ -23,6 +24,7 @@ public class Order implements Serializable
     private double subTotal;
     private double tax;
     private boolean hasAddedToOrder;
+    private ArrayList<CompedItem> compedItems;
 
     public Order()
     {
@@ -35,6 +37,107 @@ public class Order implements Serializable
         drink = new ArrayList<Food>();
         merch = new ArrayList<Food>();
         special = new ArrayList<Food>();
+    }
+    
+    public class CompedItem
+    {
+        
+        
+        private String item;
+        private int amount;
+        private int waiterID;
+        private String reason;
+        private String dateTime;
+        
+        public CompedItem(String item, int amount, int waiterID, String reason, String dateTime)
+        {
+            this.item = item;
+            this.amount = amount;
+            this.waiterID = waiterID;
+            this.reason = reason;
+            this.dateTime = dateTime;
+        }        
+                
+        /**
+         * @return the item
+         */
+        public String getItem()
+        {
+            return item;
+        }
+
+        /**
+         * @param item the item to set
+         */
+        public void setItem(String item)
+        {
+            this.item = item;
+        }
+
+        /**
+         * @return the amount
+         */
+        public int getAmount()
+        {
+            return amount;
+        }
+
+        /**
+         * @param amount the amount to set
+         */
+        public void setAmount(int amount)
+        {
+            this.amount = amount;
+        }
+
+        /**
+         * @return the waiterID
+         */
+        public int getWaiterID()
+        {
+            return waiterID;
+        }
+
+        /**
+         * @param waiterID the waiterID to set
+         */
+        public void setWaiterID(int waiterID)
+        {
+            this.waiterID = waiterID;
+        }
+
+        /**
+         * @return the reason
+         */
+        public String getReason()
+        {
+            return reason;
+        }
+
+        /**
+         * @param reason the reason to set
+         */
+        public void setReason(String reason)
+        {
+            this.reason = reason;
+        }
+
+        /**
+         * @return the dateTime
+         */
+        public String getDateTime()
+        {
+            return dateTime;
+        }
+
+        /**
+         * @param dateTime the dateTime to set
+         */
+        public void setDateTime(String dateTime)
+        {
+            this.dateTime = dateTime;
+        }
+  
     }
     
     
@@ -218,5 +321,15 @@ public class Order implements Serializable
     public int getWaiter()
     {
         return this.assignedWaiter;
+    }
+    
+    public void setWaiterId(int i)
+    {
+        this.waiterID = i;
+    }
+    
+    public int getWaiterId()
+    {
+        return this.waiterID;
     }
 }

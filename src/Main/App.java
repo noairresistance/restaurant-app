@@ -8,6 +8,10 @@ package Main;
 import Food.MasterFoodItemList;
 import Food.Order;
 import Listeners.Navigator;
+import Manager.Authenticate;
+import Manager.CompItem;
+import Manager.Manager;
+import Manager.WaiterNumber;
 import Panels.*;
 import java.awt.BorderLayout;
 import java.util.Stack;
@@ -16,6 +20,8 @@ import java.util.logging.Logger;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import Table.*;
+import javax.naming.ldap.ManageReferralControl;
+import javax.swing.JFrame;
 
 
 public class App extends javax.swing.JFrame {
@@ -24,6 +30,8 @@ public class App extends javax.swing.JFrame {
     MasterFoodItemList masterFoodItemList;
     Order order;
     Table table1;
+    int managerCode;
+    int waiterID;
     
     Navigator navigator = new Navigator() 
     {
@@ -49,7 +57,8 @@ public class App extends javax.swing.JFrame {
         
         @Override
         public void goToHomeScreen() 
-        {    
+        {   
+            manager.setVisible(true);
             history.clear();//when going to the home screen, clear the stack
             swapPanel(new HomeScreen(this,table1.getOrder()));
         }
@@ -57,24 +66,28 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToPay()
         {
+            manager.setVisible(false);
             swapPanel(new Pay(this, table1));
         }
         
         @Override
         public void goToCard()
         {
+            manager.setVisible(false);
             swapPanel(new Card(this, table1.getOrder()));
         }
         
         @Override
         public void goToTip()
         {
+            manager.setVisible(false);
             swapPanel(new Tip(this, table1.getOrder()));
         }
         
         @Override
         public void goToSplit()
         {
+            manager.setVisible(false);
             swapPanel(new Split(this, table1.getOrder()));
         }
         
@@ -83,7 +96,7 @@ public class App extends javax.swing.JFrame {
         {
             //if the menu button is selected a new order object is created
             //order object is set to null for cheking if items have been addded to the order
-          
+            manager.setVisible(false);
             swapPanel(new Menu(this,table1));
             
         }
@@ -94,6 +107,7 @@ public class App extends javax.swing.JFrame {
             //swapPanel(new Entrees(this));
             //check if there is a panel to remove
             
+            manager.setVisible(false);
             if(masterFoodItemList == null)
             {
                 System.out.println("so null");
@@ -117,7 +131,9 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToDrinks()
         {
-             if(current != null)
+            
+            manager.setVisible(false);
+            if(current != null)
             {
                 layeredPane.remove(current);//remove the current screen    
             }
@@ -135,13 +151,14 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToGames()
         {
+            manager.setVisible(false);
             swapPanel(new Games());
         }
 
         @Override
         public void goBack()
         {
-            
+            manager.setVisible(false);
             if(history.size() >= 2)
             {
                 history.pop();
@@ -154,7 +171,8 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToAppetizers()
         {
-             if(current != null)
+            manager.setVisible(false);
+            if(current != null)
             {
                 layeredPane.remove(current);//remove the current screen    
             }
@@ -172,7 +190,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToDesserts()
         {
-
+            manager.setVisible(false);
             if(current != null)
             {
                 layeredPane.remove(current);//remove the current screen    
@@ -190,6 +208,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToConfirmOrder()
         {
+            manager.setVisible(false);
             swapPanel(new ConfirmOrder(this, table1));
         }
         
@@ -197,13 +216,14 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToWelcome()
         {
-            
+            manager.setVisible(false);
             swapPanel(new Welcome(this, table1.getOrder()));
         }
         
         @Override
         public void goToRefill()
         {
+            manager.setVisible(false);
             swapPanel(new Refill(this, table1));
         }
 
@@ -214,13 +234,51 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToCash()
         {
+            manager.setVisible(false);
             swapPanel(new Cash(this));
         }
         
         @Override
         public void goToTogobox()
         {
+            manager.setVisible(false);
             swapPanel(new Togobox(this));
+        }
+
+        @Override
+        public void goToManager()
+        {
+            manager.setVisible(false);         
+            swapPanel(new Manager(order, this));
+        }
+
+        @Override
+        public void goToAuthenticate()
+        {
+            manager.setVisible(false);
+            JFrame authenticate = new Authenticate(this);
+            authenticate.setVisible(true);
+        }
+
+        @Override
+        public void goToWaiterNumber()
+        {
+            manager.setVisible(false);
+            JFrame waiterNumber = new WaiterNumber(this, table1.getOrder());
+            waiterNumber.setVisible(true);
+        }
+
+        @Override
+        public void goToCompedItem()
+        {
+            swapPanel(new CompItem(table1.getOrder()));
+            
+        }
+
+        @Override
+        public void goToCompedItemReport()
+        {
+            
         }
 
         
@@ -258,7 +316,7 @@ public class App extends javax.swing.JFrame {
 
               
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -276,6 +334,8 @@ public class App extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        manager = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1024, 768));
@@ -371,6 +431,23 @@ public class App extends javax.swing.JFrame {
         layeredPane.add(jPanel1);
         jPanel1.setBounds(620, 0, 400, 90);
 
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        layeredPane.add(jPanel2);
+        jPanel2.setBounds(920, 670, 50, 100);
+
+        manager.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        manager.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/settings.png"))); // NOI18N
+        manager.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                managerMouseClicked(evt);
+            }
+        });
+        layeredPane.add(manager);
+        manager.setBounds(0, 0, 48, 48);
+
         getContentPane().add(layeredPane, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -398,6 +475,12 @@ public class App extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_jLabel4MouseClicked
         table1.RequestHelp();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void managerMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_managerMouseClicked
+    {//GEN-HEADEREND:event_managerMouseClicked
+
+        navigator.goToAuthenticate();
+    }//GEN-LAST:event_managerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -441,6 +524,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLayeredPane layeredPane;
+    private javax.swing.JLabel manager;
     // End of variables declaration//GEN-END:variables
 }
