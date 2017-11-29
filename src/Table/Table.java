@@ -98,6 +98,12 @@ public class Table
                         Order ModifiedOrder = (Order)ObjIn.readObject();
                         setOrder(ModifiedOrder);
                     }
+                    else if(Message.equals("Waiter"))
+                    {
+                        int waiter = ObjIn.readInt();
+                        System.out.println(waiter);
+                        Order.setWaiter(waiter);
+                    }
                     else if(Message.equals("Shutdown")) // if the table needs to shutdown
                     {
                         break;
