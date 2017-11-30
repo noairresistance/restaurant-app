@@ -56,6 +56,7 @@ public class Menu extends javax.swing.JPanel {
         orderDetails.setLayout(new GridLayout(0,1));
         clearOrderDetails();
         populateOrderPanel();
+        
         subTotal.setText(setSubTotal());
   
     }
@@ -96,7 +97,10 @@ public class Menu extends javax.swing.JPanel {
     }
     public String setSubTotal()
     {
-        table.getOrder().calculateSubTotal();//Calculate the total price of the order
+        //Calculate the total price of the order
+ 
+        table.getOrder().calculateSubTotal();
+        
         return String.format("%.02f", table.getOrder().getSubTotal());
     }
     

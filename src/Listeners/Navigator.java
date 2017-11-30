@@ -41,7 +41,6 @@ public interface Navigator {
 
     void goToManager();
     void goToAuthenticate();
-    void goToWaiterNumber();
     void goToCompedItem();
     void goToCompedItemReport();
     

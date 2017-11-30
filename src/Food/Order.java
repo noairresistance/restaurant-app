@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class Order implements Serializable
 {
+
     private static int ID = 1;
     
     private int tableNumber;
     private int assignedWaiter;
-    private int waiterID;
     private int orderNumber;
     private ArrayList<Food> foodItem;
     private ArrayList<Food> drink;
@@ -22,6 +22,7 @@ public class Order implements Serializable
     private ArrayList<Food> merch;  //newest list.
     private double totalPrice;
     private double subTotal;
+    private double compedItemTotal;
     private double tax;
     private boolean hasAddedToOrder;
     private ArrayList<CompedItem> compedItems;
@@ -33,10 +34,12 @@ public class Order implements Serializable
         hasAddedToOrder = false;
         totalPrice = 0;
         subTotal = 0;
+        compedItemTotal = 0;
         foodItem = new ArrayList<Food>();
         drink = new ArrayList<Food>();
         merch = new ArrayList<Food>();
         special = new ArrayList<Food>();
+        compedItems = new ArrayList<CompedItem>();
     }
     
     public class CompedItem
@@ -44,12 +47,12 @@ public class Order implements Serializable
         
         
         private String item;
-        private int amount;
-        private int waiterID;
+        private String amount;
+        private String waiterID;
         private String reason;
         private String dateTime;
         
-        public CompedItem(String item, int amount, int waiterID, String reason, String dateTime)
+        public CompedItem(String item, String amount, String waiterID, String reason, String dateTime)
         {
             this.item = item;
             this.amount = amount;
@@ -77,7 +80,7 @@ public class Order implements Serializable
         /**
          * @return the amount
          */
-        public int getAmount()
+        public String getAmount()
         {
             return amount;
         }
@@ -85,7 +88,7 @@ public class Order implements Serializable
         /**
          * @param amount the amount to set
          */
-        public void setAmount(int amount)
+        public void setAmount(String amount)
         {
             this.amount = amount;
         }
@@ -93,7 +96,7 @@ public class Order implements Serializable
         /**
          * @return the waiterID
          */
-        public int getWaiterID()
+        public String getWaiterID()
         {
             return waiterID;
         }
@@ -101,7 +104,7 @@ public class Order implements Serializable
         /**
          * @param waiterID the waiterID to set
          */
-        public void setWaiterID(int waiterID)
+        public void setWaiterID(String waiterID)
         {
             this.waiterID = waiterID;
         }
@@ -137,6 +140,11 @@ public class Order implements Serializable
         {
             this.dateTime = dateTime;
         }
+
+        public Object GetName()
+        {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
   
     }
     
@@ -162,6 +170,8 @@ public class Order implements Serializable
         }
         
         subTotal += temp;
+        subTotal -= compedItemTotal;
+       
     }
     
     public void calculateTax()
@@ -209,7 +219,7 @@ public class Order implements Serializable
     {
         return merch;
     }
-    
+    /* //not needed.
     public void addToMerch(Merch newItem)
     {
         merch.add(newItem);
@@ -323,13 +333,42 @@ public class Order implements Serializable
         return this.assignedWaiter;
     }
     
-    public void setWaiterId(int i)
+    
+    /**
+     * @return the compedItems
+     */
+    public ArrayList<CompedItem> getCompedItems()
     {
-        this.waiterID = i;
+        return compedItems;
+    }
+
+    /**
+     * @param compedItems the compedItems to set
+     */
+    public void setCompedItems(CompedItem compedItem)
+    {
+        this.compedItems.add(compedItem);
     }
     
-    public int getWaiterId()
+    public CompedItem createCompedItem(String item, String amount, String waiterID, String reason, String dateTime)
     {
-        return this.waiterID;
+        return new CompedItem(item, amount, waiterID, reason, dateTime);
     }
+
+    /**
+     * @return the compedItemTotal
+     */
+    public double getCompedItemTotal()
+    {
+        return compedItemTotal;
+    }
+
+    /**
+     * @param compedItemTotal the compedItemTotal to set
+     */
+    public void setCompedItemTotal(double compedItemTotal)
+    {
+        this.compedItemTotal = compedItemTotal;
+    }
+    
 }

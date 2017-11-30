@@ -58,6 +58,8 @@ public class Merch extends javax.swing.JPanel{
         
         //Add the dlm to the list
         foodList.setModel(dlmMerchItems);
+        
+        subTotal.setText(setSubTotal());//Display the subtotal
               
     }
     

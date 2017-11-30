@@ -7,6 +7,7 @@ package Manager;
 
 import Food.Food;
 import Food.Order;
+import Food.Order.CompedItem;
 import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
 import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
 import java.text.DateFormat;
@@ -31,6 +32,15 @@ public class CompItem extends javax.swing.JPanel
     
     public void populateItems()
     {
+        alert.setText("");//Reset alert jlabel
+        
+        //Populate all drinks
+        for(Food item : order.getDrinkItem())
+        {
+            itemList.add(new itemName(item.GetName(), listener));
+        }
+        
+        //Populate all food and merch items
         for(Food item : order.getFoodItem())
         {
             itemList.add(new itemName(item.GetName(), listener));
@@ -45,6 +55,26 @@ public class CompItem extends javax.swing.JPanel
         @Override
         public void selectItem(String itemName)
         {
+            alert.setText("");//Reset alert jlabel
+            
+            //Fill in comped item form for foodItems
+            for(Food item : order.getDrinkItem())
+            {
+                if(item.GetName().equals(itemName))
+                {
+                    itemComped.setText(item.GetName());
+                    amount.setText(String.valueOf(item.GetPrice()));
+                    waiterID.setText(String.valueOf(order.getWaiter()));
+                    
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+                    
+                    dateTime.setText(date.toString());
+                    
+                }
+            }
+            
+            //Fill in comped item form for foodItems
             for(Food item : order.getFoodItem())
             {
                 if(item.GetName().equals(itemName))
@@ -85,9 +115,10 @@ public class CompItem extends javax.swing.JPanel
         itemComped = new javax.swing.JLabel();
         amount = new javax.swing.JLabel();
         waiterID = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        reason = new javax.swing.JTextField();
         dateTime = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        alert = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 0, 0));
 
@@ -115,15 +146,24 @@ public class CompItem extends javax.swing.JPanel
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setText("Date & Time: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener()
+        reason.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField1ActionPerformed(evt);
+                reasonActionPerformed(evt);
             }
         });
 
         jToggleButton1.setText("SUBMIT");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+
+        alert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,12 +182,17 @@ public class CompItem extends javax.swing.JPanel
                     .addComponent(itemComped, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(amount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(waiterID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reason, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(7, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(jToggleButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jToggleButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(alert, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,12 +213,14 @@ public class CompItem extends javax.swing.JPanel
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
+                .addComponent(alert, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
                 .addGap(122, 122, 122))
         );
@@ -207,13 +254,58 @@ public class CompItem extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
-    {//GEN-HEADEREND:event_jTextField1ActionPerformed
+    private void reasonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_reasonActionPerformed
+    {//GEN-HEADEREND:event_reasonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_reasonActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jToggleButton1MouseClicked
+    {//GEN-HEADEREND:event_jToggleButton1MouseClicked
+        boolean alreadyComped = false;
+        
+        //Iterates the CompedItem Array to see if the selected item has already been added
+        for(CompedItem item : order.getCompedItems())
+        {
+            if(item.getItem().equals(itemComped.getText()))
+            {
+                alreadyComped = true;
+            }
+        }    
+        
+        //If item is already comped, do not add it. 
+        //Else, add it to compedItem list
+        if(alreadyComped)
+        {
+            alert.setText("ITEM ALREADY COMPED");
+        }
+        else
+        {
+           alert.setText("ITEM COMPED"); 
+           
+           //Add the item to the comped item array
+           order.setCompedItems(order.createCompedItem(itemComped.getText(), 
+                                amount.getText(), 
+                                waiterID.getText(), 
+                                reason.getText(), 
+                                dateTime.getText())); 
+           
+           //Update the subtotal of the order
+           order.setCompedItemTotal((order.getCompedItemTotal() + Double.valueOf(amount.getText())));
+            
+        }
+        
+        
+        //Reset comp item form fields
+        itemComped.setText("");
+        amount.setText("");
+        waiterID.setText("");
+        reason.setText("");
+        dateTime.setText("");
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alert;
     private javax.swing.JLabel amount;
     private javax.swing.JLabel dateTime;
     private javax.swing.JLabel itemComped;
@@ -226,8 +318,8 @@ public class CompItem extends javax.swing.JPanel
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField reason;
     private javax.swing.JLabel waiterID;
     // End of variables declaration//GEN-END:variables
 }

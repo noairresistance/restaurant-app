@@ -94,7 +94,7 @@ public class Authenticate extends javax.swing.JFrame
         int code = Integer.parseInt(jTextField1.getText());
         if(code == 1234)
         {
-            navigator.goToWaiterNumber();
+            navigator.goToManager();
             this.dispose();
         }
         else

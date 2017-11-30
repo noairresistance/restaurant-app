@@ -59,8 +59,15 @@ public class Manager extends javax.swing.JPanel
         mainPanel.add(jLabel1);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("View Comped Items");
+        jLabel2.setText("View Comped Item Report");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel2MouseClicked(evt);
+            }
+        });
         mainPanel.add(jLabel2);
 
         add(mainPanel);
@@ -70,6 +77,11 @@ public class Manager extends javax.swing.JPanel
     {//GEN-HEADEREND:event_jLabel1MouseClicked
         navigator.goToCompedItem();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel2MouseClicked
+    {//GEN-HEADEREND:event_jLabel2MouseClicked
+       navigator.goToCompedItemReport();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

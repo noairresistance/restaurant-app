@@ -18,8 +18,8 @@ import Info.SurveyInfo;
 import Listeners.Navigator;
 import Manager.Authenticate;
 import Manager.CompItem;
+import Manager.CompedItemReport;
 import Manager.Manager;
-import Manager.WaiterNumber;
 import Panels.*;
 import java.awt.BorderLayout;
 import java.util.Stack;
@@ -269,14 +269,6 @@ public class App extends javax.swing.JFrame {
         }
 
         @Override
-        public void goToWaiterNumber()
-        {
-            manager.setVisible(false);
-            JFrame waiterNumber = new WaiterNumber(this, table1.getOrder());
-            waiterNumber.setVisible(true);
-        }
-
-        @Override
         public void goToCompedItem()
         {
             swapPanel(new CompItem(table1.getOrder()));
@@ -286,7 +278,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToCompedItemReport()
         {
-            
+            swapPanel(new CompedItemReport(table1.getOrder().getCompedItems(), table1.getOrder().getCompedItemTotal()));
         }
         @Override
         public void goToSurvey()

@@ -56,6 +56,8 @@ public class Appetizers extends javax.swing.JPanel{
         
         //Add the dlm to the list
         foodList.setModel(dlmEntreeItems);
+        
+        subTotal.setText(setSubTotal());//Display the subtotal
               
     }
     
