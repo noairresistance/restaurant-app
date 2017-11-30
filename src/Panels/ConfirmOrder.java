@@ -15,6 +15,10 @@ public class ConfirmOrder extends javax.swing.JPanel
 {
     Navigator navigator;
     Table table;
+    double entreecount = 0;
+    double drinkcount = 0;
+    double combocount = 0;
+    
     
     OrderItemDetailsListener listener = new OrderItemDetailsListener() 
     {
@@ -52,9 +56,8 @@ public class ConfirmOrder extends javax.swing.JPanel
         subTotal.setText(setSubTotal());
         tax.setText(setTax());
         grandTotal.setText(setGrandTotal());
+        comboDiscount.setText(setComboDiscount());
         
-        
-       
     }
     
     
@@ -90,6 +93,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         for(Food drink : table.getOrder().getDrink())
         {
             drinkDetails.add(new OrderItemDetails(drink, listener, navigator));
+            drinkcount++;
         }
         
         //Populate Appetizers, Entrees, and Desserts
@@ -102,6 +106,7 @@ public class ConfirmOrder extends javax.swing.JPanel
             if(item.getItemCatagory().equals("entree"))
             {
                 entreeDetails.add(new OrderItemDetails(item, listener, navigator));
+                entreecount++;
             }
             if(item.getItemCatagory().equals( "dessert"))
             {
@@ -122,12 +127,24 @@ public class ConfirmOrder extends javax.swing.JPanel
         dessertDetails.repaint();
         
     }
-    
+
     //Calculates subtotal an returns it as a string
     public String setSubTotal()
     {
+        while(entreecount > 0 && drinkcount > 0)
+        {
+            combocount++;
+            entreecount--;
+            drinkcount--;
+        }
+    
         table.getOrder().calculateSubTotal();//Calculate the total price of the order
-        return String.format("%.02f", table.getOrder().getSubTotal());
+        return String.format("%.02f", table.getOrder().getSubTotal() - combocount);
+    }
+    
+    public String setComboDiscount()
+    {
+        return String.format("%.02f", combocount);
     }
     
     public String setTax()
@@ -174,6 +191,8 @@ public class ConfirmOrder extends javax.swing.JPanel
         subTotal = new javax.swing.JLabel();
         tax = new javax.swing.JLabel();
         grandTotal = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        comboDiscount = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
@@ -201,7 +220,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         );
         drinksLayout.setVerticalGroup(
             drinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(drinkScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         itemGroup.add(drinks);
@@ -223,7 +242,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         );
         appetizersLayout.setVerticalGroup(
             appetizersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(appetizerScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         itemGroup.add(appetizers);
@@ -245,7 +264,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         );
         entreesLayout.setVerticalGroup(
             entreesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(entreeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         itemGroup.add(entrees);
@@ -267,7 +286,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         );
         dessertsLayout.setVerticalGroup(
             dessertsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(dessertScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         itemGroup.add(desserts);
@@ -315,21 +334,32 @@ public class ConfirmOrder extends javax.swing.JPanel
         grandTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         grandTotal.setText("0.00");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel5.setText("Combo Discount: ");
+
+        comboDiscount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comboDiscount.setForeground(new java.awt.Color(255, 255, 0));
+        comboDiscount.setText("0.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                                 .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(subTotal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -343,11 +373,13 @@ public class ConfirmOrder extends javax.swing.JPanel
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(grandTotal)
                                 .addGap(72, 72, 72)))
-                        .addComponent(placeOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(placeOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +402,11 @@ public class ConfirmOrder extends javax.swing.JPanel
                                 .addComponent(subTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tax))
                             .addComponent(grandTotal))))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -388,6 +424,7 @@ public class ConfirmOrder extends javax.swing.JPanel
     private javax.swing.JPanel appetizerDetails;
     private javax.swing.JScrollPane appetizerScrollPane;
     private javax.swing.JPanel appetizers;
+    private javax.swing.JLabel comboDiscount;
     private javax.swing.JPanel dessertDetails;
     private javax.swing.JScrollPane dessertScrollPane;
     private javax.swing.JPanel desserts;
@@ -403,6 +440,7 @@ public class ConfirmOrder extends javax.swing.JPanel
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel placeOrder;
     private javax.swing.JLabel subTotal;
     private javax.swing.JLabel tax;
