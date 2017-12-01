@@ -8,6 +8,7 @@ package Panels;
 import Listeners.Navigator;
 import Food.Order;
 
+
 /**
  *
  * @author Birdman
@@ -18,6 +19,9 @@ public class Tip extends javax.swing.JPanel {
     private
     Navigator navigator;
     Order order;
+    double oldTotal;
+    double newTotal;
+    double tip;
 
     /**
      * Creates new form Tip
@@ -27,8 +31,15 @@ public class Tip extends javax.swing.JPanel {
         setSize(1024, 768);
         this.navigator = navigator;
         this.order = order;
+        oldTotal = order.getSubTotal();
+        newTotal = oldTotal; 
+        oldTotalLabel.setText(String.valueOf(oldTotal));
+        newTotalLabel.setText(String.valueOf(newTotal));
+        
+     
+        
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,36 +49,238 @@ public class Tip extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        oldTotalLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        percent15 = new javax.swing.JLabel();
+        percent20 = new javax.swing.JLabel();
+        percent10 = new javax.swing.JLabel();
+        otherinput = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        newTotalLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 0));
 
-        jLabel1.setBackground(new java.awt.Color(255, 51, 0));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tips go Here");
-        jLabel1.setOpaque(true);
+        oldTotalLabel.setBackground(new java.awt.Color(204, 0, 0));
+        oldTotalLabel.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        oldTotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        oldTotalLabel.setText("old total");
+        oldTotalLabel.setOpaque(true);
+
+        jLabel5.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("old total");
+        jLabel5.setOpaque(true);
+
+        percent15.setBackground(new java.awt.Color(204, 0, 0));
+        percent15.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        percent15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        percent15.setText("15%");
+        percent15.setOpaque(true);
+        percent15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                percent15MouseClicked(evt);
+            }
+        });
+
+        percent20.setBackground(new java.awt.Color(204, 0, 0));
+        percent20.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        percent20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        percent20.setText("20%");
+        percent20.setOpaque(true);
+        percent20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                percent20MouseClicked(evt);
+            }
+        });
+
+        percent10.setBackground(new java.awt.Color(204, 0, 0));
+        percent10.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        percent10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        percent10.setText("10%");
+        percent10.setOpaque(true);
+        percent10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                percent10MouseClicked(evt);
+            }
+        });
+
+        otherinput.setBackground(new java.awt.Color(204, 0, 0));
+        otherinput.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        otherinput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        otherinput.setText("Other");
+        otherinput.setOpaque(true);
+        otherinput.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                otherinputMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("new total");
+        jLabel10.setOpaque(true);
+
+        newTotalLabel.setBackground(new java.awt.Color(204, 0, 0));
+        newTotalLabel.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        newTotalLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newTotalLabel.setText("newTotal");
+        newTotalLabel.setOpaque(true);
+
+        jButton1.setText("CONFIRM");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("CLEAR TIP");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("0");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(percent10, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(percent15, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76)
+                        .addComponent(percent20, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(oldTotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(newTotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(otherinput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(oldTotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(219, 219, 219)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(percent15, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(percent20, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(percent10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(otherinput, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newTotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void percent10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_percent10MouseClicked
+        // TODO add your handling code here:
+        newTotal *= 1.10;
+        newTotalLabel.setText(String.valueOf(newTotal));
+    }//GEN-LAST:event_percent10MouseClicked
+
+    private void percent15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_percent15MouseClicked
+        // TODO add your handling code here:
+        newTotal *= 1.15;
+        newTotalLabel.setText(String.valueOf(newTotal));
+    }//GEN-LAST:event_percent15MouseClicked
+
+    private void percent20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_percent20MouseClicked
+        // TODO add your handling code here:
+        newTotal *= 1.20;
+        newTotalLabel.setText(String.valueOf(newTotal));
+    }//GEN-LAST:event_percent20MouseClicked
+
+    private void otherinputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_otherinputMouseClicked
+        // TODO add your handling code here:
+        newTotal += Double.parseDouble(jTextField1.getText());
+        newTotalLabel.setText(String.valueOf(newTotal));
+    }//GEN-LAST:event_otherinputMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        order.clearTip();
+        order.calculateSubTotal();
+        oldTotal=order.getSubTotal();
+        oldTotalLabel.setText(String.valueOf(oldTotal));
+        newTotal=oldTotal;
+        newTotalLabel.setText(String.valueOf(newTotal));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        order.setTip((newTotal-oldTotal));
+        order.setSubTotal(newTotal);
+        oldTotal=order.getSubTotal();
+        oldTotalLabel.setText(String.valueOf(oldTotal));
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel newTotalLabel;
+    private javax.swing.JLabel oldTotalLabel;
+    private javax.swing.JLabel otherinput;
+    private javax.swing.JLabel percent10;
+    private javax.swing.JLabel percent15;
+    private javax.swing.JLabel percent20;
     // End of variables declaration//GEN-END:variables
 }

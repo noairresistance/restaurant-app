@@ -5,6 +5,7 @@
  */
 package Food;
 
+import Panels.Tip;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class Order implements Serializable
     private double subTotal;
     private double compedItemTotal;
     private double tax;
+    private double tip;
     private boolean hasAddedToOrder;
     private ArrayList<CompedItem> compedItems;
 
@@ -35,6 +37,7 @@ public class Order implements Serializable
         totalPrice = 0;
         subTotal = 0;
         compedItemTotal = 0;
+        tip = 0;
         foodItem = new ArrayList<Food>();
         drink = new ArrayList<Food>();
         merch = new ArrayList<Food>();
@@ -171,6 +174,7 @@ public class Order implements Serializable
         
         subTotal += temp;
         subTotal -= compedItemTotal;
+        subTotal += tip;
        
     }
     
@@ -371,4 +375,12 @@ public class Order implements Serializable
         this.compedItemTotal = compedItemTotal;
     }
     
+    public void setTip(double input)
+    {
+        this.tip = input;
+    }
+    public void clearTip()
+    {
+        tip = 0;
+    }
 }
