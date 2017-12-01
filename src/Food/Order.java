@@ -5,7 +5,6 @@
  */
 package Food;
 
-import Panels.Tip;
 import java.io.Serializable;
 import java.util.ArrayList;
 
