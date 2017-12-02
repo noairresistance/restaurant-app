@@ -21,13 +21,14 @@ public class FullMenu implements Serializable
             // empty constructor
         }
         
-        public FullMenu(FoodList entrees, FoodList apps, FoodList drinks, FoodList desserts, FoodList merch)
+        public FullMenu(FoodList entrees, FoodList apps, FoodList drinks, FoodList desserts, FoodList merch, FoodList specials)
         {
             Entrees = entrees;
             Appetizers = apps;
             Drinks = drinks;
             Desserts = desserts;
             Merchs = merch;
+            Specials = specials;
         }
         
         public int entreesSize()
@@ -134,7 +135,7 @@ public class FullMenu implements Serializable
             {
                 System.out.println(Merchs.getItem(i).GetName());
                 System.out.println(Merchs.getItem(i).GetPrice());
-                 //This is an item size, not the list size.
+                //System.out.println(Merchs.getItem(i).GetSize()); //This is an item size, not the list size.
                 //since merch has no ingredients, we will omit Ingredients.
             }
             
