@@ -40,6 +40,7 @@ public class App extends javax.swing.JFrame {
     Table table1;
     int managerCode;
     int waiterID;
+    Split split = null;
     
     Navigator navigator = new Navigator() 
     {
@@ -82,7 +83,13 @@ public class App extends javax.swing.JFrame {
         public void goToCard()
         {
             manager.setVisible(false);
+             
+            
             swapPanel(new Card(this, table1.getOrder()));
+
+            //table1.OrderPaidByCard();
+            //goToSurvey();
+            
         }
         
         @Override
@@ -96,7 +103,8 @@ public class App extends javax.swing.JFrame {
         public void goToSplit()
         {
             manager.setVisible(false);
-            swapPanel(new Split(this, table1.getOrder()));
+            split = new Split(this, table1.getOrder());
+            swapPanel(split);
         }
         
         @Override
@@ -340,6 +348,12 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToSurveyInfo() {
             swapPanel(new SurveyInfo());
+        }
+
+        @Override
+        public void goToPaySplitCheck()
+        {
+            swapPanel(new PaySplitCheck(this,split));
         }
         
     };
