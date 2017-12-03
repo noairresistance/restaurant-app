@@ -96,7 +96,7 @@ public class OrderItemDetails extends javax.swing.JPanel
              navigator.goToAppetizers();
              listener.modifyItem(item);
          }
-         if(item.getItemCatagory().equals("entree"))
+         if(item.getItemCatagory().equals("entree")||item.getItemCatagory().equals("kidsmeal"))
          {
                 navigator.goToEntrees();
                 listener.modifyItem(item);

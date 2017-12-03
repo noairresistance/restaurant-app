@@ -83,7 +83,7 @@ public class Menu extends javax.swing.JPanel {
             {
                 orderDetails.add(new OrderItemDetails(item, listener,navigator));
             }
-            if(item.getItemCatagory().equals("entree"))
+            if(item.getItemCatagory().equals("entree") || item.getItemCatagory().equals("kidsmeal"))
             {
                 orderDetails.add(new OrderItemDetails(item, listener,navigator));
             }

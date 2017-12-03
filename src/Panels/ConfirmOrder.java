@@ -16,8 +16,12 @@ public class ConfirmOrder extends javax.swing.JPanel
     Navigator navigator;
     Table table;
     double entreecount = 0;
+    double temp_entreecount = 0;
     double drinkcount = 0;
     double combocount = 0;
+    double cookiecount = 0;
+    double temp_cookiecount = 0;
+    double dealcount = 0;
     
     
     OrderItemDetailsListener listener = new OrderItemDetailsListener() 
@@ -57,6 +61,7 @@ public class ConfirmOrder extends javax.swing.JPanel
         tax.setText(setTax());
         grandTotal.setText(setGrandTotal());
         comboDiscount.setText(setComboDiscount());
+        //dealDiscount.setText(setDealDiscount());
         
     }
     
@@ -103,13 +108,25 @@ public class ConfirmOrder extends javax.swing.JPanel
             {
                 appetizerDetails.add(new OrderItemDetails(item, listener, navigator));
             }
-            if(item.getItemCatagory().equals("entree"))
+            if(item.getItemCatagory().equals("entree")||item.getItemCatagory().equals("kidsmeal"))
             {
                 entreeDetails.add(new OrderItemDetails(item, listener, navigator));
                 entreecount++;
             }
             if(item.getItemCatagory().equals( "dessert"))
             {
+/*                if(item.GetName().equals("Holiday Cookie")) //this works, but only if entree is ordered first.
+                {
+                    cookiecount++;
+                    temp_cookiecount = cookiecount;
+                    if(cookiecount > 0 && entreecount > 0)
+                    {    
+                        item.SetPrice(1.00);
+                        //dealcount++;
+                        cookiecount--;
+                        entreecount--;
+                    }
+                }*/
                 dessertDetails.add(new OrderItemDetails(item, listener, navigator));
             }
         }
@@ -131,12 +148,24 @@ public class ConfirmOrder extends javax.swing.JPanel
     //Calculates subtotal an returns it as a string
     public String setSubTotal()
     {
+        temp_entreecount = entreecount;
+        
         while(entreecount > 0 && drinkcount > 0)
         {
             combocount++;
             entreecount--;
             drinkcount--;
+            
         }
+      /*  
+        while(entreecount > 0 && temp_cookiecount > 0) //issue here. If this code triggers and there was a combo, then combo is overwritten.
+        {
+            dealcount++;
+            temp_entreecount--;
+            temp_cookiecount--;
+            
+        }
+        */
     
         table.getOrder().calculateSubTotal();//Calculate the total price of the order
         return String.format("%.02f", table.getOrder().getSubTotal() - combocount);
@@ -146,7 +175,11 @@ public class ConfirmOrder extends javax.swing.JPanel
     {
         return String.format("%.02f", combocount);
     }
-    
+    /*
+    public String setDealDiscount()
+    {
+        return String.format("%.02f", dealcount*2);
+    }*/
     public String setTax()
     {
         table.getOrder().calculateTax();
@@ -352,33 +385,33 @@ public class ConfirmOrder extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
+                    .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                                    .addComponent(jLabel3))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(28, 28, 28)
+                                    .addComponent(subTotal)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tax)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(subTotal)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(tax)))
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
+                                .addGap(87, 87, 87)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(126, 126, 126)
                                 .addComponent(grandTotal)
                                 .addGap(72, 72, 72)))
-                        .addComponent(placeOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(placeOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -386,7 +419,7 @@ public class ConfirmOrder extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(itemGroup, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(placeOrder)
@@ -405,7 +438,7 @@ public class ConfirmOrder extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboDiscount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboDiscount))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
