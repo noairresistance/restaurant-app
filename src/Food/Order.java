@@ -44,7 +44,7 @@ public class Order implements Serializable
         compedItems = new ArrayList<CompedItem>();
     }
     
-    public class CompedItem
+    public class CompedItem implements Serializable
     {
         
         
