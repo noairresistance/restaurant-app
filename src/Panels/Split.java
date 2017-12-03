@@ -8,6 +8,7 @@ package Panels;
 import Food.Food;
 import Listeners.Navigator;
 import Food.Order;
+import Food.Order.CompedItem;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
@@ -36,6 +37,7 @@ public class Split extends javax.swing.JPanel {
     public double total2;
     public double total3;
     public double total4;
+    ArrayList<Order.CompedItem> compedItems;
     /**
      * Creates new form Split
      */
@@ -44,6 +46,7 @@ public class Split extends javax.swing.JPanel {
         setSize(1024, 768);
         this.navigator = navigator;
         this.order = order;
+        this.compedItems = order.getCompedItems();
         
         tab1 = new ArrayList<Food>();
         tab2 = new ArrayList<Food>();
@@ -107,27 +110,86 @@ public class Split extends javax.swing.JPanel {
                     tab1.add(drink);
                     dlmTab1.addElement(drink.GetName());
                     total1 = total1 + drink.GetItemPrice();
+                    
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem item : compedItems)
+                    {
+                        if(item.getItem().equals(drink.GetName()))
+                        {
+                            total1 -= drink.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 2:
                     tab2.add(drink);
                     dlmTab2.addElement(drink.GetName());
                     total2 = total2 + drink.GetItemPrice();
+                    
+                                        
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem item : compedItems)
+                    {
+                        if(item.getItem().equals(drink.GetName()))
+                        {
+                            total2 -= drink.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 3:
                     tab3.add(drink);
                     dlmTab3.addElement(drink.GetName());
                     total3 = total3 + drink.GetItemPrice();
+                    
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem item : compedItems)
+                    {
+                        if(item.getItem().equals(drink.GetName()))
+                        {
+                            total3 -= drink.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 4:
                     tab4.add(drink);
                     dlmTab4.addElement(drink.GetName());
                     total4 = total4 + drink.GetItemPrice();
+                    
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem item : compedItems)
+                    {
+                        if(item.getItem().equals(drink.GetName()))
+                        {
+                            total4 -= drink.GetItemPrice();
+                        }
+                    }
                      break;
                      
                 default:
                    tab1.add(drink);
                    dlmTab1.addElement(drink.GetName());
                    total1 = total1 + drink.GetItemPrice();
+                                       
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem item : compedItems)
+                    {
+                        if(item.getItem().equals(drink.GetName()))
+                        {
+                            total1 -= drink.GetItemPrice();
+                        }
+                    }
                    break; 
                   
             }
@@ -141,27 +203,86 @@ public class Split extends javax.swing.JPanel {
                     tab1.add(item);
                     dlmTab1.addElement(item.GetName());
                     total1 = total1 + item.GetItemPrice();
+                                                            
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem comp : compedItems)
+                    {
+                        if(comp.getItem().equals(item.GetName()))
+                        {
+                            total1 -= item.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 2:
                     tab2.add(item);
                     dlmTab2.addElement(item.GetName());
                     total2 = total2 + item.GetItemPrice();
+
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem comp : compedItems)
+                    {
+                        if(comp.getItem().equals(item.GetName()))
+                        {
+                            total2 -= item.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 3:
                     tab3.add(item);
                     dlmTab3.addElement(item.GetName());
                     total3 = total3 + item.GetItemPrice();
+                    
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem comp : compedItems)
+                    {
+                        if(comp.getItem().equals(item.GetName()))
+                        {
+                            total3 -= item.GetItemPrice();
+                        }
+                    }
+                    
                     break;
                 case 4:
                     tab4.add(item);
                     dlmTab4.addElement(item.GetName());
                     total4 = total4 + item.GetItemPrice();
-                     break;
+                    
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem comp : compedItems)
+                    {
+                        if(comp.getItem().equals(item.GetName()))
+                        {
+                            total4 -= item.GetItemPrice();
+                        }
+                    }
+                    
+                    break;
                      
                 default:
                    tab1.add(item);
                    dlmTab1.addElement(item.GetName());
                    total1 = total1 + item.GetItemPrice();
+                   
+                    //Iterate over the compedItems list
+                    //If compedItem name matches order's food item name,
+                    //subtract the items price from the total
+                    for(CompedItem comp : compedItems)
+                    {
+                        if(comp.getItem().equals(item.GetName()))
+                        {
+                            total1 -= item.GetItemPrice();
+                        }
+                    }
                    break; 
                   
             }
