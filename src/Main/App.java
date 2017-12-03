@@ -291,6 +291,7 @@ public class App extends javax.swing.JFrame {
         @Override
         public void goToSurvey()
         {
+            table1.OrderPaidByCard();
             swapPanel(new Survey(this));
         }
         @Override
