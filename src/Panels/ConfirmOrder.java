@@ -115,18 +115,10 @@ public class ConfirmOrder extends javax.swing.JPanel
             }
             if(item.getItemCatagory().equals( "dessert"))
             {
-/*                if(item.GetName().equals("Holiday Cookie")) //this works, but only if entree is ordered first.
+                if(item.GetName().equals("Holiday Cookie")) //this works, but only if entree is ordered first.
                 {
                     cookiecount++;
-                    temp_cookiecount = cookiecount;
-                    if(cookiecount > 0 && entreecount > 0)
-                    {    
-                        item.SetPrice(1.00);
-                        //dealcount++;
-                        cookiecount--;
-                        entreecount--;
-                    }
-                }*/
+                }
                 dessertDetails.add(new OrderItemDetails(item, listener, navigator));
             }
         }
@@ -157,23 +149,36 @@ public class ConfirmOrder extends javax.swing.JPanel
             drinkcount--;
             
         }
-      /*  
-        while(entreecount > 0 && temp_cookiecount > 0) //issue here. If this code triggers and there was a combo, then combo is overwritten.
+        if(temp_entreecount > cookiecount)
         {
-            dealcount++;
-            temp_entreecount--;
-            temp_cookiecount--;
-            
+            table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*cookiecount);
         }
-        */
+        else
+        {
+            table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*temp_entreecount);
+        }
     
         table.getOrder().calculateSubTotal();//Calculate the total price of the order
-        return String.format("%.02f", table.getOrder().getSubTotal() - combocount);
+        
+        
+        // account combo discounts and cookie discounts
+        if(temp_entreecount > cookiecount) // if there are more entrees than cookies
+        {
+            table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*cookiecount);
+            temp_cookiecount = 2*cookiecount;
+        }
+        else // if there are more cookies than entrees or equal amout of cookies and entrees
+        {
+            table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*temp_entreecount);
+            temp_cookiecount = 2*temp_entreecount;
+        }
+        table.getOrder().setSubTotal(table.getOrder().getSubTotal() - combocount);
+        return String.format("%.02f", table.getOrder().getSubTotal());
     }
     
     public String setComboDiscount()
     {
-        return String.format("%.02f", combocount);
+        return String.format("%.02f", combocount + temp_cookiecount);
     }
     /*
     public String setDealDiscount()
