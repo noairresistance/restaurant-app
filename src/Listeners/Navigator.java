@@ -36,6 +36,7 @@ public interface Navigator {
     void goToItemInfo();
     void goToMenuInfo();
     void goToPayInfo();
+    void goToPaySplitCheck();
     void goToRefillInfo();
     void goToSurveyInfo();
 

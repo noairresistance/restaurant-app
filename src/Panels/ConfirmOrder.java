@@ -172,10 +172,12 @@ public class ConfirmOrder extends javax.swing.JPanel
         if(temp_entreecount > cookiecount) // if there are more entrees than cookies
         {
             table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*cookiecount);
+            temp_cookiecount = 2*cookiecount;
         }
         else // if there are more cookies than entrees or equal amout of cookies and entrees
         {
             table.getOrder().setSubTotal(table.getOrder().getSubTotal() - 2*temp_entreecount);
+            temp_cookiecount = 2*temp_entreecount;
         }
         table.getOrder().setSubTotal(table.getOrder().getSubTotal() - combocount);
         return String.format("%.02f", table.getOrder().getSubTotal());
@@ -183,7 +185,7 @@ public class ConfirmOrder extends javax.swing.JPanel
     
     public String setComboDiscount()
     {
-        return String.format("%.02f", combocount);
+        return String.format("%.02f", combocount + temp_cookiecount);
     }
     /*
     public String setDealDiscount()

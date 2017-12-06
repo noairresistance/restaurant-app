@@ -141,8 +141,9 @@ public class Pay extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cardButtonMouseClicked
-        // TODO add your handling code here:
+
         table.OrderPaidByCard();
+
         navigator.goToSurvey();
         
     }//GEN-LAST:event_cardButtonMouseClicked

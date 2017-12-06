@@ -90,10 +90,10 @@ public class Split extends javax.swing.JPanel {
     }
     private void populateTabs()
     {
-        tab1.clear();
-        tab2.clear();
-        tab3.clear();
-        tab3.clear();
+        getTab1().clear();
+        getTab2().clear();
+        getTab3().clear();
+        getTab3().clear();
         dlmTab1.clear();
         dlmTab2.clear();
         dlmTab3.clear();
@@ -107,7 +107,7 @@ public class Split extends javax.swing.JPanel {
             switch(drink.GetTabNumber())
             {
                 case 1:
-                    tab1.add(drink);
+                    getTab1().add(drink);
                     dlmTab1.addElement(drink.GetName());
                     total1 = total1 + drink.GetItemPrice();
                     
@@ -124,7 +124,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 2:
-                    tab2.add(drink);
+                    getTab2().add(drink);
                     dlmTab2.addElement(drink.GetName());
                     total2 = total2 + drink.GetItemPrice();
                     
@@ -142,7 +142,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 3:
-                    tab3.add(drink);
+                    getTab3().add(drink);
                     dlmTab3.addElement(drink.GetName());
                     total3 = total3 + drink.GetItemPrice();
                     
@@ -159,7 +159,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 4:
-                    tab4.add(drink);
+                    getTab4().add(drink);
                     dlmTab4.addElement(drink.GetName());
                     total4 = total4 + drink.GetItemPrice();
                     
@@ -176,7 +176,7 @@ public class Split extends javax.swing.JPanel {
                      break;
                      
                 default:
-                   tab1.add(drink);
+                   getTab1().add(drink);
                    dlmTab1.addElement(drink.GetName());
                    total1 = total1 + drink.GetItemPrice();
                                        
@@ -200,7 +200,7 @@ public class Split extends javax.swing.JPanel {
             switch(item.GetTabNumber())
             {
                 case 1:
-                    tab1.add(item);
+                    getTab1().add(item);
                     dlmTab1.addElement(item.GetName());
                     total1 = total1 + item.GetItemPrice();
                                                             
@@ -217,7 +217,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 2:
-                    tab2.add(item);
+                    getTab2().add(item);
                     dlmTab2.addElement(item.GetName());
                     total2 = total2 + item.GetItemPrice();
 
@@ -234,7 +234,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 3:
-                    tab3.add(item);
+                    getTab3().add(item);
                     dlmTab3.addElement(item.GetName());
                     total3 = total3 + item.GetItemPrice();
                     
@@ -251,7 +251,7 @@ public class Split extends javax.swing.JPanel {
                     
                     break;
                 case 4:
-                    tab4.add(item);
+                    getTab4().add(item);
                     dlmTab4.addElement(item.GetName());
                     total4 = total4 + item.GetItemPrice();
                     
@@ -269,7 +269,7 @@ public class Split extends javax.swing.JPanel {
                     break;
                      
                 default:
-                   tab1.add(item);
+                   getTab1().add(item);
                    dlmTab1.addElement(item.GetName());
                    total1 = total1 + item.GetItemPrice();
                    
@@ -303,7 +303,8 @@ public class Split extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -327,6 +328,7 @@ public class Split extends javax.swing.JPanel {
         totalTab2 = new javax.swing.JLabel();
         totalTab3 = new javax.swing.JLabel();
         totalTab4 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 0));
 
@@ -362,7 +364,8 @@ public class Split extends javax.swing.JPanel {
 
         listTab2.setBackground(new java.awt.Color(204, 0, 0));
         listTab2.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        listTab2.setModel(new javax.swing.AbstractListModel<String>() {
+        listTab2.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -371,7 +374,8 @@ public class Split extends javax.swing.JPanel {
 
         listTab3.setBackground(new java.awt.Color(204, 0, 0));
         listTab3.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        listTab3.setModel(new javax.swing.AbstractListModel<String>() {
+        listTab3.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -380,7 +384,8 @@ public class Split extends javax.swing.JPanel {
 
         listTab1.setBackground(new java.awt.Color(204, 0, 0));
         listTab1.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        listTab1.setModel(new javax.swing.AbstractListModel<String>() {
+        listTab1.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -389,7 +394,8 @@ public class Split extends javax.swing.JPanel {
 
         listTab4.setBackground(new java.awt.Color(204, 0, 0));
         listTab4.setFont(new java.awt.Font("Lucida Console", 0, 14)); // NOI18N
-        listTab4.setModel(new javax.swing.AbstractListModel<String>() {
+        listTab4.setModel(new javax.swing.AbstractListModel<String>()
+        {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
@@ -397,29 +403,37 @@ public class Split extends javax.swing.JPanel {
         jScrollPane4.setViewportView(listTab4);
 
         jButton1.setText("move to tab 1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
 
         jButton2.setText("move to tab 2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
 
         jButton3.setText("move to tab 3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton3ActionPerformed(evt);
             }
         });
 
         jButton4.setText("move to tab 4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton4.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton4ActionPerformed(evt);
             }
         });
@@ -454,6 +468,16 @@ public class Split extends javax.swing.JPanel {
         totalTab4.setText("$0.00");
         totalTab4.setOpaque(true);
 
+        jToggleButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jToggleButton1.setText("GO TO PAY");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -461,40 +485,45 @@ public class Split extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(totalTab1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(totalTab1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(71, 71, 71)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalTab3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(71, 71, 71)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalTab4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalTab3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalTab4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(407, 407, 407)
+                        .addComponent(jToggleButton1)))
                 .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -536,7 +565,9 @@ public class Split extends javax.swing.JPanel {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jToggleButton1)
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(40, 40, 40)
@@ -548,13 +579,13 @@ public class Split extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        if(listTab1.getSelectedIndex() != -1)
-         tab1.get(listTab1.getSelectedIndex()).SetTabNumber(1);
+         getTab1().get(listTab1.getSelectedIndex()).SetTabNumber(1);
        if(listTab2.getSelectedIndex() != -1)
-        tab2.get(listTab2.getSelectedIndex()).SetTabNumber(1);
+        getTab2().get(listTab2.getSelectedIndex()).SetTabNumber(1);
        if(listTab3.getSelectedIndex() != -1)
-        tab3.get(listTab3.getSelectedIndex()).SetTabNumber(1);
+        getTab3().get(listTab3.getSelectedIndex()).SetTabNumber(1);
        if(listTab4.getSelectedIndex() != -1)
-        tab4.get(listTab4.getSelectedIndex()).SetTabNumber(1);
+        getTab4().get(listTab4.getSelectedIndex()).SetTabNumber(1);
        
        
        populateTabs();
@@ -563,13 +594,13 @@ public class Split extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(listTab1.getSelectedIndex() != -1)
-         tab1.get(listTab1.getSelectedIndex()).SetTabNumber(2);
+         getTab1().get(listTab1.getSelectedIndex()).SetTabNumber(2);
        if(listTab2.getSelectedIndex() != -1)
-        tab2.get(listTab2.getSelectedIndex()).SetTabNumber(2);
+        getTab2().get(listTab2.getSelectedIndex()).SetTabNumber(2);
        if(listTab3.getSelectedIndex() != -1)
-        tab3.get(listTab3.getSelectedIndex()).SetTabNumber(2);
+        getTab3().get(listTab3.getSelectedIndex()).SetTabNumber(2);
        if(listTab4.getSelectedIndex() != -1)
-        tab4.get(listTab4.getSelectedIndex()).SetTabNumber(2);
+        getTab4().get(listTab4.getSelectedIndex()).SetTabNumber(2);
        
        
        
@@ -579,13 +610,13 @@ public class Split extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if(listTab1.getSelectedIndex() != -1)
-         tab1.get(listTab1.getSelectedIndex()).SetTabNumber(3);
+         getTab1().get(listTab1.getSelectedIndex()).SetTabNumber(3);
        if(listTab2.getSelectedIndex() != -1)
-        tab2.get(listTab2.getSelectedIndex()).SetTabNumber(3);
+        getTab2().get(listTab2.getSelectedIndex()).SetTabNumber(3);
        if(listTab3.getSelectedIndex() != -1)
-        tab3.get(listTab3.getSelectedIndex()).SetTabNumber(3);
+        getTab3().get(listTab3.getSelectedIndex()).SetTabNumber(3);
        if(listTab4.getSelectedIndex() != -1)
-        tab4.get(listTab4.getSelectedIndex()).SetTabNumber(3);
+        getTab4().get(listTab4.getSelectedIndex()).SetTabNumber(3);
        
        populateTabs();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -593,16 +624,21 @@ public class Split extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         if(listTab1.getSelectedIndex() != -1)
-         tab1.get(listTab1.getSelectedIndex()).SetTabNumber(4);
+         getTab1().get(listTab1.getSelectedIndex()).SetTabNumber(4);
        if(listTab2.getSelectedIndex() != -1)
-        tab2.get(listTab2.getSelectedIndex()).SetTabNumber(4);
+        getTab2().get(listTab2.getSelectedIndex()).SetTabNumber(4);
        if(listTab3.getSelectedIndex() != -1)
-        tab3.get(listTab3.getSelectedIndex()).SetTabNumber(4);
+        getTab3().get(listTab3.getSelectedIndex()).SetTabNumber(4);
        if(listTab4.getSelectedIndex() != -1)
-        tab4.get(listTab4.getSelectedIndex()).SetTabNumber(4);
+        getTab4().get(listTab4.getSelectedIndex()).SetTabNumber(4);
        
        populateTabs();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jToggleButton1ActionPerformed
+    {//GEN-HEADEREND:event_jToggleButton1ActionPerformed
+        navigator.goToPaySplitCheck();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -620,6 +656,7 @@ public class Split extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JList<String> listTab1;
     private javax.swing.JList<String> listTab2;
     private javax.swing.JList<String> listTab3;
@@ -629,4 +666,36 @@ public class Split extends javax.swing.JPanel {
     private javax.swing.JLabel totalTab3;
     private javax.swing.JLabel totalTab4;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the tab1
+     */
+    public ArrayList<Food> getTab1()
+    {
+        return tab1;
+    }
+
+    /**
+     * @return the tab2
+     */
+    public ArrayList<Food> getTab2()
+    {
+        return tab2;
+    }
+
+    /**
+     * @return the tab3
+     */
+    public ArrayList<Food> getTab3()
+    {
+        return tab3;
+    }
+
+    /**
+     * @return the tab4
+     */
+    public ArrayList<Food> getTab4()
+    {
+        return tab4;
+    }
 }
