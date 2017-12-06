@@ -9,6 +9,7 @@ import Food.*;
 import Listeners.Navigator;
 import Listeners.OrderItemDetailsListener;
 import Table.Table;
+import java.util.Date;
 
 
 public class ConfirmOrder extends javax.swing.JPanel
@@ -22,6 +23,8 @@ public class ConfirmOrder extends javax.swing.JPanel
     double cookiecount = 0;
     double temp_cookiecount = 0;
     double dealcount = 0;
+    int kidsMealCount = 0;
+    Date today = new Date();
     
     
     OrderItemDetailsListener listener = new OrderItemDetailsListener() 
@@ -112,6 +115,10 @@ public class ConfirmOrder extends javax.swing.JPanel
             {
                 entreeDetails.add(new OrderItemDetails(item, listener, navigator));
                 entreecount++;
+            }
+            if(item.getItemCatagory().equals("kidsmeal"))
+            {
+                kidsMealCount++;
             }
             if(item.getItemCatagory().equals( "dessert"))
             {
