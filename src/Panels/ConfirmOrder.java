@@ -24,6 +24,7 @@ public class ConfirmOrder extends javax.swing.JPanel
     double temp_cookiecount = 0;
     double dealcount = 0;
     int kidsMealCount = 0;
+    int thirdEntreeCount = 0;
     Date today = new Date();
     
     
@@ -113,8 +114,12 @@ public class ConfirmOrder extends javax.swing.JPanel
             }
             if(item.getItemCatagory().equals("entree")||item.getItemCatagory().equals("kidsmeal"))
             {
-                entreeDetails.add(new OrderItemDetails(item, listener, navigator));
+                if(item.getItemCatagory().equals("entree"))
+                {
+                    thirdEntreeCount++;
+                }
                 entreecount++;
+                entreeDetails.add(new OrderItemDetails(item, listener, navigator));
             }
             if(item.getItemCatagory().equals("kidsmeal"))
             {
@@ -148,6 +153,25 @@ public class ConfirmOrder extends javax.swing.JPanel
     public String setSubTotal()
     {
         temp_entreecount = entreecount;
+        
+        if(today.toString().contains("Sun"))
+        {
+            
+            int i = 0;
+            for(Food item : table.getOrder().getFoodItem())
+            {
+                if(thirdEntreeCount > 0)
+                {
+                    if(item.getItemCatagory().equals("kidsmeal"))
+                    {
+                        table.getOrder().GetItem(i).SetPrice(0.0);
+                        thirdEntreeCount--;
+                    }
+                }
+                i++;
+            }
+        }
+        
         
         while(entreecount > 0 && drinkcount > 0)
         {
